@@ -2382,6 +2382,20 @@ article .quote {
     font-size: 12px;
   }
 }
+
+.ptitle {
+  font-size: 40px;
+  color: white;
+}
+
+.wrap-login {
+  padding-top: 24px;
+}
+.alogin{
+  font-size: 20px;
+  color: white;
+  vertical-align: middle;
+}
 /***********************************
         /* END 6.RESPONSIVE */
 /***********************************/
