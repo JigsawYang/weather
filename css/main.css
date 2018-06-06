@@ -56,12 +56,16 @@ font-family: 'Roboto', sans-serif; (text)
 -------------------------------------------------------------------*/
 
 @charset "UTF-8";
+
 @import "fontcss.css";
 @import "reset.css";
 @import "typography.css";
 @import "webslidemenu.css";
 @import "fontello.css";
 @import "bootstrap.min.css";
+
+
+
 
 /***********************************
             /* 1.BODY*/
@@ -75,6 +79,18 @@ body {
 }
 .page {
     background-color: #eeeeee;
+}
+.glyphicon {
+  position: relative;
+  top: 1px;
+  display: inline-block;
+  font-family: 'Glyphicons Halflings';
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 h1 {
   font-size: 23px;
@@ -2395,6 +2411,99 @@ article .quote {
   font-size: 20px;
   color: white;
   vertical-align: middle;
+}
+
+.brilliant-section {
+    padding: 4em 0;
+}
+.brilliant-section h2,.about-section h2,.hosting-section h2 ,h2.type,.blog h2,.detailed-section h2,.testimonials h2,.faq-section h2,.history-section h2,.setting-section h2,.contact h2,.support-section h2{
+    font-size: 3.5em;
+    text-align: center;
+    text-transform: capitalize;
+    font-family: 'Voltaire', sans-serif;
+    color: #222;
+}
+.brilliant-section h5,.team h5,.price-section h5,.browse-section h5,.post-section h5 {
+    font-size: 1.1em;
+    text-align: center;
+    text-transform: capitalize;
+    color: #777;
+    margin-top: .3em;
+}
+.brilliant-left {
+    float: left;
+  width: 20%;
+  margin-right:1%
+}
+.brilliant-right {
+    float: right;
+  width: 79%;
+}
+.brilliant-grids {
+    margin-top: 4em;
+}
+.brilliant-left i {
+    font-size: 1.3em;
+    background: #e7663f;
+    padding: 1em 1em;
+    color: #fff;
+  border-radius: 2px;
+}
+.brilliant-left i:hover{
+background: #7277d5;
+}
+.brilliant-right h4 {
+    font-size: 1.5em;
+    text-transform: capitalize;
+    color: #222;
+    font-weight: 600;
+  font-family: 'Voltaire', sans-serif;
+}
+.brilliant-right p {
+    font-size: 1em;
+    line-height: 2em;
+    color: #777;
+    margin-top: .5em;
+}/**team**/
+
+/* Author Page */
+
+.span8{width:620px;}
+.page figure.embed-section { background-color:#000; }
+.author-page .author-bio {
+  margin-bottom:40px;
+  color:#999;
+}
+  .author-page .author-bio figure {
+    width:18%;
+    float:left;
+  }
+  .author-page .author-bio .content {
+    float:right;
+    width:80%;  
+  }
+    .author-page .author-bio .content h3 {
+      margin:0px 0px 15px;
+      font-family:'Open Sans', Arial, san-serif;
+      font-size:18px;
+      font-weight:bold;
+      line-height:1;
+    }
+    .author-page .author-bio .content p.add-info {
+      font-size:15px;
+      color:#5a5a5a;
+      margin-bottom:2px;
+    }
+
+.col-lg-4 {
+    width: 33.33333333%;
+}
+.titleh2 {
+    font-size: 2em;
+    text-align: center;
+    text-transform: capitalize;
+    font-family: 'Voltaire', sans-serif;
+    color: #222;
 }
 /***********************************
         /* END 6.RESPONSIVE */

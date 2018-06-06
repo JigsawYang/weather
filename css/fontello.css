@@ -3,6 +3,9 @@
   font-family: 'fontello';
   src: url("../fonts/fontello.eot?44020949");
   src: url("../fonts/fontello.eot?44020949#iefix") format("embedded-opentype"), url("../fonts/fontello.woff?44020949") format("woff"), url("../fonts/fontello.ttf?44020949") format("truetype"), url("../fonts/fontello.svg?44020949#fontello") format("svg");
+  font-family: 'Glyphicons Halflings';
+  src: url('../fonts/glyphicons-halflings-regular.eot');
+  src: url('../fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/glyphicons-halflings-regular.woff') format('woff'), url('../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
   font-weight: normal;
   font-style: normal;
 }
