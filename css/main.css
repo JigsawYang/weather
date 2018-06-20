@@ -1832,7 +1832,7 @@ article .quote {
 /***********************************/
 /* footer */
 .footer {
-  padding: 32px 0 25px 0;
+  padding: 19px 0 19px 0;
 }
 
 /* end footer */
@@ -2437,7 +2437,7 @@ article .quote {
 }
 
 .brilliant-section {
-    padding: 4em 0;
+    padding: 0em 0;
 }
 .brilliant-section h2,.about-section h2,.hosting-section h2 ,h2.type,.blog h2,.detailed-section h2,.testimonials h2,.faq-section h2,.history-section h2,.setting-section h2,.contact h2,.support-section h2{
     font-size: 3.5em;
@@ -2463,14 +2463,14 @@ article .quote {
   width: 79%;
 }
 .brilliant-grids {
-    margin-top: 4em;
+    margin-top: 1em;
 }
 .brilliant-left i {
     font-size: 1.3em;
     background: #e7663f;
     padding: 1em 1em;
     color: #fff;
-  border-radius: 2px;
+    border-radius: 2px;
 }
 .brilliant-left i:hover{
 background: #7277d5;
@@ -2480,7 +2480,7 @@ background: #7277d5;
     text-transform: capitalize;
     color: #222;
     font-weight: 600;
-  font-family: 'Voltaire', sans-serif;
+    font-family: 'Voltaire', sans-serif;
 }
 .brilliant-right p {
     font-size: 1em;
@@ -2547,6 +2547,20 @@ background: #7277d5;
   border-color: #f38844;
 }
 /*end login*/
+
+#wrap{
+    overflow: hidden;
+    width:100%;
+}
+#main{
+    height:2944px;
+    top:0;
+    position: relative;
+}
+.page{
+    width:100%;
+    margin:0;
+}
 /***********************************
         /* END 6.RESPONSIVE */
 /***********************************/
