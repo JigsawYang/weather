@@ -177,7 +177,7 @@ html .ma {
 /* 2.2. Weather */
 .weather {
     position: relative;
-    padding: 12px 0 15px;
+    padding: 25px 0 15px;
     text-align: center;
     cursor: pointer;
     z-index: 1;
