@@ -17,5 +17,25 @@ class LoginController extends CommonController {
         $this->display();
     }
 
+    public function signin() {
+        session("download", null);
+
+        $user = I('post.username');
+        $password = I('post.password');
+
+        $result = MemberService::login($user, $password);
+        if ($result === true) {
+            session('mes', 1);
+            $this->redirect('/');
+        } else {
+            session('mes', $result);
+            $this->redirect('login/index');
+        }
+    }
+    public function logout() {
+        session(null);
+        redirect('/');
+    }
+
 }
 ?>

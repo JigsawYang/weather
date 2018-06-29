@@ -5,6 +5,8 @@
     <title></title>
 </head>
 <body>
-<p>asdasdasd</p>
+<p>woshi shuzye </p>
+<?php
+print_r(session('mes')); ?>
 </body>
 </html>

@@ -115,19 +115,37 @@
         <!-- content-->
         <!-- title -->
         <div class="container">
-            <form class="form-signin">
-                <label for="inputEmail" class="sr-only">用户名</label>
-                <input type="email" id="inputEmail" class="form-control" placeholder="用户名" required autofocus>
-                <label for="inputPassword" class="sr-only">密码</label>
-                <input type="password" id="inputPassword" class="form-control" placeholder="密码" required>
-                <!-- <div class="checkbox">
-                  <label>
-                    <input type="checkbox" value="remember-me"> Remember me
-                  </label>
-                </div> -->
-                <button class="btntop btn btn-lg btn-orange btn-block" type="submit">登陆</button>
-            </form>
+            <?php  if (session('mes') != 1 && session('mes') != null) { ?>
+            <div class="alert alert-warning alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <strong>提示: </strong> <?php echo session('mes'); ?>
+            </div>
+            <?php } ?>
+            <form class="form-horizontal form-signin" id="signup-form" method="post" action="{:U('login/signin')}">
+                <label for="username" class="sr-only">用户名</label>
+                <div class="input-group input-group-lg formp col-sm-12">
+                    <input type="text" id="username" name="username" class="form-control" placeholder="请输入用户名" required autofocus>
+                    <div class="col-xs-4 form-control-static tip"></div>
 
+                </div>
+                <label for="password" class="sr-only">密码</label>
+                <div class="input-group input-group-lg formp col-sm-12">
+                    <input type="password" id="password" name="password" class="form-control" placeholder="请输入密码" required>
+                    <div class="col-xs-4 form-control-static tip"></div>
+
+                </div>
+
+                <!-- <div class="checkbox">
+          <label>
+            <input type="checkbox" value="remember-me"> Remember me
+          </label>
+        </div> -->
+                <div class="input-group input-group-lg formp col-sm-12">
+
+
+                    <button class="btntop btn btn-lg btn-orange btn-block signup-submit" type="submit">登陆</button>
+                </div>
+            </form>
         </div>
         <!-- Footer -->
         <footer class="footer slate_gray">
