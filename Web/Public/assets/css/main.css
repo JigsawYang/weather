@@ -2559,6 +2559,7 @@ background: #7277d5;
 #wrap{
     overflow: hidden;
     width:100%;
+    min-height: 700px;
 }
 #main{
     height:2944px;
