@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html>
 <html lang="zxx">
 <head>
     <meta charset="utf-8">
@@ -12,17 +12,17 @@
     <!-- <link rel="shortcut icon" type="image/png" href="favicon.png" /> -->
     <!--[if (gt IE 9)|!(IE)]><!-->
     <!-- custom CSS -->
-    <link href="__ASSETS__/css/main.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="__ASSETS__/css/jquery.fullPage.css">
-    <link href="__ASSETS__/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+    <link href="/Public/assets/css/main.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="/Public/assets/css/jquery.fullPage.css">
+    <link href="/Public/assets/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
 
     <!-- END custom CSS -->
     <!--<![endif]-->
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-    <script src="__ASSETS__/js/html5shiv.min.js"></script>
-    <script src="__ASSETS__/js/respond.min.js"></script>
+    <script src="/Public/assets/js/html5shiv.min.js"></script>
+    <script src="/Public/assets/js/respond.min.js"></script>
     <![endif]-->
     <title>包头市现代智慧农业服务系统</title>
 </head>
@@ -63,7 +63,7 @@
                             <div class="col-sm-3">
                                 <div class="wrap-login">
                                     <?php if($currentMember) { ?>
-                                        <a class="alogin" href="">欢迎， {$currentMember['username']} |</a>
+                                        <a class="alogin" href="">欢迎， <?php echo ($currentMember['username']); ?> |</a>
                                         <a class="alogin" href="/login/logout">退出</a>
                                     <?php } else { ?>
                                         <a class="alogin" href="/login/index">登录 |</a>
@@ -147,7 +147,27 @@
                 </div>
             </header>
             <!-- END header -->
-            <block name="content"></block>
+            
+    <!-- Content-->
+    <div class="wrap-error">
+        <div class="error clearfix">
+            <div class="error__left">
+                <p class="error__text">404</p>
+            </div>
+            <div class="error__right">
+                <div class="error__head">Page not found...</div>
+                <p class="error__text">We're sorry, but we can't find the page you were looking for. It's probably some thing we've done wrong but now we know about it we'll try to fix it. In the meantime, try one of this options:</p>
+                <ul class="error__list">
+
+                    <li>
+                        <a href="/" class="link">Go to homepage</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- END content-->
+
             <!-- Footer -->
             <footer class="footer slate_gray">
                 <div class="container">
@@ -163,13 +183,13 @@
     </div>  <!--main-->
 </div>
 <!-- END Footer -->
-<script src="__ASSETS__/js/jquery.js"></script>
-<script src="__ASSETS__/js/bootstrap.min.js"></script>
-<script src="__ASSETS__/js/echarts.js"></script>
-<script src="__ASSETS__/js/main.js"></script>
-<script src="__ASSETS__/js/validata.js"></script>
-<script type="text/javascript" src="__ASSETS__/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
-<script type="text/javascript" src="__ASSETS__/js/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
+<script src="/Public/assets/js/jquery.js"></script>
+<script src="/Public/assets/js/bootstrap.min.js"></script>
+<script src="/Public/assets/js/echarts.js"></script>
+<script src="/Public/assets/js/main.js"></script>
+<script src="/Public/assets/js/validata.js"></script>
+<script type="text/javascript" src="/Public/assets/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/Public/assets/js/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
 <script type="text/javascript">
 
     $('.form_date').datetimepicker({
@@ -184,8 +204,7 @@
     });
 
 </script>
-<block name="js"></block>
+
 
 </body>
 </html>
-

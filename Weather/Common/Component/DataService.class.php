@@ -231,54 +231,56 @@ class DataService {
         $now1 = $res['now1'];
         $yesterday1 = $res['yesterday'];
         $all = [];
-        foreach (self::$station_dict as $k => $v) {
-            $temp = self::get_all_warning($now, $now1, $yesterday1, $k);
+//
+        foreach (self::GetStation() as $k => $v) {
+            $temp = self::get_all_warning($now, $now1, $yesterday1, $v['id']);
 //            print_r($temp);
             if ($temp['cold']) {
                 $ms = [];
-                $content = $v . ' ' . '当前室内气温过低，部分农作物将遭受冻害影响';
+                $content = $v['location'] . '--' . $v['zdmc'] . ' ' . '当前室内气温过低，部分农作物将遭受冻害影响';
+//                print_r($content);die;
                 $ms["content"] = $content;
                 $ms['tm'] = $now;
                 array_push($all, $ms);
             }
             if ($temp['hot']) {
                 $ms = [];
-                $content = $v . ' ' . '当前室内气温过高，部分农作物将受到热害影响';
+                $content = $v['location'] . '--' . $v['zdmc'] . ' ' . '当前室内气温过高，部分农作物将受到热害影响';
                 $ms["content"] = $content;
                 $ms['tm'] = $now;
                 array_push($all, $ms);
             }
             if ($temp['airdry']) {
                 $ms = [];
-                $content = $v . ' ' . '当前室内湿度过低，部分农作物将受到干旱影响';
+                $content = $v['location'] . '--' . $v['zdmc'] . ' ' . '当前室内湿度过低，部分农作物将受到干旱影响';
                 $ms["content"] = $content;
                 $ms['tm'] = $now;
                 array_push($all, $ms);
             }
             if ($temp['landdry']) {
                 $ms = [];
-                $content = $v . ' ' . '当前室内土壤湿度过低，部分农作物将受到干旱影响';
+                $content = $v['location'] . '--' . $v['zdmc'] . ' ' . '当前室内土壤湿度过低，部分农作物将受到干旱影响';
                 $ms["content"] = $content;
                 $ms['tm'] = $now;
                 array_push($all, $ms);
             }
             if ($temp['airwet']) {
                 $ms = [];
-                $content = $v . ' ' . '当前室内空气湿度过高，部分农作物将受到过湿影响';
+                $content = $v['location'] . '--' . $v['zdmc'] . ' ' . '当前室内空气湿度过高，部分农作物将受到过湿影响';
                 $ms["content"] = $content;
                 $ms['tm'] = $now;
                 array_push($all, $ms);
             }
             if ($temp['landwet']) {
                 $ms = [];
-                $content = $v . ' ' . '当前室内土壤湿度过高，部分农作物将受到过湿影响';
+                $content = $v['location'] . '--' . $v['zdmc'] . ' ' . '当前室内土壤湿度过高，部分农作物将受到过湿影响';
                 $ms["content"] = $content;
                 $ms['tm'] = $now;
                 array_push($all, $ms);
             }
             if ($temp['sun']) {
                 $ms = [];
-                $content = $v . ' ' . '室内光照不足，光合作用微弱';
+                $content = $v['location'] . '--' . $v['zdmc'] . ' ' . '室内光照不足，光合作用微弱';
                 $ms["content"] = $content;
                 $ms['tm'] = $now;
                 array_push($all, $ms);
@@ -301,6 +303,55 @@ class DataService {
         $model = D("Ghstation");
         $res = $model->field('id,zdmc,location')->select();
 //        print_r($res);die;
+        return $res;
+    }
+
+    public static function tmp_search($date1, $date2, $station)
+    {
+        $sql = sprintf("SELECT [time], [TA_CU], [TA_CD] FROM [tabtimedata] where [id] = '%s' and [time] between '%s' and '%s' AND DATEPART(MINUTE,[time])=0 AND DATEPART(SECOND,[time])=0", $station, $date1, $date2);
+//        print_r($sql);die;
+        $Model = new \Think\Model(); // 实例化一个model对象 没有对应任何数据表
+        $res = $Model->query($sql);
+//        print_r($res);die;
+        return $res;
+    }
+
+    public static function air_search($date1, $date2, $station)
+    {
+        $sql = sprintf("SELECT [time], [RH_C] FROM [tabtimedata] where [id] = '%s' and [time] between '%s' and '%s' AND DATEPART(MINUTE,[time])=0 AND DATEPART(SECOND,[time])=0", $station, $date1, $date2);
+        $Model = new \Think\Model(); // 实例化一个model对象 没有对应任何数据表
+        $res = $Model->query($sql);
+        return $res;
+    }
+
+    public static function land_search($date1, $date2, $station)
+    {
+        $sql = sprintf("SELECT [time], [TS_U], [TS_M], [TS_D] FROM [tabtimedata] where [id] = '%s' and [time] between '%s' and '%s' AND DATEPART(MINUTE,[time])=0 AND DATEPART(SECOND,[time])=0", $station, $date1, $date2);
+        $Model = new \Think\Model(); // 实例化一个model对象 没有对应任何数据表
+        $res = $Model->query($sql);
+        return $res;
+    }
+
+    public static function ldwt_search($date1, $date2, $station)
+    {
+        $sql = sprintf("SELECT [time], [SH_U], [SH_M], [SH_D] FROM [tabtimedata] where [id] = '%s' and [time] between '%s' and '%s' AND DATEPART(MINUTE,[time])=0 AND DATEPART(SECOND,[time])=0", $station, $date1, $date2);
+        $Model = new \Think\Model(); // 实例化一个model对象 没有对应任何数据表
+        $res = $Model->query($sql);
+        return $res;
+    }
+
+    public static function sun_search($date1, $date2, $station)
+    {
+        $sql = sprintf("SELECT [time], [R_U], [PAR_U] FROM [tabtimedata] where [id] = '%s' and [time] between '%s' and '%s' AND DATEPART(MINUTE,[time])=0 AND DATEPART(SECOND,[time])=0", $station, $date1, $date2);
+        $Model = new \Think\Model(); // 实例化一个model对象 没有对应任何数据表
+        $res = $Model->query($sql);
+        return $res;
+    }
+    public static function co2_search($date1, $date2, $station)
+    {
+        $sql = sprintf("SELECT [time], [CO2_U] FROM [tabtimedata] where [id] = '%s' and [time] between '%s' and '%s' AND DATEPART(MINUTE,[time])=0 AND DATEPART(SECOND,[time])=0", $station, $date1, $date2);
+        $Model = new \Think\Model(); // 实例化一个model对象 没有对应任何数据表
+        $res = $Model->query($sql);
         return $res;
     }
 

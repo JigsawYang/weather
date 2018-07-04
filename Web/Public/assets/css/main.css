@@ -2425,8 +2425,16 @@ article .quote {
 .ptitle {
   font-size: 40px;
   color: white;
+    text-decoration: none;
 }
 
+.wrap-logo a:hover {
+    color: #ffffff;
+    text-decoration: none;
+}
+.wrap-logo a:visited {
+    text-decoration: none;
+}
 .wrap-login {
   padding-top: 24px;
 }
@@ -2573,3 +2581,13 @@ background: #7277d5;
 /***********************************
         /* END 6.RESPONSIVE */
 /***********************************/
+
+/****livedata***/
+.pick {
+    width: 30%;
+}
+.slwidth {
+    width: 100px;
+}
+
+/****endlivedata***/

@@ -16,4 +16,8 @@ class CommonController extends Controller {
         $this->currentMember = MemberService::getCurrentMember();
     }
 
+    public function _empty() {
+        $this->redirect('/empty'); //404页面
+    }
+
 }

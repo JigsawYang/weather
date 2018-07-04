@@ -14,6 +14,9 @@
     <!-- custom CSS -->
     <link href="/Public/assets/css/main.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="/Public/assets/css/jquery.fullPage.css">
+    <script src="/Public/assets/js/validata.js"></script>
+    <link href="/Public/assets/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+
     <!-- END custom CSS -->
     <!--<![endif]-->
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -35,7 +38,7 @@
                         <div class="row">
                             <div class="col-sm-7">
                                 <div class="wrap-logo">
-                                    <p class="ptitle">包头市现代智慧农业服务系统</p>
+                                    <a class="ptitle" href="/">包头市现代智慧农业服务系统</a>
                                 </div>
                             </div>
                             <div class="col-sm-2">
@@ -64,11 +67,11 @@
                             <div class="col-sm-3">
                                 <div class="wrap-login">
                                     <?php if($currentMember) { ?>
-                                        <a class="alogin" href="">欢迎， <?php echo ($currentMember['username']); ?> |</a>
-                                        <a class="alogin" href="/login/logout">退出</a>
+                                    <a class="alogin" href="">欢迎， <?php echo ($currentMember['username']); ?> |</a>
+                                    <a class="alogin" href="/login/logout">退出</a>
                                     <?php } else { ?>
-                                        <a class="alogin" href="/login/index">登录 |</a>
-                                        <a class="alogin" href="/register/index">注册</a>
+                                    <a class="alogin" href="/login/index">登录 |</a>
+                                    <a class="alogin" href="/register/index">注册</a>
                                     <?php } ?>
                                 </div>
                             </div>
@@ -90,7 +93,17 @@
 
                                     <li class="active">
                                         <span class="wsmenu-click"></span>
-                                        <a href="index.html">实况数据</a>
+                                        <a href="">实况数据
+                                            <span class="arrow"></span>
+                                        </a>
+                                        <ul class="wsmenu-submenu">
+                                            <li>
+                                                <a href="/livedata">室外实况数据</a>
+                                            </li>
+                                            <li>
+                                                <a href="category.html">室内实况数据</a>
+                                            </li>
+                                        </ul>
                                     </li>
                                     <li>
                                         <span class="wsmenu-click"></span>
@@ -140,8 +153,7 @@
                     </div>
                 </div>
             </header>
-            <!-- END header -->
-            
+            <!-- END header -->            <!-- header slider -->
             <div class="slate_gray">
                 <div class="container">
                     <div class="row header_news_panel">
@@ -442,25 +454,26 @@
         }
         marq("demo", "demo2", "demo1");
     </script>
+<!-- Custom JavaScript -->
+            <footer class="footer slate_gray">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <p class="copyright">Copyright &copy; 2018.包头农科院 包头气象局 All rights reserved.</p>
+                        </div>
 
-            <!-- Footer -->
-<footer class="footer slate_gray">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-6">
-                <p class="copyright">Copyright &copy; 2018.包头农科院 包头气象局 All rights reserved.</p>
-            </div>
-
+                    </div>
+                </div>
+            </footer>
         </div>
-    </div>
-</footer>
-</div>
-</div>  <!--main-->
+    </div>  <!--main-->
 </div>
 <!-- END Footer -->
-<!-- All JavaScript libraries -->
 <script src="/Public/assets/js/jquery.js"></script>
 <script src="/Public/assets/js/bootstrap.min.js"></script>
+<script src="/Public/assets/js/echarts.js"></script>
 <script src="/Public/assets/js/main.js"></script>
+<script type="text/javascript" src="/Public/assets/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/Public/assets/js/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
 </body>
 </html>
