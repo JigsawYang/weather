@@ -2586,8 +2586,26 @@ background: #7277d5;
 .pick {
     width: 30%;
 }
+
 .slwidth {
     width: 100px;
 }
+.slwidth1 {
+    width: 100px;
+    margin-left: 600px;
+}
+
+.slwidth2 {
+    width: 100px;
+    margin-left: 100px;
+}
 
 /****endlivedata***/
+
+.realbtn {
+    margin-bottom: 8px;
+}
+
+#realform {
+    margin-bottom: 10px;
+}

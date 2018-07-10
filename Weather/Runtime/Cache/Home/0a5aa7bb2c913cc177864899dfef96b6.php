@@ -103,12 +103,12 @@
                                     </li>
                                     <li>
                                         <span class="wsmenu-click"></span>
-                                        <a href="">设施气象信息
+                                        <a href="">设施气象评估及报警预警
                                             <span class="arrow"></span>
                                         </a>
                                         <ul class="wsmenu-submenu">
                                             <li>
-                                                <a href="404.html">温室实况作物影响评估</a>
+                                                <a href="/realassessment">温室实况作物影响评估</a>
                                             </li>
                                             <li>
                                                 <a href="news.html">温室小气候实况监测报警</a>
