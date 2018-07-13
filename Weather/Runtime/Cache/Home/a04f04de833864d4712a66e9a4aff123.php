@@ -164,29 +164,13 @@
                     <div class="wrap-thumbnail">
                         <div class="thumbnail">
                             <div class="thumbnail__news news">
-                                <p class="news__category underscore"><?php echo ($now); ?> <?php echo ($station[0]); ?>--<?php echo ($station[1]); ?></p>
+                                <p class="news__category underscore" id="realinfo"><?php echo ($now); ?> <?php echo ($station[0]); ?>--<?php echo ($station[1]); ?></p>
                                 <div class="table-responsive">
-                                    <!--<div class="btn-group pull-right realbtn" id="templatemo_sort_btn1">-->
-                                        <!--<button type="button" class="btn btn-default">地区</button>-->
-                                        <!--<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">-->
-                                            <!--<span class="caret"></span>-->
-                                            <!--<span class="sr-only">Toggle Dropdown</span>-->
-                                        <!--</button>-->
-                                        <!--<ul class="dropdown-menu" role="menu">-->
-                                            <!--<?php foreach ($stlist as $key => $v) { ?>-->
-                                            <!--<li>-->
-                                            <!--<a href="/realassessment/index/location/<?php echo ($v['id']); ?>.html"><?php echo ($v['location']); ?></a>-->
-                                            <!--</li>-->
-                                            <!--<?php } ?>-->
-
-                                        <!--</ul>-->
-                                    <!--</div>-->
-
-
                                     <div>
                                         <form action="/realassessment/getdata" class="form-inline" id="realform" method="post">
                                             <div class="form-group slwidth1">
                                                 <select class="form-control" name="location">
+                                                    <option value=""></option>
                                                     <?php foreach ($location as $key => $v) { ?>
                                                     <option value="<?php echo ($v['location']); ?>"><?php echo ($v['location']); ?></option>
                                                     <?php } ?>
@@ -195,6 +179,8 @@
 
                                             <div class="form-group slwidth2">
                                                 <select class="form-control" name="station">
+                                                    <option value=""></option>
+
                                                     <?php foreach ($stlist as $key => $v) { ?>
                                                     <option value="<?php echo ($v['zdmc']); ?>"><?php echo ($v['zdmc']); ?></option>
                                                     <?php } ?>
@@ -204,25 +190,8 @@
                                             <button id="realsub" type="submit" class="btn btn-primary btn-orange pull-right">刷新</button>
                                         </form>
                                     </div>
-
-                                    <!--<div class="btn-group pull-right realbtn" id="templatemo_sort_btn">-->
-                                        <!--<button type="button" class="btn btn-default">设施农业站点</button>-->
-                                        <!--<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">-->
-                                            <!--<span class="caret"></span>-->
-                                            <!--<span class="sr-only">Toggle Dropdown</span>-->
-                                        <!--</button>-->
-                                        <!--<ul class="dropdown-menu" role="menu">-->
-                                            <!--<?php foreach ($stlist as $key => $v) { ?>-->
-                                            <!--<li>-->
-                                                <!--<a href="/realassessment/index/station/<?php echo ($v['id']); ?>.html"><?php echo ($v['zdmc']); ?></a>-->
-                                            <!--</li>-->
-                                            <!--<?php } ?>-->
-
-                                        <!--</ul>-->
-                                    <!--</div>-->
-
                                     <table class="table table-striped table-hover table-bordered">
-                                        <thead>
+                                        <thead id="realtable">
                                         <tr>
                                             <th>#</th>
                                             <th>农作物</th>
@@ -246,7 +215,7 @@
                                             <!-- <th></th> -->
                                         </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody id="realtb">
                                         <?php if(is_array($res)): foreach($res as $key=>$v): ?><tr>
                                                 <td><?php echo ($key); ?></td>
                                                 <td><?php echo ($v['name']); ?></td>
@@ -341,9 +310,67 @@
             ajaxPost: true,
             callback: function (data) {
                 if (data.status) {
-                    if (data.info) {
+//                    console.log(data.now);
+                    $('#realinfo').text(data.now + '时' + ' ' + data.location + "---" + data.station);
+                    $('#realtable').html(
+                            '<tr> <th>#</th> <th>农作物</th> <th>发育期</th> <th>空气温度(100厘米)</th> <th>空气湿度</th> <th>土壤温度(-10厘米)</th> <th>土壤湿度(-10厘米)</th> <th>太阳辐射</th> <!-- <th>二氧化碳</th> --> </tr> <tr> <th>#</th> <th></th> <th></th> <th>' + data.resnum["airtmp"] + '</th> <th>' + data.resnum["airwet"] + '</th> <th>' + data.resnum["landtmp"] + '</th> <th>' + data.resnum["landwet"] + '</th> <th>' + data.resnum["sun"] + '</th> <!-- <th></th> --> </tr>'
+
+                    );
+                    var str = '';
+                    for (var a in data.res) {
+//                        console.log(data.res[a]);
+                        str += '<tr>' + '<td>' + a + '</td>';
+                        if (data.res[a]['name']) {
+                            str += "<td>" + data.res[a]['name'] + "</td>";
+                        } else {
+                            str += "<td>" + "未到预定值" + "</td>";
+                        }
+
+                        if (data.res[a]['huaqi']) {
+                            str += "<td>" + data.res[a]['huaqi'] + "</td>";
+                        } else {
+                            str += "<td>" + "未到预定值" + "</td>";
+                        }
+
+                        if (data.res[a]['air']) {
+                            str += "<td>" + data.res[a]['air'] + "</td>";
+                        } else {
+                            str += "<td>" + "未到预定值" + "</td>";
+                        }
+
+                        if (data.res[a]['airwet']) {
+                            str += "<td>" + data.res[a]['airwet'] + "</td>";
+                        } else {
+                            str += "<td>" + "未到预定值" + "</td>";
+                        }
+
+                        if (data.res[a]['land']) {
+                            str += "<td>" + data.res[a]['land'] + "</td>";
+                        } else {
+                            str += "<td>" + "未到预定值" + "</td>";
+                        }
+                        if (data.res[a]['landwet']) {
+                            str += "<td>" + data.res[a]['landwet'] + "</td>";
+                        } else {
+                            str += "<td>" + "未到预定值" + "</td>";
+                        }
+                        if (data.res[a]['sun']) {
+                            str += "<td>" + data.res[a]['sun'] + "</td>";
+                        } else {
+                            str += "<td>" + "未到预定值" + "</td>";
+                        }
+
+
+                        str += "</tr>";
+                        
 
                     }
+
+//                                            console.log(str);
+                    $('#realtb').html(str);
+
+                } else {
+                    $('#realtable').html('<div class="alert alert-info" role="alert">此地区没有此站点, 请确认后再查询</div>');
                 }
             }
         })

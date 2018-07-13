@@ -49,11 +49,22 @@ class RealassessmentController extends CommonController {
 
     public function getdata() {
         if (IS_POST) {
+            $day = date('Y-m-d');//实际上线时候 吧这个注释去掉
+            $hour = date('H');
+            $now = $day.' '.$hour;
+            $now = '2015-06-01 09';
             $data = I('post.');
 //            print_r($data['location']);die;
-            $res = DataService::findstation($data['location'], $data['station']);
-            if ($res) {
-
+            $st = DataService::findstation($data['location'], $data['station']);
+//            print_r($st);die;
+            if ($st) {
+                $res = DataService::TmpReport($now, $st[0]['id']);
+                $resnum = DataService::TopNUM($now, $st[0]['id']);
+                $this->ajaxReturn(['status' => true, 'location' => $data['location'],
+                                    'station' => $data['station'],
+                                    'now' => $now,
+                                    'res' => $res,
+                                    'resnum' => $resnum]);
             } else {
                 $this->ajaxReturn(['status' => false, 'info' => '没有此站点']);
             }
