@@ -126,7 +126,7 @@
                                     </li>
                                     <li>
                                         <span class="wsmenu-click"></span>
-                                        <a href="category.html">预报服务信息和生产建议</a>
+                                        <a href="/advise">预报服务信息和生产建议</a>
                                     </li>
                                     <li>
                                         <span class="wsmenu-click"></span>

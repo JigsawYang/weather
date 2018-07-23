@@ -126,11 +126,11 @@
                                     </li>
                                     <li>
                                         <span class="wsmenu-click"></span>
-                                        <a href="category.html">预报服务信息和生产建议</a>
+                                        <a href="/advise">预报服务信息和生产建议</a>
                                     </li>
                                     <li>
                                         <span class="wsmenu-click"></span>
-                                        <a href="category.html">科普知识</a>
+                                        <a href="/know">科普知识</a>
                                     </li>
                                     <li>
                                         <span class="wsmenu-click"></span>
@@ -190,7 +190,7 @@
                                             <button id="realsub" type="submit" class="btn btn-primary btn-orange pull-right">刷新</button>
                                         </form>
                                     </div>
-                                    <table class="table table-striped table-hover table-bordered">
+                                    <table class="table table-striped table-hover table-bordered" id="removetb">
                                         <thead id="realtable">
                                         <tr>
                                             <th>#</th>
@@ -362,7 +362,7 @@
 
 
                         str += "</tr>";
-                        
+
 
                     }
 
@@ -370,7 +370,7 @@
                     $('#realtb').html(str);
 
                 } else {
-                    $('#realtable').html('<div class="alert alert-info" role="alert">此地区没有此站点, 请确认后再查询</div>');
+                    $('#removetb').html('<div class="alert alert-info" role="alert">此地区没有此站点, 请确认后再查询</div>');
                 }
             }
         })

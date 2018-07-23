@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html>
 <html lang="zxx">
 <head>
     <meta charset="utf-8">
@@ -13,17 +13,17 @@
     <!-- <link rel="shortcut icon" type="image/png" href="favicon.png" /> -->
     <!--[if (gt IE 9)|!(IE)]><!-->
     <!-- custom CSS -->
-    <link href="__ASSETS__/css/main.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="__ASSETS__/css/jquery.fullPage.css">
-    <link href="__ASSETS__/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+    <link href="/Public/assets/css/main.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="/Public/assets/css/jquery.fullPage.css">
+    <link href="/Public/assets/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
 
     <!-- END custom CSS -->
     <!--<![endif]-->
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-    <script src="__ASSETS__/js/html5shiv.min.js"></script>
-    <script src="__ASSETS__/js/respond.min.js"></script>
+    <script src="/Public/assets/js/html5shiv.min.js"></script>
+    <script src="/Public/assets/js/respond.min.js"></script>
     <![endif]-->
     <title>包头市现代智慧农业服务系统</title>
 </head>
@@ -64,7 +64,7 @@
                             <div class="col-sm-3">
                                 <div class="wrap-login">
                                     <?php if($currentMember) { ?>
-                                        <a class="alogin" href="">欢迎， {$currentMember['username']} |</a>
+                                        <a class="alogin" href="">欢迎， <?php echo ($currentMember['username']); ?> |</a>
                                         <a class="alogin" href="/login/logout">退出</a>
                                     <?php } else { ?>
                                         <a class="alogin" href="/login/index">登录 |</a>
@@ -148,7 +148,38 @@
                 </div>
             </header>
             <!-- END header -->
-            <block name="content"></block>
+            
+    <!-- END header -->
+    <!-- content-->
+    <!-- title -->
+    <div class="wrap wrap_white">
+        <div class="container title">
+            <h1 class="title__h1 underscore">科普知识</h1>
+        </div>
+    </div>
+    <!-- END title -->
+    <div class="wrap wrap_gray pt20">
+        <div class="container">
+            <div class="row">
+                <div class="wrap-thumbnail">
+                    <?php foreach($select as $key => $v) { ?>
+                    <div class="thumbnail">
+                        <div class="thumbnail__news news">
+                            <a class="news__category" href="<?php echo U('know/detail', ['id' => $v['id']]);?>"><?php echo ($v['title']); ?></a>
+                        </div>
+                    </div>
+                    <?php  } ?>
+
+                    <div class="pages">
+                        <?php echo ($page); ?>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <!-- END content-->
+
             <!-- Footer -->
             <footer class="footer slate_gray">
                 <div class="container">
@@ -164,13 +195,13 @@
     </div>  <!--main-->
 </div>
 <!-- END Footer -->
-<script src="__ASSETS__/js/jquery.js"></script>
-<script src="__ASSETS__/js/bootstrap.min.js"></script>
-<script src="__ASSETS__/js/echarts.js"></script>
-<script src="__ASSETS__/js/main.js"></script>
-<script src="__ASSETS__/js/validata.js"></script>
-<script type="text/javascript" src="__ASSETS__/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
-<script type="text/javascript" src="__ASSETS__/js/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
+<script src="/Public/assets/js/jquery.js"></script>
+<script src="/Public/assets/js/bootstrap.min.js"></script>
+<script src="/Public/assets/js/echarts.js"></script>
+<script src="/Public/assets/js/main.js"></script>
+<script src="/Public/assets/js/validata.js"></script>
+<script type="text/javascript" src="/Public/assets/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/Public/assets/js/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
 <script type="text/javascript">
 
     $('.form_date').datetimepicker({
@@ -185,8 +216,7 @@
     });
 
 </script>
-<block name="js"></block>
+
 
 </body>
 </html>
-

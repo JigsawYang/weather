@@ -2609,3 +2609,43 @@ background: #7277d5;
 #realform {
     margin-bottom: 10px;
 }
+
+/****page****/
+.pages {
+    text-align: center;
+}
+.pages a,.pages span {
+    display:inline-block;
+    padding:2px 5px;
+    margin:0 1px;
+    border:1px solid #f0f0f0;
+    -webkit-border-radius:3px;
+    -moz-border-radius:3px;
+    border-radius:3px;
+}
+.pages a,.pages li {
+    display:inline-block;
+    list-style: none;
+    text-decoration:none; color:#f38844;
+}
+.pages a.first,.pages a.prev,.pages a.next,.pages a.end{
+    margin:0;
+}
+.pages a:hover{
+    border-color:#f38844;
+}
+.pages span.current{
+    background:#f38844;
+    color:#FFF;
+    font-weight:700;
+    border-color:#f38844;
+}
+.panel-heading{
+    margin-bottom: 20px;
+}
+
+.spauthor {
+    font-size: 0.85em;
+    color: rgb(155, 155, 155);
+    float: right;
+}
