@@ -112,29 +112,29 @@
                                                 <a href="/realassessment">温室实况作物影响评估</a>
                                             </li>
                                             <li>
-                                                <a href="news.html">温室小气候实况监测报警</a>
+                                                <a href="/warning">温室小气候实况监测报警</a>
                                             </li>
                                             <li>
-                                                <a href="search-result.html">温室气温光照预报预警</a>
+                                                <a href="/warning/feature">温室小气温预报预警</a>
                                             </li>
 
                                         </ul>
                                     </li>
+                                    <!--<li>-->
+                                        <!--<span class="wsmenu-click"></span>-->
+                                        <!--<a href="category.html">室外气候</a>-->
+                                    <!--</li>-->
                                     <li>
                                         <span class="wsmenu-click"></span>
-                                        <a href="category.html">室外气候</a>
+                                        <a href="/advise">新闻资讯和生产信息</a>
                                     </li>
                                     <li>
                                         <span class="wsmenu-click"></span>
-                                        <a href="/advise">预报服务信息和生产建议</a>
+                                        <a href="/know">农业气象服务科普信息</a>
                                     </li>
                                     <li>
                                         <span class="wsmenu-click"></span>
-                                        <a href="category.html">科普知识</a>
-                                    </li>
-                                    <li>
-                                        <span class="wsmenu-click"></span>
-                                        <a href="category.html">气候统计</a>
+                                        <a href="/accont">数据统计</a>
                                     </li>
                                     <!-- <li>
                                         <span class="wsmenu-click"></span>

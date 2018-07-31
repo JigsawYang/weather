@@ -2484,7 +2484,7 @@ article .quote {
 background: #7277d5;
 }
 .brilliant-right h4 {
-    font-size: 1.5em;
+    font-size: 1.4em;
     text-transform: capitalize;
     color: #222;
     font-weight: 600;
@@ -2648,4 +2648,8 @@ background: #7277d5;
     font-size: 0.85em;
     color: rgb(155, 155, 155);
     float: right;
+}
+
+.pick2 {
+    width: 23%;
 }

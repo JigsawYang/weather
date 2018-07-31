@@ -826,4 +826,274 @@ class DataService {
         return $res;
     }
 
+    public static function air($date1, $date2, $station)
+    {
+        $sql = sprintf("SELECT [TA_CU] FROM [tabtimedata] where [id] = '%s' and [time] between '%s 20:00:00.000' and '%s 23:50:00.000'", $station, $date1, $date2);
+        // echo $sql;die;
+        $Model = new \Think\Model(); // 实例化一个model对象 没有对应任何数据表
+        $air = $Model->query($sql);
+        // print_r($air);die;
+//        sort($res[0]);
+        $result = [];
+        $temp = [];
+        foreach ($air as $key => $val) {
+            array_push($temp, $val['ta_cu']);
+        }
+        sort($temp);
+        $av = round((array_sum($temp) / count($temp)) / 10, 3);
+        $result['air150tpd'] = $temp[0] / 10;
+        $result['air150tpg'] = $temp[count($temp) - 1] / 10;
+        $result['air150tpav'] = $av;
+
+        $sql = sprintf("SELECT [RH_C] FROM [tabtimedata] where [id] = '%s' and [time] between '%s 20:00:00.000' and '%s 23:50:00.000'", $station, $date1, $date2);
+        $Model = new \Think\Model(); // 实例化一个model对象 没有对应任何数据表
+        $wet = $Model->query($sql);
+        $temp = [];
+        foreach ($wet as $key => $val) {
+            array_push($temp, round($val['rh_c']));
+        }
+        sort($temp);
+        $av = round((array_sum($temp) / count($temp)), 3);
+        $result['air150wetd'] = $temp[0];
+        $result['air150wetg'] = $temp[count($temp) - 1];
+        $result['air150wetav'] = $av;
+
+        $sql = sprintf("SELECT [TA_CD] FROM [tabtimedata] where [id] = '%s' and [time] between '%s 20:00:00.000' and '%s 23:50:00.000'", $station, $date1, $date2);
+        $Model = new \Think\Model(); // 实例化一个model对象 没有对应任何数据表
+        $wet = $Model->query($sql);
+        $temp = [];
+        foreach ($wet as $key => $val) {
+            array_push($temp, $val['ta_cd']);
+        }
+        sort($temp);
+        $av = round((array_sum($temp) / count($temp)) / 10, 3);
+        $result['air50tpd'] = $temp[0] / 10;
+        $result['air50tpg'] = $temp[count($temp) - 1] / 10;
+        $result['air50tpav'] = $av;
+
+        $sql = sprintf("SELECT [RH_W] FROM [tabtimedata] where [id] = '%s' and [time] between '%s 20:00:00.000' and '%s 23:50:00.000'", $station, $date1, $date2);
+        $Model = new \Think\Model(); // 实例化一个model对象 没有对应任何数据表
+        $wet = $Model->query($sql);
+        $temp = [];
+        foreach ($wet as $key => $val) {
+            array_push($temp, round($val['rh_w']));
+        }
+        sort($temp);
+        $av = round((array_sum($temp) / count($temp)), 3);
+        $result['air50wetd'] = $temp[0];
+        $result['air50wetg'] = $temp[count($temp) - 1];
+        $result['air50wetav'] = $av;
+
+//        print_r($result);
+//        die;
+        return $result;
+    }
+
+    public static function land($date1, $date2, $station)
+    {
+        $result = [];
+
+        $sql = sprintf("SELECT [TS_U] FROM [tabtimedata] where [id] = '%s' and [time] between '%s 20:00:00.000' and '%s 23:50:00.000'", $station, $date1, $date2);
+        $Model = new \Think\Model(); // 实例化一个model对象 没有对应任何数据表
+        $land = $Model->query($sql);
+//        sort($res[0]);
+        $temp = [];
+        foreach ($land as $key => $val) {
+            array_push($temp, $val['ts_u']);
+        }
+        sort($temp);
+        $av = round((array_sum($temp) / count($temp)) / 10, 3);
+        $result['land0tpd'] = $temp[0] / 10;
+        $result['land0tpg'] = $temp[count($temp) - 1] / 10;
+        $result['land0tpav'] = $av;
+
+
+        $sql = sprintf("SELECT [SH_U] FROM [tabtimedata] where [id] = '%s' and [time] between '%s 20:00:00.000' and '%s 23:50:00.000'", $station, $date1, $date2);
+        $Model = new \Think\Model(); // 实例化一个model对象 没有对应任何数据表
+        $land = $Model->query($sql);
+//        sort($res[0]);
+        $temp = [];
+        foreach ($land as $key => $val) {
+            array_push($temp, round($val['sh_u']));
+        }
+        sort($temp);
+        $av = round((array_sum($temp) / count($temp)), 3);
+        $result['land0wetd'] = $temp[0];
+        $result['land0wetg'] = $temp[count($temp) - 1];
+        $result['land0wetav'] = $av;
+
+        $sql = sprintf("SELECT [TS_M] FROM [tabtimedata] where [id] = '%s' and [time] between '%s 20:00:00.000' and '%s 23:50:00.000'", $station, $date1, $date2);
+        $Model = new \Think\Model(); // 实例化一个model对象 没有对应任何数据表
+        $land = $Model->query($sql);
+//        sort($res[0]);
+        $temp = [];
+        foreach ($land as $key => $val) {
+            array_push($temp, $val['ts_m']);
+        }
+        sort($temp);
+        $av = round((array_sum($temp) / count($temp)) / 10, 3);
+        $result['land10tpd'] = $temp[0] / 10;
+        $result['land10tpg'] = $temp[count($temp) - 1] / 10;
+        $result['land10tpav'] = $av;
+
+        $sql = sprintf("SELECT [SH_M] FROM [tabtimedata] where [id] = '%s' and [time] between '%s 20:00:00.000' and '%s 23:50:00.000'", $station, $date1, $date2);
+        $Model = new \Think\Model(); // 实例化一个model对象 没有对应任何数据表
+        $land = $Model->query($sql);
+//        sort($res[0]);
+        $temp = [];
+        foreach ($land as $key => $val) {
+            array_push($temp, round($val['sh_m']));
+        }
+        sort($temp);
+        $av = round((array_sum($temp) / count($temp)), 3);
+        $result['land10wetd'] = $temp[0];
+        $result['land10wetg'] = $temp[count($temp) - 1];
+        $result['land10wetav'] = $av;
+
+        $sql = sprintf("SELECT [TS_D] FROM [tabtimedata] where [id] = '%s' and [time] between '%s 20:00:00.000' and '%s 23:50:00.000'", $station, $date1, $date2);
+        $Model = new \Think\Model(); // 实例化一个model对象 没有对应任何数据表
+        $land = $Model->query($sql);
+//        sort($res[0]);
+        $temp = [];
+        foreach ($land as $key => $val) {
+            array_push($temp, $val['ts_d']);
+        }
+        sort($temp);
+        $av = round((array_sum($temp) / count($temp)) / 10, 3);
+        $result['land20tpd'] = $temp[0] / 10;
+        $result['land20tpg'] = $temp[count($temp) - 1] / 10;
+        $result['land20tpav'] = $av;
+
+        $sql = sprintf("SELECT [SH_D] FROM [tabtimedata] where [id] = '%s' and [time] between '%s 20:00:00.000' and '%s 23:50:00.000'", $station, $date1, $date2);
+        $Model = new \Think\Model(); // 实例化一个model对象 没有对应任何数据表
+        $land = $Model->query($sql);
+//        sort($res[0]);
+        $temp = [];
+        foreach ($land as $key => $val) {
+            array_push($temp, round($val['sh_d']));
+        }
+        sort($temp);
+        $av = round((array_sum($temp) / count($temp)), 3);
+        $result['land20wetd'] = $temp[0];
+        $result['land20wetg'] = $temp[count($temp) - 1];
+        $result['land20wetav'] = $av;
+
+//        print_r($result);
+//        die;
+        return $result;
+    }
+
+    static function export_csv($filename, $data)
+    {
+        header("Content-type:text/csv");
+        header("Content-Disposition:attachment;filename=" . $filename);
+        header('Cache-Control:must-revalidate,post-check=0,pre-check=0');
+        header('Expires:0');
+        header('Pragma:public');
+        echo $data;
+    }
+
+    static function exportData($sdate, $edate, $station)
+    {
+        $sql = sprintf("SELECT [time], [TA_CU], [TA_CD], [RH_C], [TS_U], [TS_M], [TS_D], [SH_U], [SH_M], [SH_D], [R_U], [PAR_U], [CO2_U]  FROM [tabtimedata] where [id] = '%s' and [time] between '%s 00:00:00.000' and '%s 23:50:00.000' AND DATEPART(MINUTE,[time])=0 AND DATEPART(SECOND,[time])=0", $station, $sdate, $edate);
+        $conInfo = array('Database' => 'nqdb-new', 'UID' => 'sa', 'PWD' => 'SA123sa');
+
+        $conn = sqlsrv_connect('localhost', $conInfo);
+        if ($conn == false) {
+            die(print_r(sqlsrv_errors(), true));
+        }
+
+        $result = sqlsrv_query($conn, $sql);
+//        print_r($result);die;
+        $str = "时间,150cm空气温度,100cm空气温度,空气湿度,0cm土壤温度,-10cm土壤温度,-20cm土壤温度,0cm土壤湿度,-10cm土壤湿度,-20cm土壤湿度,150cm辐射,有效辐射,co2浓度,站点\n";
+        $str = iconv('utf-8', 'gb2312', $str);
+        while ($row = sqlsrv_fetch_array($result)) {
+//            print_r($row);die;
+            $htime = iconv('utf-8', 'gb2312', $row['time']->format("Y-m-d H:i:s"));
+            $tp150 = iconv('utf-8', 'gb2312', $row['TA_CU'] / 10);
+            $tp100 = iconv('utf-8', 'gb2312', $row['TA_CD'] / 10);
+            $air = iconv('utf-8', 'gb2312', $row['RH_C']);
+            $landtp0 = iconv('utf-8', 'gb2312', $row['TS_U'] / 10);
+            $landtp10 = iconv('utf-8', 'gb2312', $row['TS_M'] / 10);
+            $landtp20 = iconv('utf-8', 'gb2312', $row['TS_D'] / 10);
+            $landwet0 = iconv('utf-8', 'gb2312', $row['SH_U']);
+            $landwet10 = iconv('utf-8', 'gb2312', $row['SH_M']);
+            $landwet20 = iconv('utf-8', 'gb2312', $row['SH_D']);
+            $sun150 = iconv('utf-8', 'gb2312', $row['R_U']);
+            $sun = iconv('utf-8', 'gb2312', $row['PAR_U']);
+            $co2 = iconv('utf-8', 'gb2312', $row['CO2_U']);
+            $st = iconv('utf-8', 'gb2312', self::$station_dict[$station]);
+            $str .= $htime . "," . $tp150 . "," . $tp100 . "," . $air . "," . $landtp0 . "," . $landtp10 . "," . $landtp20 . "," . $landwet0 . "," . $landwet10 . "," . $landwet20 . "," . $sun150 . "," . $sun . "," . $co2 . "," . $st . "\n";
+        }
+        $filename = date('Ymd') . '.csv';
+        self::export_csv($filename, $str);
+        exit;
+    }
+
+    public static function Fwarning_cold($tm, $station)
+    {
+        $model = D('Ssnydpyb');
+        $res = $model->where(['station' => $station, 'time' => $tm])->field('td')->select();
+        $airnum = $res[0]['td'];
+//        $airnum = 1;
+        $model = M('warning');
+        $temp = [];
+        $result = $model->where(['type' => 'cold'])->select();
+        if ($res != null) {
+            foreach ($result as $key => $val) {
+                if ($airnum > $val['sd'] && $airnum <= $val['sg']) {
+                    array_push($temp, $val);
+                }
+            }
+        }
+//        print_r($temp);die;
+        return $temp;
+    }
+
+    public static function Fwarning_hot($tm, $station)
+    {
+        $model = D('Ssnydpyb');
+        $res = $model->where(['station' => $station, 'time' => $tm])->field('tg')->select();
+        $airnum = $res[0]['tg'];
+//        $airnum = 1;
+        $model = M('warning');
+        $temp = [];
+        $result = $model->where(['type' => 'hot'])->select();
+        if ($res != null) {
+            foreach ($result as $key => $val) {
+                if ($airnum >= $val['sd']) {
+                    array_push($temp, $val);
+                }
+            }
+        }
+//        print_r($temp);die;
+        return $temp;
+    }
+
+    public static function Fwarning_sun($tm, $station)
+    {
+        $model = D('Ssnydpyb');
+        $res = $model->where(['station' => $station, 'time' => $tm])->field('yl24, yl48, yl72')->select();
+//        print_r($res);die;
+//        $airnum = 1;
+//        $model = M('warning');
+        $temp = [];
+//        $result = $model->where(['type' => 'hot'])->select();
+//        if ($res != null) {
+//            foreach($result as $key => $val) {
+//                if ($airnum >= $val['sd']) {
+//                    array_push($temp, $val);
+//                }
+//            }
+//        }
+//        print_r($temp);die;
+        foreach ($res as $key => $val) {
+            if ($val > 7) {
+                $temp['dis'] = '未来72小时天空以阴为主，将影响室内光照，部分作物光合作用微弱，请视具体情况采取适当措施抑制作物呼吸作用';
+                break;
+            }
+        }
+        return $temp;
+    }
+
 }

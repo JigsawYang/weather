@@ -35,6 +35,7 @@ class RealassessmentController extends CommonController {
 //            $resnum = DataService::TopNUM($now, $st);
 //            $station = DataService::GetStationDt()[$st];
 //        }
+//        print_r($resnum);die;
         $this->station = $station;
         $this->stlist = $stlist;
 
