@@ -1,0 +1,108 @@
+<!-- 此文件内容是左侧的导航 -->
+</head>
+
+<body class='contrast-blue main-nav-closed'>
+<header>
+    <div class='navbar'>
+        <div class='navbar-inner'>
+            <div class='container-fluid'>
+                <a class='brand' href='{:U('/admin')}'> <span class='hidden-phone'>农业气象</span></a><a
+                    class='toggle-nav btn pull-left' href='#'> <i class='icon-reorder'></i> </a>
+                <ul class='nav pull-right'>
+                    <li class='dropdown dark user-menu'>
+                        <a class='dropdown-toggle' data-toggle='dropdown' href='#'>
+                            <img alt='{$currentUser.username}' height='20' src='__PUBLIC__/admin/images/avatar.jpg'
+                                 width='20'/>
+                            <span class='user-name hidden-phone'>{$currentUser.username}</span> <b class='caret'></b>
+                        </a>
+                        <ul class='dropdown-menu'>
+                            <li><a href="{:U('/')}" target="_blank"><i class='icon-home'></i>去前台</a></li>
+                            <li><a href="{:U('/admin/login/logout')}"><i class='icon-signout'></i>退出</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div id='wrapper'><!-- id='wrapper' -->
+    <div id='main-nav-bg'></div>
+    <nav class='' id='main-nav'>
+        <div class='navigation'>
+            <ul class='nav nav-stacked'>
+                <li class="<?php echo 'home'==$nav?'active':'';?>">
+                    <a href='{:U('/admin')}'><i class='icon-home'></i><span>首页</span></a>
+                </li>
+                <li class="<?php echo 'members'==$nav?'active':'';?>">
+                    <a class='dropdown-collapse' href='#'> <i class='icon-user'></i> <span>用户</span> <i
+                            class='icon-angle-down angle-down'></i> </a>
+                    <ul class='<?php echo ' members
+                    '==$nav?'in':'';?> nav nav-stacked'>
+                <li class="<?php echo 'front'==$tab?'active':'';?>">
+                    <a href='{:U('/admin/members/front')}'> <i class='icon-caret-right'></i> <span>前台</span></a>
+                </li>
+                <li class="<?php echo 'back'==$tab?'active':'';?>">
+                    <a href='{:U('/admin/members')}'> <i class='icon-caret-right'></i> <span>后台</span></a>
+                </li>
+            </ul>
+            <!--</li>-->
+            <li class="<?php echo 'datas'==$nav?'active':'';?>">
+                <a class='dropdown-collapse' href='#'> <i class='icon-shield'></i> <span>农业生产建议</span> <i
+                        class='icon-angle-down angle-down'></i> </a>
+                <ul class='<?php echo ' advise
+                '==$nav?'in':'';?> nav nav-stacked'>
+            <li class="<?php echo 'datas'==$tab?'active':'';?>">
+                <a href='{:U('/admin/advise')}'> <i class='icon-caret-right'></i> <span>查看并编辑</span></a>
+            </li>
+            <!--<li class="<?php echo 'recommend'==$tab?'active':'';?>">-->
+            <!--<a href='{:U('/admin/datas/index', ['isrecommended' => 1])}'> <i class='icon-caret-right'></i>-->
+            <!--<span>推荐</span></a>-->
+            <!--</li>-->
+            <!--<li class="<?php echo 'categories'==$tab?'active':'';?>">-->
+            <!--<a href='{:U('/admin/datacategories')}'> <i class='icon-caret-right'></i> <span>分类</span></a>-->
+            <!--</li>-->
+            </ul>
+            </li>
+
+            <!--<li class="<?php echo 'cate'==$nav?'active':'';?>">-->
+                <!--<a class='dropdown-collapse' href='#'> <i class='icon-user'></i> <span>专家</span> <i-->
+                        <!--class='icon-angle-down angle-down'></i> </a>-->
+                <!--<ul class='<?php echo ' cate'==$nav?'in':'';?> nav nav-stacked'>-->
+            <!--&lt;!&ndash;<li class="<?php echo 'cate'==$tab?'active':'';?>">&ndash;&gt;-->
+                <!--&lt;!&ndash;<a href='{:U('/admin/expcate')}'> <i class='icon-caret-right'></i> <span>查看并编辑</span></a>&ndash;&gt;-->
+            <!--&lt;!&ndash;</li>&ndash;&gt;-->
+            <!--&lt;!&ndash;<li class="<?php echo 'recommend'==$tab?'active':'';?>">&ndash;&gt;-->
+            <!--&lt;!&ndash;<a href='{:U('/admin/datas/index', ['isrecommended' => 1])}'> <i class='icon-caret-right'></i>&ndash;&gt;-->
+            <!--&lt;!&ndash;<span>推荐</span></a>&ndash;&gt;-->
+            <!--&lt;!&ndash;</li>&ndash;&gt;-->
+            <!--<li class="<?php echo 'categories'==$tab?'active':'';?>">-->
+            <!--<a href='{:U('/admin/expcate/cate')}'> <i class='icon-caret-right'></i> <span>分类</span></a>-->
+            <!--</li>-->
+            <!--</ul>-->
+            <!--</li>-->
+
+            <li class="<?php echo 'datas'==$nav?'active':'';?>">
+                <a class='dropdown-collapse' href='#'> <i class='icon-facebook'></i> <span>气象知识科普</span> <i
+                        class='icon-angle-down angle-down'></i> </a>
+                <ul class='<?php echo ' know
+                '==$nav?'in':'';?> nav nav-stacked'>
+            <li class="<?php echo 'datas'==$tab?'active':'';?>">
+                <a href='{:U('/admin/know')}'> <i class='icon-caret-right'></i> <span>查看并编辑</span></a>
+            </li>
+            <!--<li class="<?php echo 'recommend'==$tab?'active':'';?>">-->
+            <!--<a href='{:U('/admin/datas/index', ['isrecommended' => 1])}'> <i class='icon-caret-right'></i>-->
+            <!--<span>推荐</span></a>-->
+            <!--</li>-->
+            <!--<li class="<?php echo 'categories'==$tab?'active':'';?>">-->
+            <!--<a href='{:U('/admin/datacategories')}'> <i class='icon-caret-right'></i> <span>分类</span></a>-->
+            <!--</li>-->
+            </ul>
+            </li>
+            <!--<li class="<?php echo 'home'==$nav?'active':'';?>">-->
+                <!--<a href='{:U('/admin/news')}'><i class='icon-leaf'></i><span>新闻</span></a>-->
+            <!--</li>-->
+
+            </ul></li></ul>
+        </div>
+    </nav>

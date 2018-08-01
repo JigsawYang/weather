@@ -1,0 +1,73 @@
+<include file="Common:header" />
+
+</head>
+<body class='contrast-blue sign-in contrast-background' onkeydown="keyDown(event)">
+<div id='wrapper'>
+  <div class='application'>
+    <div class='application-content'>
+      <a href="{:U('/')}"><div class='icon-bolt'></div>
+        <span>包头市现代气象农业服务系统</span>
+      </a>
+    </div>
+  </div>
+  <div class='controls'>
+    <div class='caret'></div>
+    <div class='form-wrapper'>
+      <h1 class='text-center'>登录</h1>
+      <form id="loginForm" accept-charset="UTF-8" action="{:U('/admin/login')}" method="post" />
+      <div class='row-fluid'>
+        <div class='span12 icon-over-input'>
+          <input class="span12" id="username" data-rule-required="true" name="username" placeholder="用户名" type="text" onclick="$('#usernameAttention').html('');$('#loginButton').attr('style', '').html('登录')" />
+          <i class='icon-user muted'></i>
+        </div>
+        <p id="usernameAttention"></p>
+      </div>
+      <div class='row-fluid'>
+        <div class='span12 icon-over-input'>
+          <input class="span12" id="password" data-rule-required="true" name="password" placeholder="密码" type="password" onclick="$('#passwordAttention').html('');$('#loginButton').attr('style', '').html('登录')" />
+          <i class='icon-lock muted'></i>
+        </div>
+        <p id="passwordAttention"></p>
+      </div>
+      <div id="loginButton" class="btn btn-block" onclick="login()">登录</div>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- / jquery -->
+<script src='__PUBLIC__/admin/javascripts/jquery/jquery.min.js' type='text/javascript'></script>
+<script src='__PUBLIC__/admin/javascripts/jquery/jquery.form.js' type='text/javascript'></script>
+
+<script type="text/javascript">
+  function keyDown(evt) {
+    e = evt || window.event; //处理浏览器兼容性问题
+    if (e.keyCode==13) {  //回车键的键值为13
+      $('#loginButton').click();  //调用登录按钮的登录事件
+    }
+  }
+
+  function login() {
+    var username = $('#username').val();
+    var password = $('#password').val();
+
+    if ('' == username) {
+      $('#usernameAttention').attr('style', 'color:red').html('请输入用户名');
+      return false;
+    } else if ('' == password) {
+      $('#passwordAttention').attr('style', 'color:red').html('请输入密码');
+      return false;
+    }
+
+    $('#loginForm').ajaxSubmit(function(e){
+      e = eval('(' + e + ')');
+      if ('false' == e.res) {
+        $('#loginButton').attr('style', 'background:#FF0000').html(e.des);
+        return false;
+      }
+      location = e.url;
+    })
+  }
+</script>
+</body>
+</html>
+

@@ -1,0 +1,128 @@
+<include file="Common:header" />
+<include file="Common:nav"/>
+
+    <section id='content'>
+        <div class='container-fluid'>
+        <div class='row-fluid'>
+                <div class='span12 box bordered-box orange-border' style='margin-bottom:0;'>
+                    <div class='page-header'><!-- 标题栏 -->
+                        <h1 class='pull-left'>
+                            <span>前台用户</span>
+                        </h1>
+                        <div class="pull-right">
+                            <ul class='breadcrumb'>
+                                <li>
+                                    <a href="{:U('/admin')}"><i class='icon-home'></i>
+                                    </a>
+                                </li>
+                                <li class='separator'>
+                                    <i class='icon-angle-right'></i>
+                                </li>
+                                <li>前台用户</li>
+                            </ul>
+                        </div>
+                    </div><!-- end标题栏 -->
+                    <!-- 搜索 -->
+                    <div class="row-fluid">
+                        <form class="form form-horizontal" action="{:U('/admin/members/front')}" accept-charset="utf-8" method="get">
+                            <input <?php echo $id?'style="color:red"':'';?> name="id" value="{$id}" placeholder="按id搜索" class="form-control" type="text">
+                            <button class="btn btn-default" type="submit">搜索</button> 
+                            <div class="btn btn-default" onclick="to_url('{:U('/admin/members/front')}')">全部</div>
+                            <div id="count" value="{$count}" class="alert alert-info pull-right" style="padding-top:4px;padding-bottom:4px">共{$count}条记录</div>
+                            <div class='btn btn-default' id='inplaceediting-enable'>开启快速修改</div>
+
+                        </form>                                        
+                    </div>     
+                    <!-- /搜索 -->
+                    <div class='box-content box-no-padding'>
+                    <table class='table table-striped' style='margin-bottom:0;'>
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>用户名</th>
+                        <th>注册时间</th>
+                        <th>是否有权限下载</th>
+                        <!--<th>是否是专家</th>-->
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    <volist name="managers" id="manager">
+                    <tr>
+                        <td width="">{$manager.id}</td>
+                        <td width="">{$manager.username}</td>
+                        <td width="">{$manager.addtime}</td>
+                        <td class="inplaceediting-table-switch">
+                            <a class='editable-ishot editable-click'  data-original-title='选择' data-pk='1'  data-name="isdownload" data-url="{:U('/admin/members/quickEdit/table/member/id/'.$manager['id'])}" data-type='select' href='#' ><?php echo $manager['isdownload']?'是':'否';?>
+                            </a>
+                        </td>
+                        <!--<td class="inplaceediting-table-switch">-->
+                            <!--<a class='editable-ishot editable-click'  data-original-title='选择' data-pk='1'  data-name="isexp" data-url="{:U('/admin/members/quickEdit/table/member/id/'.$manager['id'])}" data-type='select' href='#' ><?php echo $manager['isexp']?'是':'否';?>-->
+                            <!--</a>-->
+                        <!--</td>-->
+                        <td>
+                            <!--<a class="btn btn-link has-tooltip" href="{:U('/admin/members/comments/id/'.$manager['id'])}" data-original-title="评论管理">-->
+                                <!--<i class="icon-comments text-blue"></i>-->
+                            <!--</a> -->
+                            <?php if ($manager['isexp']) { ?>
+                            <a class="btn btn-link has-tooltip" href="{:U('/admin/members/editexp/id/'.$manager['id'])}" data-original-title="编辑">
+                                <i class="icon-edit text-blue"></i>
+                            </a>
+                            <?php } ?>
+                            <a class="btn btn-link has-tooltip" href="#" onclick="to_url_delete('{:U('/admin/members/delete/table/user/id/'.$manager['id'])}',this)" data-original-title="删除该用户">
+                                <i class="icon-trash text-red"></i>
+                            </a>
+                        </td>
+                        </tr>
+                        </volist>
+                    </tbody>
+                    </table>
+                    <div class="pagination pagination-centered">
+                        <ul>{$page}</ul>                               
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+        </div><!-- end <div class='container-fluid'> -->
+    </section>   
+</div><!--end id='wrapper' -->
+
+<include file="Common:footer" />
+<script type="text/javascript">
+    $(function(){
+        $('#inplaceediting-enable').click(function() {
+            btnclass = $('#inplaceediting-enable').attr('class');
+
+            if ('btn btn-default' == btnclass) {
+                $('#inplaceediting-enable').attr('class', 'btn btn-primary');
+                $('#inplaceediting-enable').html('关闭快速修改');
+            } else {
+                $('#inplaceediting-enable').attr('class', 'btn btn-default');
+                $('#inplaceediting-enable').html('开启快速修改');
+            }
+            $('.inplaceediting-table-switch .editable').editable('toggleDisabled');
+        });
+
+        $('.editable-ishot').editable({
+            validate: function(value) {
+                if($.trim(value) == '') return '不填不行';
+            },
+            disabled : true,
+            source : [
+                {'value':'1','text':'是'},
+                {'value':'0','text':'否'}
+            ],
+            success: function(response){
+                response = eval("("+response+")");//转换为json对象
+                if ('false' == response.status) {
+                    return response.des;
+                } else {
+                    return $.jGrowl("修改成功");
+                }
+            }
+        });
+    });
+</script>
+</body>
+</html>

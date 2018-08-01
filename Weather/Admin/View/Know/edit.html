@@ -1,0 +1,93 @@
+<include file="Common:header"/>
+<include file="Common:nav"/>
+
+<section id='content'>
+    <div class='container-fluid'>
+        <div class='row-fluid' id='content-wrapper'>
+            <div class='span12'>
+                <!-- 标题 -->
+                <div class='row-fluid'>
+                    <div class='span12'>
+                        <div class='page-header'>
+                            <h1 class='pull-left'>
+                                <span>编辑&nbsp<a href="{:U('/admin/'.$nav.'/index/name/'.$data['name'])}" style="color:#5879b8">{$data.title}</span>
+                            </h1>
+
+                            <div class="pull-right">
+                                <ul class='breadcrumb'>
+                                    <li>
+                                        <a href="{:U('/admin')}"><i class='icon-home'></i>
+                                        </a>
+                                    </li>
+                                    <li class='separator'>
+                                        <i class='icon-angle-right'></i>
+                                    </li>
+                                    <li>编辑</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /标题 -->
+                <div class='row-fluid'>
+                    <div class='span10 box offset1'>
+                        <div class='box-content'>
+                            <form id="editForm" class='form form-horizontal validate-form' style='margin-bottom: 0;'
+                                  action="{:U('/admin/'.$nav.'/edit/id/'.$data['id'])}" method="post"/>
+                            <div class='control-group'>
+                                <label class='control-label'>标题</label>
+
+                                <div class='controls'>
+                                    <input class="span10" data-rule-minlength='1' data-rule-required='true' name='title' type='text'
+                                           value="{$data.title}"/>
+                                </div>
+                            </div>
+
+
+                            <div class='control-group'>
+                                <label class='control-label'>发布人</label>
+
+                                <div class='controls'>
+                                    <input class="span10" data-rule-minlength='1' data-rule-required='true' name='author' type='text'
+                                           value="{$data.author}"/>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">添加时间</label>
+
+                                <div class="controls">
+                                    <input class="span10" id="time" name="addtime" value="<?php echo $data['addtime']?>"
+                                           placeholder="添加时间" type="text">
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label">正文内容</label>
+                                <div class="controls">
+                                    <?=W('Admin/editor', array('main', $data['main']))?>
+                                </div>
+                            </div>
+
+                            <div class='form-actions' style='margin-bottom:0'>
+                                <button class='btn btn-primary offset6' type='submit'>
+                                    <i class='icon-save'></i>
+                                    提交
+                                </button>
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</div>
+
+<include file="Common:footer"/>
+<script>
+    window.onbeforeunload = function() {
+        return '这个页面比较重要！';
+    };
+</script>
+

@@ -1,0 +1,73 @@
+<include file="Common:header" />
+<include file="Common:nav"/>
+
+    <section id='content'>
+        <div class='container-fluid'>
+        <div class='row-fluid'>
+                <div class='span12 box bordered-box orange-border' style='margin-bottom:0;'>
+                    <div class='page-header'><!-- 标题栏 -->
+                        <h1 class='pull-left'>
+                            <span>用户&nbsp{$member.email}&nbsp的评论</span>
+                        </h1>
+                        <div class="pull-right">
+                            <ul class='breadcrumb'>
+                                <li>
+                                    <a href="{:U('/admin')}"><i class='icon-home'></i>
+                                    </a>
+                                </li>
+                                <li class='separator'>
+                                    <i class='icon-angle-right'></i>
+                                </li>
+                                <li>用户评论</li>
+                            </ul>
+                        </div>
+                    </div><!-- end标题栏 -->
+                    <!-- 搜索 -->
+                    <div class="row-fluid">
+                        <form class="form form-horizontal">
+                                <div id="count" value="{$count}" class="alert alert-info pull-right">共{$count}条记录</div>
+                        </form>                                        
+                    </div>     
+                    <!-- /搜索 -->
+                    <div class='box-content box-no-padding'>
+                    <table class='table table-striped' style='margin-bottom:0;'>
+                    <thead>
+                    <tr>
+                        <th>时间</th>
+                        <th>服务id</th>
+                        <th>内容</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    <volist name="comments" id="item">
+                    <tr>
+                        <td width="">{$item.addtime}</td>
+                        <td width="">{$item.dataid}</td>
+                        <td width="">{$item.content}</td>
+                        <td>
+                            <a class="btn btn-link has-tooltip" href="{:U('/datas/detail/id/'.$item['dataid'])}" target="_blank" data-original-title="前台查看">
+                                            <i class="icon-circle-arrow-right text-blue"></i>
+                            </a>
+                            <a class="btn btn-link has-tooltip" href="#" onclick="to_url_delete('{:U('/admin/datas/delete/table/comments/id/'.$item['id']).'/dataid/'.$data['id']}',this)" data-original-title="删除">
+                                <i class="icon-trash text-red"></i>
+                            </a>
+                        </td>
+                        </tr>
+                        </volist>
+                    </tbody>
+                    </table>
+                    <div class="pagination pagination-centered">
+                        <ul>{$page}</ul>                               
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+        </div><!-- end <div class='container-fluid'> -->
+    </section>   
+</div><!--end id='wrapper' -->
+
+<include file="Common:footer" />
+</body>
+</html>

@@ -45,22 +45,22 @@
                                 <div class="col-xs-4 col-sm-9">
                                     <div class="weather">
 
-                                        <div class="weather__city">
-                                            <em>包头</em>
-                                            <div class="weather__city__list">
-                                                <ul>
-                                                    <li class="active">
-                                                        <a href="#">包头</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">Moscow</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">Kiev</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
+                                        <!--<div class="weather__city">-->
+                                            <!--<em>包头</em>-->
+                                            <!--<div class="weather__city__list">-->
+                                                <!--<ul>-->
+                                                    <!--<li class="active">-->
+                                                        <!--<a href="#">包头</a>-->
+                                                    <!--</li>-->
+                                                    <!--<li>-->
+                                                        <!--<a href="#">Moscow</a>-->
+                                                    <!--</li>-->
+                                                    <!--<li>-->
+                                                        <!--<a href="#">Kiev</a>-->
+                                                    <!--</li>-->
+                                                <!--</ul>-->
+                                            <!--</div>-->
+                                        <!--</div>-->
                                     </div>
                                 </div>
                             </div>

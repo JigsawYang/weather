@@ -1,0 +1,168 @@
+<include file="Common:header" />
+<include file="Common:nav"/>
+
+<section id='content'>
+	<div class='container-fluid'>
+		<div class='row-fluid'>
+			<div class='span12 box bordered-box orange-border' style='margin-bottom:0;'>
+				<div class='page-header'><!-- 标题栏 -->
+					<h1 class='pull-left'>
+						<span>后台用户</span>
+					</h1>
+					<div class="pull-right">
+						<ul class='breadcrumb'>
+							<li>
+								<a href="{:U('/admin')}"><i class='icon-home'></i>
+								</a>
+							</li>
+							<li class='separator'>
+								<i class='icon-angle-right'></i>
+							</li>
+							<li>后台用户</li>
+						</ul>
+					</div>
+				</div><!-- end标题栏 -->
+				<!-- 搜索 -->
+				<div class="row-fluid">
+					<form class="form form-horizontal" action="{:U('/admin/members')}" accept-charset="utf-8" method="get">
+						<input name="id" value="{$id}" placeholder="按id搜索" class="form-control" type="text">
+						<input name="username" value="{$username}" placeholder="按用户名搜索" class="form-control" type="text">
+						<button class="btn btn-default" type="submit">搜索</button>
+						<div class="btn btn-default" onclick="to_url('{:U('/admin/members')}')">全部</div>
+						<div class='btn btn-default' data-toggle="modal" href="#modal-example2" role="button">添加</div>
+						<div id="count" value="{$count}" class="alert alert-info pull-right" style="padding-top:4px;padding-bottom:4px">共{$count}条记录</div>
+					</form>
+				</div>
+				<!-- 添加用户的表单 -->
+				<div class="modal hide fade" id="modal-example2" role="dialog" tabindex="-1" style="display: none;" aria-hidden="true">
+					<div class="modal-header text-center">
+						<button class="close" data-dismiss="modal" type="button">×</button>
+						<h3>添加后台用户</h3>
+					</div>
+					<div class="modal-body">
+						<form class='form form-horizontal validate-form' style='margin-bottom: 0;'
+						      action="{:U('/admin/members/add')}" method="post" />
+						<div class='control-group'>
+							<label class='control-label' for='username'>用户名</label>
+							<div class='controls'>
+								<input data-rule-minlength='1' data-rule-required='true' data-rule-stringEN="true" id='validation_username' name='username' placeholder='输入用户名' type='text' />
+							</div>
+						</div>
+
+						<div class='control-group'>
+							<label class='control-label' for='realname'>真名</label>
+							<div class='controls'>
+								<input data-rule-minlength='1' data-rule-required='true' data-rule-chkRealname='true'  id='validation_realname' name='realname' placeholder='输入真实的名字' type='text' />
+							</div>
+						</div>
+
+						<div class='control-group'>
+							<label class='control-label' for='inputPassword4'>密码</label>
+							<div class='controls'>
+								<input id='inputPassword4' placeholder='输入密码'  type='password' data-rule-required='true' name='password' />
+							</div>
+						</div>
+
+						<div class="control-group">
+							<label class="control-label" for="validation_password_confirmation">确认密码</label>
+							<div class="controls">
+								<input data-rule-equalto="#inputPassword4" data-rule-required="true" id="validation_password_confirmation"  placeholder="再次输入密码" type="password">
+							</div>
+						</div>
+						<!--<div class='control-group' id="cc">-->
+							<!--<label class='control-label' for='role'>所属角色</label>-->
+							<!--<select name="role_id[]">-->
+								<!--<option value="" >请选择角色</option>-->
+								<!--<foreach name='role' item='v'>-->
+									<!--<option value="{$v['id']}">{$v.name}({$v.remark})</option>-->
+								<!--</foreach>-->
+							<!--</select>-->
+							<!--<span class="add-role">添加一个角色</span>-->
+						<!--</div>-->
+						<div class='form-actions' style='margin-bottom:0' id="last">
+							<button class='btn btn-primary' type='submit'>
+								<i class='icon-save'></i>
+								提交
+							</button>
+						</div>
+						</form>
+					</div>
+				</div>
+				<!-- /添加用户的表单 -->
+				<!-- /搜索 -->
+				<div class='box-content box-no-padding'>
+					<table class='table table-striped' style='margin-bottom:0;'>
+						<thead>
+						<tr>
+							<th width="10%">ID</th>
+							<th width="30%">用户名</th>
+							<th width="30%">真名</th>
+							<!--<th width="10%">用户所属组</th>-->
+							<th width="20%">操作</th>
+						</tr>
+						</thead>
+						<tbody>
+
+						<foreach name="managers" item="v">
+							<tr>
+								<td width="">{$v.id}</td>
+								<td width="">{$v.username}</td>
+								<td width="">{$v.realname}</td>
+								<!--<td width="">-->
+									<!--<if condition = '$v["username"] eq admin'>-->
+										<!--超级管理员-->
+										<!--<else/>-->
+										<!--<ul>-->
+											<!--<foreach name='v.role' item='value'>-->
+												<!--<li>{$value.name}({$value.remark})</li>-->
+											<!--</foreach>-->
+										<!--</ul>-->
+									<!--</if>-->
+								<!--</td>-->
+								<td>
+									<?php if ($v['username'] != 'admin') { ?>
+									<a class="btn btn-link has-tooltip" href="#" onclick="to_url_delete('{:U('/admin/members/delete/table/managers/id/'.$v['id'])}',this)" data-original-title="删除">
+										<i class="icon-trash text-red"></i>
+									</a>
+									<?php } ?>
+								</td>
+							</tr>
+						</foreach>
+						</tbody>
+					</table>
+					<div class="pagination pagination-centered">
+						<ul>{$page}</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div><!-- end <div class='container-fluid'> -->
+</section>
+</div><!--end id='wrapper' -->
+
+<include file="Common:footer" />
+
+<script type="text/javascript">
+	jQuery.validator.addMethod("chkRealname", function(value, element, param) {
+		var reg = /^[\u4e00-\u9fa5]+$/i;
+		return reg.test(value);
+	}, "请输入中文");
+
+	jQuery.validator.addMethod("stringEN", function(value, element) {
+		var chrnum = /^([a-zA-Z0-9]+)$/;
+		return this.optional(element) || (chrnum.test(value));
+	}, "只能输入数字和字母(字符A-Z, a-z, 0-9)");
+	$(function(){
+			$('.add-role').click(function(){
+					var obj = $(this).parents('#cc').clone();
+					obj.find('.add-role').remove();
+					$('#last').before(obj);
+				}
+			)
+		}
+	)
+	//-->
+</script>
+
+</body>
+</html>

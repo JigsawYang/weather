@@ -1,0 +1,92 @@
+<include file="Common:header"/>
+<include file="Common:nav"/>
+
+<section id='content'>
+    <div class='container-fluid'>
+        <div class='row-fluid' id='content-wrapper'>
+            <div class='span12'>
+                <!-- 标题栏 -->
+                <div class='row-fluid'>
+                    <div class='span12'>
+                        <div class='page-header'>
+                            <h1 class='pull-left'>
+                                <span>编辑专家</span>
+                            </h1>
+
+                            <div class="pull-right">
+                                <ul class='breadcrumb'>
+                                    <li>
+                                        <a href="{:U('/admin')}"><i class='icon-home'></i>
+                                        </a>
+                                    </li>
+                                    <li class='separator'>
+                                        <i class='icon-angle-right'></i>
+                                    </li>
+                                    <li><a href="{:U('/admin/members')}">用户列表</a></li>
+                                    <li class="separator">
+                                        <i class="icon-angle-right"></i>
+                                    </li>
+                                    <li>编辑专家</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /标题栏 -->
+                <div class='row-fluid'>
+                    <div class='span10 box offset1'>
+                        <div class='box-content'>
+                            <!-- 表单 -->
+                            <form id="addForm" class='form form-horizontal validate-form' style='margin-bottom: 0;'
+                                  action="{:U('/admin/members/editexp/id/'.$data['id'])}" method="post"/>
+                            <div class='control-group'>
+                                <label class='control-label' for='userAccount'>手机号</label>
+
+                                <div class='controls'>
+                                    <input class="span10" data-rule-minlength='1' data-rule-required='true' id='validation_name'
+                                           name='userAccount' placeholder='' type='text' value="{$data.useraccount}"/>
+                                </div>
+                            </div>
+                            <div class='control-group'>
+                                <label class='control-label' for='userNickname'>真实姓名</label>
+
+                                <div class='controls'>
+                                    <input class="span10"
+                                           name='userNickname' placeholder='' type='text' value="{$data.usernickname}"/>
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label">分类</label>
+
+                                <div class="controls">
+                                    <select class="select2" name="cateid">
+
+                                        <option value="">选择分类</option>
+
+                                        <volist name="cates" id="cate">
+                                            <option value="{$cate.id}" <?php if ($data['id'] == $value) {?>selected="selected"<?php }?>>{$cate.feature}</option>
+                                        </volist>
+                                    </select>
+                                </div>
+                            </div>
+
+
+                            <div class='form-actions' style='margin-bottom:0'>
+                                <button class='btn btn-primary' type='submit'>
+                                    <i class='icon-save'></i>提交
+                                </button>
+                            </div>
+                            </form>
+                            <!-- /表单 -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</div>
+
+<include file="Common:footer"/>
+

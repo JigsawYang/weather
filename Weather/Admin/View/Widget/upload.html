@@ -1,0 +1,46 @@
+<div id="{$name}_preview" <?php if (empty($value)){?>style="display: none;"<?php }?>>
+  <img src="{:RS($value)}" style="max-width: 600px;" />
+</div>
+<input class="{$class}" data-rule-required="true" id="{$name}" name="{$name}" type="text"
+       value="{$value}">
+<input type="hidden" name="sign" value="{:C('FILE_SERVER.sign')}" />
+<input type="hidden" name="mode" value="{$mode}" />
+<div>
+  <input name='{$name}_file' type='file' />
+  <button type="button" onclick="upload('{$name}')" class="btn btn-success">上传</button>
+</div>
+<?php
+if (!defined('LOADED_UPLOAD')) {
+define('LOADED_UPLOAD', true);
+?>
+<script type="text/javascript">
+  function getIframeVal(val, name)
+  {
+    if (!(typeof name != 'undefined' && name.length > 0)) {
+      name = '{$name}';
+    }
+    $('#'+name).val(val);
+    var preview = $('#{$name}_preview');
+    preview.find('img').attr('src', '{:C('FILE_SERVER.url')}'+'/'+val);
+    preview.show();
+    $.jGrowl("上传成功");
+  }
+
+  function upload(name)  //上传图片
+  {
+    var $form = $('#'+name).closest('form');
+    var oldAction = $form.attr('action');
+    var newAction = "{:C('FILE_SERVER.url')}/upload.php?file_field="+name+"_file&cb=<?php echo urlencode(getRootUrl().'/admin/public/iconCb/name/');?>"+name;
+    $form.attr('action', newAction);
+
+    $form.ajaxSubmit(function (e) {
+      $form.attr('action', oldAction);
+      var file = $form.find("input[type='file']");
+      file.after(file.clone().val(""));
+      file.remove();
+    });
+  }
+</script>
+<?php
+}
+?>
