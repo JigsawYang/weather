@@ -195,37 +195,34 @@
                         <!-- <h2>常用功能</h2> -->
                         <!-- <h5>农业气象的常用工具</h5> -->
                         <div class="brilliant-grids">
-                            <div class="col-md-4 brilliant-grid">
-                                <div class="brilliant-left">
-                                    <i class="glyphicon glyphicon-cog" aria-hidden="true"></i>
-                                </div>
-                                <div class="brilliant-right">
-                                    <h4>旗县区天气预报</h4>
-                                </div>
-                                <div class="clearfix"></div>
-                            </div>
-                            <div class="col-md-4 brilliant-grid">
+                            <!--<div class="col-md-4 brilliant-grid">-->
+                                <!--<div class="brilliant-left">-->
+                                    <!--<i class="glyphicon glyphicon-cog" aria-hidden="true"></i>-->
+                                <!--</div>-->
+                                <!--<div class="brilliant-right">-->
+                                    <!--<h4>旗县区天气预报</h4>-->
+                                <!--</div>-->
+                                <!--<div class="clearfix"></div>-->
+                            <!--</div>-->
+                            <div class="col-md-3 brilliant-grid">
                                 <div class="brilliant-left">
                                     <i class="glyphicon glyphicon-cloud" aria-hidden="true"></i>
                                 </div>
                                 <div class="brilliant-right">
-                                    <h4>气象灾害预警</h4>
+                                    <h4>气象灾害实况报警</h4>
                                 </div>
                                 <div class="clearfix"></div>
                             </div>
-                            <div class="col-md-4 brilliant-grid">
-                                <div class="brilliant-left">
-                                    <i class="glyphicon glyphicon-signal" aria-hidden="true"></i>
-                                </div>
-                                <div class="brilliant-right">
-                                    <h4>信息留言板</h4>
-                                </div>
-                                <div class="clearfix"></div>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
-                        <div class="brilliant-grids">
-                            <div class="col-md-4 brilliant-grid">
+                            <!--<div class="col-md-4 brilliant-grid">-->
+                                <!--<div class="brilliant-left">-->
+                                    <!--<i class="glyphicon glyphicon-signal" aria-hidden="true"></i>-->
+                                <!--</div>-->
+                                <!--<div class="brilliant-right">-->
+                                    <!--<h4>信息留言板</h4>-->
+                                <!--</div>-->
+                                <!--<div class="clearfix"></div>-->
+                            <!--</div>-->
+                            <div class="col-md-3 brilliant-grid">
                                 <div class="brilliant-left">
                                     <i class="glyphicon glyphicon-globe" aria-hidden="true"></i>
                                 </div>
@@ -234,7 +231,7 @@
                                 </div>
                                 <div class="clearfix"></div>
                             </div>
-                            <div class="col-md-4 brilliant-grid">
+                            <div class="col-md-3 brilliant-grid">
                                 <div class="brilliant-left">
                                     <i class="glyphicon glyphicon-link" aria-hidden="true"></i>
                                 </div>
@@ -243,7 +240,7 @@
                                 </div>
                                 <div class="clearfix"></div>
                             </div>
-                            <div class="col-md-4 brilliant-grid">
+                            <div class="col-md-3 brilliant-grid">
                                 <div class="brilliant-left">
                                     <i class="glyphicon glyphicon-phone" aria-hidden="true"></i>
                                 </div>
@@ -254,6 +251,36 @@
                             </div>
                             <div class="clearfix"></div>
                         </div>
+                        <!--<div class="brilliant-grids">-->
+                            <!--<div class="col-md-4 brilliant-grid">-->
+                                <!--<div class="brilliant-left">-->
+                                    <!--<i class="glyphicon glyphicon-globe" aria-hidden="true"></i>-->
+                                <!--</div>-->
+                                <!--<div class="brilliant-right">-->
+                                    <!--<h4>农田小气候实况监测报警和预警</h4>-->
+                                <!--</div>-->
+                                <!--<div class="clearfix"></div>-->
+                            <!--</div>-->
+                            <!--<div class="col-md-4 brilliant-grid">-->
+                                <!--<div class="brilliant-left">-->
+                                    <!--<i class="glyphicon glyphicon-link" aria-hidden="true"></i>-->
+                                <!--</div>-->
+                                <!--<div class="brilliant-right">-->
+                                    <!--<h4>果树小气候实况监测报警和预警</h4>-->
+                                <!--</div>-->
+                                <!--<div class="clearfix"></div>-->
+                            <!--</div>-->
+                            <!--<div class="col-md-4 brilliant-grid">-->
+                                <!--<div class="brilliant-left">-->
+                                    <!--<i class="glyphicon glyphicon-phone" aria-hidden="true"></i>-->
+                                <!--</div>-->
+                                <!--<div class="brilliant-right">-->
+                                    <!--<h4>数据查询</h4>-->
+                                <!--</div>-->
+                                <!--<div class="clearfix"></div>-->
+                            <!--</div>-->
+                            <!--<div class="clearfix"></div>-->
+                        <!--</div>-->
                     </div>
                 </div>
             </section>
@@ -265,7 +292,7 @@
                 <!-- title -->
                 <div class="wrap wrap_white">
                     <div class="container title">
-                        <h1 class="title__h1 underscore">最新实况</h1>
+                        <h1 class="title__h1 underscore">城镇最新天气实况</h1>
                     </div>
                 </div>
                 <!-- END title -->

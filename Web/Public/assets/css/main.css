@@ -2471,10 +2471,11 @@ article .quote {
   width: 79%;
 }
 .brilliant-grids {
-    margin-top: 1em;
+    margin-top: 3em;
+    width: 100%;
 }
 .brilliant-left i {
-    font-size: 1.3em;
+    font-size: 1.5em;
     background: #e7663f;
     padding: 1em 1em;
     color: #fff;
@@ -2484,8 +2485,9 @@ article .quote {
 background: #7277d5;
 }
 .brilliant-right h4 {
-    font-size: 1.4em;
+    font-size: 1.3em;
     text-transform: capitalize;
+    margin-left: 1em;
     color: #222;
     font-weight: 600;
     font-family: 'Voltaire', sans-serif;
