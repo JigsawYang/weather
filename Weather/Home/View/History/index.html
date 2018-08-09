@@ -1,0 +1,78 @@
+<extend name="Public:base"/>
+<!-- header slider -->
+<block name="content">
+    <!-- END header -->
+    <!-- content-->
+    <!-- title -->
+    <div class="wrap wrap_white">
+        <div class="container title">
+            <h1 class="title__h1 underscore">历史数据查询</h1>
+        </div>
+    </div>
+    <!-- END title -->
+    <div class="wrap wrap_gray pt20 minheight">
+        <div class="container">
+            <div class="row">
+                <div class="wrap-thumbnail">
+                    <div class="thumbnail">
+                        <div class="thumbnail__news news">
+
+                            <div>
+                                <form action="/history/index" class="form-inline" id="acount_form" method="post">
+                                    <div class="form-group pick">
+                                        <label for="dtp_input1" class="col-md-1 control-label">开始</label>
+
+                                        <div class="input-group date form_date col-md-8" data-date="" data-date-format="yyyy-mm-dd"
+                                             data-link-field="dtp_input1" data-link-format="yyyy-mm-dd">
+                                            <input class="form-control" size="16" type="text" value="{$now1}" readonly>
+                                                <span class="input-group-addon">
+                                                    <span class="glyphicon glyphicon-calendar"></span>
+                                                </span>
+                                        </div>
+                                        <input type="hidden" id="dtp_input1" value="" name="sdate"/>
+                                        <br/>
+                                    </div>
+
+                                    <div class="form-group pick">
+                                        <label for="dtp_input2" class="col-md-1 control-label">结束</label>
+
+                                        <div class="input-group date form_date col-md-8" data-date="" data-date-format="yyyy-mm-dd"
+                                             data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                                            <input class="form-control" size="16" type="text" value="" readonly>
+                                                <span class="input-group-addon">
+                                                    <span class="glyphicon glyphicon-calendar"></span>
+                                                </span>
+                                        </div>
+                                        <input type="hidden" id="dtp_input2" value="" name="edate"/>
+                                        <br/>
+                                    </div>
+                                    <div class="form-group slwidth">
+                                        <select class="form-control" name="station">
+                                            <?php foreach ($stlist as $key => $v) { ?>
+                                            <?php if ($st == $v['id']) { ?>
+                                            <option value="{$v['id']}" selected>{$v['location']}--{$v['zdmc']}</option>
+                                            <?php } else { ?>
+                                            <option value="{$v['id']}">{$v['location']}--{$v['zdmc']}</option>
+                                            <?php } ?>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+                                    <button id="btnsub" type="submit" class="btn btn-orange pull-right">下载</button>
+                                    <p class="comment-b">提示: 日期不能选择当天, 间隔不能超过2个月</p>
+                                </form>
+                            </div>
+                            <div class="clearfix"></div>
+                            <?php  if (session('downses')) { ?>
+                            <div class="alert alert-warning alert-dismissible" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <strong>提示: </strong> <?php echo session('downses'); ?>
+                            </div>
+                            <?php } ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END content-->
+</block>

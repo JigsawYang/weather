@@ -14,6 +14,7 @@ use Common\Component\ArrayHelper;
 
 class AccontController extends CommonController {
     public function index() {
+        session('download', null);
 
         $y = date("Y");
         $m = date("m");

@@ -6,7 +6,7 @@
     <!-- title -->
     <div class="wrap wrap_white">
         <div class="container title">
-            <h1 class="title__h1 underscore">农田小气候实况监测报警信息</h1>
+            <h1 class="title__h1 underscore">果树小气候预报预警信息</h1>
         </div>
     </div>
     <!-- END title -->
@@ -17,7 +17,7 @@
                     <div class="thumbnail">
                         <div class="thumbnail__news news">
                             <div>
-                                <form action="/landwarning" class="form-inline" id="wtform" method="post">
+                                <form action="/landwarning/feature" class="form-inline" id="wtform" method="post">
                                     <div class="form-group pick">
                                         <label for="dtp_input2" class="col-md-1 control-label">日期</label>
 
@@ -44,14 +44,14 @@
                                     </button>
                                 </form>
                             </div>
-                            <p class="news__category">{$now} {$station[0]}--{$station[1]} 地区作物冷害报警信息</p>
+                            <p class="news__category">{$now} {$station[0]}--{$station[1]} 地区果树冷害报警信息</p>
 
                             <table class="table table-striped table-hover table-bordered">
                                 <thead>
                                 <tr>
                                     <th>冷害程度</th>
                                     <th>服务提示</th>
-                                    <th>受冷害影响的作物及生长期</th>
+                                    <th>受冷害影响的果树及生长期</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -59,28 +59,28 @@
                                 <foreach name="cold" item="v">
                                     <tr>
                                         <td>{$v['dis']}</td>
-                                        <td>当前室外气温过低，部分农作物将遭受冷害影响，请视具体情况适当采取御寒保温措施</td>
+                                        <td>当前室外气温过低，部分果树将遭受冷害影响，请视具体情况适当采取御寒保温措施</td>
                                         <td>{$v['plantdis']}</td>
                                     </tr>
                                 </foreach>
                                 <?php } else { ?>
                                 <tr>
-                                    <td>没有受害作物</td>
-                                    <!--<td>当前室内气温过低，部分农作物将遭受冻害影响，请视具体情况适当采取御寒保温措施</td>-->
-                                    <!--<td>没有受害作物</td>-->
+                                    <td>没有受害果树</td>
+                                    <!--<td>当前室内气温过低，部分农果树将遭受冻害影响，请视具体情况适当采取御寒保温措施</td>-->
+                                    <!--<td>没有受害果树</td>-->
                                 </tr>
                                 <?php } ?>
                                 </tbody>
                             </table>
 
-                            <p class="news__category">{$now} {$station[0]}--{$station[1]} 地区作物霜冻报警信息</p>
+                            <p class="news__category">{$now} {$station[0]}--{$station[1]} 地区果树霜冻报警信息</p>
 
                             <table class="table table-striped table-hover table-bordered">
                                 <thead>
                                 <tr>
                                     <th>霜冻程度</th>
                                     <th>服务提示</th>
-                                    <th>受霜冻影响的作物及生长期</th>
+                                    <th>受霜冻影响的果树及生长期</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -88,42 +88,42 @@
                                 <foreach name="ice" item="v">
                                     <tr>
                                         <td>{$v['dis']}</td>
-                                        <td>当前室外气温过低，部分农作物将遭受霜冻影响，请视具体情况适当采取御寒保温措施</td>
+                                        <td>当前室外气温过低，部分果树将遭受霜冻影响，请视具体情况适当采取御寒保温措施</td>
                                         <td>{$v['plantdis']}</td>
                                     </tr>
                                 </foreach>
                                 <?php } else { ?>
                                 <tr>
-                                    <td>没有受害作物</td>
-                                    <!--<td>当前室内气温过低，部分农作物将遭受冻害影响，请视具体情况适当采取御寒保温措施</td>-->
-                                    <!--<td>没有受害作物</td>-->
+                                    <td>没有受害果树</td>
+                                    <!--<td>当前室内气温过低，部分农果树将遭受冻害影响，请视具体情况适当采取御寒保温措施</td>-->
+                                    <!--<td>没有受害果树</td>-->
                                 </tr>
                                 <?php } ?>
                                 </tbody>
                             </table>
-                            <p class="news__category">{$now} {$station[0]}--{$station[1]} 地区作物热害报警信息</p>
+                            <p class="news__category">{$now} {$station[0]}--{$station[1]} 地区果树热害报警信息</p>
 
-                            <!--<h4 class="margin-bottom-15 st">{$now} {$station[0]}--{$station[1]} 结构温室作物热害报警信息</h4>-->
+                            <!--<h4 class="margin-bottom-15 st">{$now} {$station[0]}--{$station[1]} 结构温室果树热害报警信息</h4>-->
                             <!--<h4 class="station-head">{$station}</h4>-->
                             <table class="table table-striped table-hover table-bordered">
                                 <thead>
                                 <tr>
                                     <th>服务提示</th>
-                                    <th>受热害影响的作物及生长期</th>
+                                    <th>受热害影响的果树及生长期</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <?php if ($hot) { ?>
                                 <foreach name="hot" item="v">
                                     <tr>
-                                        <td>当前室内气温过高，部分农作物将受到热害影响，请视具体情况适当采取通风、喷水、浇灌等降温措施</td>
+                                        <td>当前室内气温过高，部分果树将受到热害影响，请视具体情况适当采取通风、喷水、浇灌等降温措施</td>
                                         <td>{$v['plantdis']}</td>
                                     </tr>
                                 </foreach>
                                 <?php } else { ?>
                                 <tr>
-                                    <!--<td>当前室内气温过高，部分农作物将受到热害影响，请视具体情况适当采取通风、喷水、浇灌等降温措施</td>-->
-                                    <td>没有受害作物</td>
+                                    <!--<td>当前室内气温过高，部分农果树将受到热害影响，请视具体情况适当采取通风、喷水、浇灌等降温措施</td>-->
+                                    <td>没有受害果树</td>
                                 </tr>
                                 <?php } ?>
                                 </tbody>

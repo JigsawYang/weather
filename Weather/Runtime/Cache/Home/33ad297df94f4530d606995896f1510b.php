@@ -35,6 +35,12 @@
             <header id="header" class="header">
                 <div class="header__top">
                     <div class="container">
+                        <?php  if (session('download') && session('download') == 1) { ?>
+                        <div class="alert alert-warning alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <strong>提示: </strong> 只有登陆后, 相关单位授权的用户才能下载.
+                        </div>
+                        <?php } ?>
                         <div class="row">
                             <div class="col-sm-7">
                                 <div class="wrap-logo">
@@ -86,6 +92,7 @@
                 </div>
                 <div class="header_down">
                     <div class="container">
+
                         <div class="wrapper clearfix bigmegamenu">
                             <!--Main Menu HTML Code-->
                             <nav class="wsmenu slideLeft clearfix">
@@ -129,11 +136,35 @@
                                     <!--</li>-->
                                     <li>
                                         <span class="wsmenu-click"></span>
-                                        <a href="/advise">新闻资讯和生产信息</a>
+                                        <a href="">农田小气候实况监测报警和预警
+                                            <span class="arrow"></span>
+                                        </a>
+                                        <ul class="wsmenu-submenu">
+                                            <li>
+                                                <a href="/landwarning">农田小气候实况监测报警</a>
+                                            </li>
+                                            <li>
+                                                <a href="/landwarning/feature">农田小气候预报预警</a>
+                                            </li>
+
+
+                                        </ul>
                                     </li>
                                     <li>
                                         <span class="wsmenu-click"></span>
-                                        <a href="/know">农业气象服务科普信息</a>
+                                        <a href="">果树小气候实况监测报警和预警
+                                            <span class="arrow"></span>
+                                        </a>
+                                        <ul class="wsmenu-submenu">
+                                            <li>
+                                                <a href="/fruitwarning">果树小气候实况监测报警</a>
+                                            </li>
+                                            <li>
+                                                <a href="/fruitwarning/feature">果树小气候预报预警</a>
+                                            </li>
+
+
+                                        </ul>
                                     </li>
                                     <li>
                                         <span class="wsmenu-click"></span>
@@ -157,12 +188,12 @@
                         <!-- Tab panes -->
                         <div class="col-sm-8 tab-content tab-content_mob-p0">
                             <div role="tabpanel" class="tab-pane fade in active" id="home">
-                                <img src="/Public/assets/images/content/slide1.jpg" alt="main img" class="tab-pane__img">
-                                <div class="header_news_text tab-pane__block">
-                                    <!-- <p class="tab-pane__category yel_line">People</p> -->
-                                    <a class="tab-pane__title">最新任何图片</a>
-                                    <p class="tab-pane__text">介绍这个图片</p>
-                                </div>
+                                <img src="/Public/upload/<?php echo ($news[0]['path']); ?>" alt="main img" class="tab-pane__img" height="466" width="791">
+                                <!--<div class="header_news_text tab-pane__block">-->
+                                    <!--&lt;!&ndash; <p class="tab-pane__category yel_line">People</p> &ndash;&gt;-->
+                                    <!--<a class="tab-pane__title">最新任何图片</a>-->
+                                    <!--<p class="tab-pane__text">介绍这个图片</p>-->
+                                <!--</div>-->
                             </div>
 
                         </div>
@@ -224,25 +255,25 @@
                             <!--</div>-->
                             <div class="col-md-3 brilliant-grid">
                                 <div class="brilliant-left">
-                                    <i class="glyphicon glyphicon-globe" aria-hidden="true"></i>
+                                    <a href="/advise"><i class="glyphicon glyphicon-globe" aria-hidden="true"></i></a>
                                 </div>
                                 <div class="brilliant-right">
-                                    <h4>农田小气候实况监测报警和预警</h4>
+                                    <h4>新闻资讯和生产信息</h4>
                                 </div>
                                 <div class="clearfix"></div>
                             </div>
                             <div class="col-md-3 brilliant-grid">
                                 <div class="brilliant-left">
-                                    <i class="glyphicon glyphicon-link" aria-hidden="true"></i>
+                                    <a href="/know"><i class="glyphicon glyphicon-link" aria-hidden="true"></i></a>
                                 </div>
                                 <div class="brilliant-right">
-                                    <h4>果树小气候实况监测报警和预警</h4>
+                                    <h4>农业气象服务科普信息</h4>
                                 </div>
                                 <div class="clearfix"></div>
                             </div>
                             <div class="col-md-3 brilliant-grid">
                                 <div class="brilliant-left">
-                                    <i class="glyphicon glyphicon-phone" aria-hidden="true"></i>
+                                    <a href="/history"><i class="glyphicon glyphicon-phone" aria-hidden="true"></i></a>
                                 </div>
                                 <div class="brilliant-right">
                                     <h4>数据查询</h4>

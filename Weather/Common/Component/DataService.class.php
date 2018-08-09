@@ -286,7 +286,7 @@ class DataService {
                 array_push($all, $ms);
             }
         }
-//        print_r($all);
+//        print_r($all);die;
         return $all;
     }
 
@@ -305,6 +305,19 @@ class DataService {
 //        print_r($res);die;
         return $res;
     }
+
+//************************************************************************************
+//************************************************************************************
+//上线该成户外站点表
+//*************************************************************************************
+//*******************************************************************************
+    public static function GetLandStation() {
+        $model = D("Ghstation");
+        $res = $model->field('id,zdmc,location')->select();
+//        print_r($res);die;
+        return $res;
+    }
+
 
     public static function getlocation() {
         $model = D('Ghstation');
@@ -996,7 +1009,7 @@ class DataService {
     static function exportData($sdate, $edate, $station)
     {
         $sql = sprintf("SELECT [time], [TA_CU], [TA_CD], [RH_C], [TS_U], [TS_M], [TS_D], [SH_U], [SH_M], [SH_D], [R_U], [PAR_U], [CO2_U]  FROM [tabtimedata] where [id] = '%s' and [time] between '%s 00:00:00.000' and '%s 23:50:00.000' AND DATEPART(MINUTE,[time])=0 AND DATEPART(SECOND,[time])=0", $station, $sdate, $edate);
-        $conInfo = array('Database' => 'nqdb-new', 'UID' => 'sa', 'PWD' => 'SA123sa');
+        $conInfo = array('Database' => 'nqdb-new', 'UID' => 'sa', 'PWD' => '2103189');
 
         $conn = sqlsrv_connect('localhost', $conInfo);
         if ($conn == false) {
@@ -1096,4 +1109,263 @@ class DataService {
         return $temp;
     }
 
+    public static function Landwarning_cold($date, $station)
+    {
+        $sql = sprintf("SELECT [BC] FROM [nqdb-new].[dbo].[HC4048] where [ID] = '%s' and [TT] = '%s:00:00.000'", $station, $date);
+        $Model = new \Think\Model(); // 实例化一个model对象 没有对应任何数据表
+        $res = $Model->query($sql);
+        $airnum = $res[0]['BC'] / 10;
+//        $airnum = 1;
+//        print_r($res);die;
+        $model = M('landwarning');
+        $temp = [];
+        $result = $model->where(['type' => 'cold'])->select();
+        if ($res != null) {
+            foreach ($result as $key => $val) {
+                if ($airnum > $val['sd'] && $airnum <= $val['sg']) {
+                    array_push($temp, $val);
+                }
+            }
+        }
+//        print_r($temp);die;
+        return $temp;
+    }
+
+    public static function Landwarning_ice($date, $station)
+    {
+        $sql = sprintf("SELECT [BC] FROM [nqdb-new].[dbo].[HC4048] where [ID] = '%s' and [TT] = '%s:00:00.000'", $station, $date);
+        $Model = new \Think\Model(); // 实例化一个model对象 没有对应任何数据表
+        $res = $Model->query($sql);
+        $airnum = $res[0]['BC'] / 10;
+//        $airnum = 1;
+//        print_r($res);die;
+        $model = M('landwarning');
+        $temp = [];
+        $result = $model->where(['type' => 'ice'])->select();
+        if ($res != null) {
+            foreach ($result as $key => $val) {
+                if ($airnum > $val['sd'] && $airnum <= $val['sg']) {
+                    array_push($temp, $val);
+                }
+            }
+        }
+//        print_r($temp);die;
+        return $temp;
+    }
+
+    public static function Landwarning_hot($date, $station)
+    {
+        $sql = sprintf("SELECT [BC] FROM [nqdb-new].[dbo].[HC4048] where [ID] = '%s' and [TT] = '%s:00:00.000'", $station, $date);
+        $Model = new \Think\Model(); // 实例化一个model对象 没有对应任何数据表
+        $res = $Model->query($sql);
+        $airnum = $res[0]['BC'] / 10;
+//        $airnum = 1;
+//        print_r($res);die;
+        $model = M('landwarning');
+        $temp = [];
+        $result = $model->where(['type' => 'hot'])->select();
+        if ($res != null) {
+            foreach ($result as $key => $val) {
+                if ($airnum > $val['sd'] && $airnum <= $val['sg']) {
+                    array_push($temp, $val);
+                }
+            }
+        }
+//        print_r($temp);die;
+        return $temp;
+    }
+
+    public static function Flandwarning_cold($tm, $station)
+    {
+        $model = D('Ssnydpyb');
+        $res = $model->where(['station' => $station, 'time' => $tm])->field('td')->select();
+        $airnum = $res[0]['td'];
+//        $airnum = 1;
+        $model = M('landwarning');
+        $temp = [];
+        $result = $model->where(['type' => 'cold'])->select();
+        if ($res != null) {
+            foreach ($result as $key => $val) {
+                if ($airnum > $val['sd'] && $airnum <= $val['sg']) {
+                    array_push($temp, $val);
+                }
+            }
+        }
+//        print_r($temp);die;
+        return $temp;
+    }
+
+    public static function Flandwarning_ice($tm, $station)
+    {
+        $model = D('Ssnydpyb');
+        $res = $model->where(['station' => $station, 'time' => $tm])->field('td')->select();
+        $airnum = $res[0]['td'];
+//        $airnum = 1;
+        $model = M('landwarning');
+        $temp = [];
+        $result = $model->where(['type' => 'ice'])->select();
+        if ($res != null) {
+            foreach ($result as $key => $val) {
+                if ($airnum > $val['sd'] && $airnum <= $val['sg']) {
+                    array_push($temp, $val);
+                }
+            }
+        }
+//        print_r($temp);die;
+        return $temp;
+    }
+
+    public static function Flandwarning_hot($tm, $station)
+    {
+        $model = D('Ssnydpyb');
+        $res = $model->where(['station' => $station, 'time' => $tm])->field('td')->select();
+        $airnum = $res[0]['td'];
+//        $airnum = 1;
+        $model = M('landwarning');
+        $temp = [];
+        $result = $model->where(['type' => 'hot'])->select();
+        if ($res != null) {
+            foreach ($result as $key => $val) {
+                if ($airnum > $val['sd'] && $airnum <= $val['sg']) {
+                    array_push($temp, $val);
+                }
+            }
+        }
+//        print_r($temp);die;
+        return $temp;
+    }
+
+
+    public static function Treewarning_cold($date, $station)
+    {
+        $sql = sprintf("SELECT [BC] FROM [nqdb-new].[dbo].[HC4048] where [ID] = '%s' and [TT] = '%s:00:00.000'", $station, $date);
+        $Model = new \Think\Model(); // 实例化一个model对象 没有对应任何数据表
+        $res = $Model->query($sql);
+        $airnum = $res[0]['BC'] / 10;
+//        $airnum = 1;
+//        print_r($res);die;
+        $model = M('treewarning');
+        $temp = [];
+        $result = $model->where(['type' => 'cold'])->select();
+        if ($res != null) {
+            foreach ($result as $key => $val) {
+                if ($airnum > $val['sd'] && $airnum <= $val['sg']) {
+                    array_push($temp, $val);
+                }
+            }
+        }
+//        print_r($temp);die;
+        return $temp;
+    }
+
+    public static function Treewarning_ice($date, $station)
+    {
+        $sql = sprintf("SELECT [BC] FROM [nqdb-new].[dbo].[HC4048] where [ID] = '%s' and [TT] = '%s:00:00.000'", $station, $date);
+        $Model = new \Think\Model(); // 实例化一个model对象 没有对应任何数据表
+        $res = $Model->query($sql);
+        $airnum = $res[0]['BC'] / 10;
+//        $airnum = 1;
+//        print_r($res);die;
+        $model = M('treewarning');
+        $temp = [];
+        $result = $model->where(['type' => 'ice'])->select();
+        if ($res != null) {
+            foreach ($result as $key => $val) {
+                if ($airnum > $val['sd'] && $airnum <= $val['sg']) {
+                    array_push($temp, $val);
+                }
+            }
+        }
+//        print_r($temp);die;
+        return $temp;
+    }
+
+    public static function Treewarning_hot($date, $station)
+    {
+        $sql = sprintf("SELECT [BC] FROM [nqdb-new].[dbo].[HC4048] where [ID] = '%s' and [TT] = '%s:00:00.000'", $station, $date);
+        $Model = new \Think\Model(); // 实例化一个model对象 没有对应任何数据表
+        $res = $Model->query($sql);
+        $airnum = $res[0]['BC'] / 10;
+//        $airnum = 1;
+//        print_r($res);die;
+        $model = M('treewarning');
+        $temp = [];
+        $result = $model->where(['type' => 'hot'])->select();
+        if ($res != null) {
+            foreach ($result as $key => $val) {
+                if ($airnum > $val['sd'] && $airnum <= $val['sg']) {
+                    array_push($temp, $val);
+                }
+            }
+        }
+//        print_r($temp);die;
+        return $temp;
+    }
+
+    public static function Ftreewarning_cold($tm, $station)
+    {
+        $model = D('Ssnydpyb');
+        $res = $model->where(['station' => $station, 'time' => $tm])->field('td')->select();
+        $airnum = $res[0]['td'];
+//        $airnum = 1;
+        $model = M('treewarning');
+        $temp = [];
+        $result = $model->where(['type' => 'cold'])->select();
+        if ($res != null) {
+            foreach ($result as $key => $val) {
+                if ($airnum > $val['sd'] && $airnum <= $val['sg']) {
+                    array_push($temp, $val);
+                }
+            }
+        }
+//        print_r($temp);die;
+        return $temp;
+    }
+
+    public static function Ftreewarning_ice($tm, $station)
+    {
+        $model = D('Ssnydpyb');
+        $res = $model->where(['station' => $station, 'time' => $tm])->field('td')->select();
+        $airnum = $res[0]['td'];
+//        $airnum = 1;
+        $model = M('treewarning');
+        $temp = [];
+        $result = $model->where(['type' => 'ice'])->select();
+        if ($res != null) {
+            foreach ($result as $key => $val) {
+                if ($airnum > $val['sd'] && $airnum <= $val['sg']) {
+                    array_push($temp, $val);
+                }
+            }
+        }
+//        print_r($temp);die;
+        return $temp;
+    }
+
+    public static function Ftreewarning_hot($tm, $station)
+    {
+        $model = D('Ssnydpyb');
+        $res = $model->where(['station' => $station, 'time' => $tm])->field('td')->select();
+        $airnum = $res[0]['td'];
+//        $airnum = 1;
+        $model = M('treewarning');
+        $temp = [];
+        $result = $model->where(['type' => 'hot'])->select();
+        if ($res != null) {
+            foreach ($result as $key => $val) {
+                if ($airnum > $val['sd'] && $airnum <= $val['sg']) {
+                    array_push($temp, $val);
+                }
+            }
+        }
+//        print_r($temp);die;
+        return $temp;
+    }
+
+    static function get_month($date1, $date2, $tags = '-')
+    {
+        $date1 = explode($tags, $date1);
+        $date2 = explode($tags, $date2);
+        return abs($date1[0] - $date2[0]) * 12 + abs($date1[1] - $date2[1]);
+    }
 }

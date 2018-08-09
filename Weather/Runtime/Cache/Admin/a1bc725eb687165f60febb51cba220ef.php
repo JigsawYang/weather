@@ -32,8 +32,6 @@
       </script>
       <script src='/Public/admin/javascripts/jquery/jquery.min.js' type='text/javascript'></script>
 
-<!-- / jgrowl notifications -->
-<link href='/Public/admin/stylesheets/plugins/jgrowl/jquery.jgrowl.min.css' media='all' rel='stylesheet' type='text/css' />
 <!-- 此文件内容是左侧的导航 -->
 </head>
 
@@ -148,179 +146,76 @@
     <div class='container-fluid'>
         <div class='row-fluid' id='content-wrapper'>
             <div class='span12'>
-                <div class='page-header'>
-                    <h1 class='pull-left'>
-                        <span>首页</span>
-                    </h1>
-                </div>
-
+                <!-- 标题 -->
                 <div class='row-fluid'>
-                    <div class='span6 box'>
-                        <div class='row-fluid timeline'>
-                            <div class='span12'>
-                                <div class='alert alert-info'>
-                                    <a class='close' data-dismiss='alert' href='#'>&times;</a>
-                                    欢迎，
-                                    <strong><?php echo ($currentUser['username']); ?></strong>
-                                </div>
-                                <ol class='unstyled'>
+                    <div class='span12'>
+                        <div class='page-header'>
+                            <h1 class='pull-left'>
+                                <span>编辑&nbsp<a href="<?php echo U('/admin/'.$nav.'/index/name/'.$data['name']);?>" style="color:#5879b8"><?php echo ($data["title"]); ?></span>
+                            </h1>
+
+                            <div class="pull-right">
+                                <ul class='breadcrumb'>
                                     <li>
-                                        <div class='icon purple-background'>
-                                            <i class='icon-check'></i>
-                                        </div>
-                                        <div class='title'>
-                                            登录
-                                            <small class='muted'>
-                                                <?php
- $t = time()-session('firstLogtime'); if ($t < 100) { echo $t."秒前"; } elseif ($t < 3600) { $t = ceil($t/60); echo $t."分钟前"; } ?>
-                                            </small>
-                                        </div>
-                                        <div class='content'>
-                                            登录ip:<?php echo get_client_ip();?>
-                                        </div>
+                                        <a href="<?php echo U('/admin');?>"><i class='icon-home'></i>
+                                        </a>
                                     </li>
-                                    <!--<li>-->
-                                    <!--<div class='icon blue-background'>-->
-                                    <!--<i class='icon-info'></i>-->
-                                    <!--</div>-->
-                                    <!--&lt;!&ndash;<div class='title'>&ndash;&gt;-->
-                                    <!--&lt;!&ndash;关键操作&ndash;&gt;-->
-                                    <!--&lt;!&ndash;<small class='muted'>&ndash;&gt;-->
-                                    <!--&lt;!&ndash;用来展示关键操作&ndash;&gt;-->
-                                    <!--&lt;!&ndash;</small>&ndash;&gt;-->
-                                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
-                                    <!--&lt;!&ndash;<div class='content'>&ndash;&gt;-->
-                                    <!--&lt;!&ndash;考虑到以后rbac&ndash;&gt;-->
-                                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
-                                    <!--</li>-->
-                                </ol>
+                                    <li class='separator'>
+                                        <i class='icon-angle-right'></i>
+                                    </li>
+                                    <li>编辑</li>
+                                </ul>
                             </div>
                         </div>
                     </div>
-                    <div class='span6 box'>
-                        <div class='row-fluid' id='content-wrapper'>
-                            <div class='span12'>
-                                <div class='row-fluid'>
-                                    <div class='span12 box'>
-                                        <div id="change-password" class='collapse'>
-                                            <div class='box-header'>
-                                                <div class='title'>
-                                                    <i class='icon-edit'></i>
-                                                    修改个人信息
-                                                </div>
-                                            </div>
-                                            <div class="box-content">
-                                                <div class="tabbable">
-                                                    <ul class="nav nav-tabs">
-                                                        <li class="active">
-                                                            <a data-toggle="tab" href="#tab1">
-                                                                <i class="icon-indent-left text-blue"></i>
-                                                                个人信息
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a data-toggle="tab" href="#tab2">
-                                                                <i class="icon-edit text-red"></i>
-                                                                密码
-                                                            </a>
-                                                        </li>
-                                                    </ul>
+                </div>
+                <!-- /标题 -->
+                <div class='row-fluid'>
+                    <div class='span10 box offset1'>
+                        <div class='box-content'>
+                            <form id="editForm" class='form form-horizontal validate-form' style='margin-bottom: 0;'
+                                  action="<?php echo U('/admin/'.$nav.'/edit/id/'.$data['id']);?>" method="post"/>
+                            <div class='control-group'>
+                                <label class='control-label'>标题</label>
 
-                                                    <div class="tab-content">
-                                                        <div class="tab-pane active" id="tab1">
-                                                            <form novalidate="novalidate" class="form form-horizontal validate-form" style="margin-bottom: 0;" action="<?php echo U('/admin/members/edit');?>" method="post" >
-                                                                <div class='control-group'>
-                                                                    <label class='control-label' for='realname'>真名</label>
-                                                                    <div class='controls'>
-                                                                        <input data-rule-minlength='1' data-rule-required='true' data-rule-chkRealname='true' id='validation_name' name='realname' placeholder='' type='text' value="<?php echo ($currentUser["realname"]); ?>"/>
-                                                                    </div>
-                                                                </div>
-                                                                <div class='form-actions' style='margin-bottom:0'>
-                                                                    <button class='btn btn-primary' type='submit'>
-                                                                        <i class='icon-save'></i>
-                                                                        提交
-                                                                    </button>
-                                                                </div>
-                                                            </form>
-                                                        </div>
-
-                                                        <div class="tab-pane" id="tab2">
-                                                            <form id="changePass" novalidate="novalidate" class="form form-horizontal validate-form" style="margin-bottom: 0;" action="<?php echo U('/admin/members/edit');?>" method="post" >
-                                                                <div class="control-group">
-                                                                    <label class="control-label" for="validation_password">原密码</label>
-                                                                    <div class="controls">
-                                                                        <input data-rule-minlength="4" data-rule-password="true" data-rule-required="true"  data-rule-chkPrepass="true" name="pre_password" placeholder="输入原来的密码" type="password">
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="control-group">
-                                                                    <label class="control-label" for="validation_password">新密码</label>
-                                                                    <div class="controls">
-                                                                        <input data-rule-minlength="4" data-rule-password="true" data-rule-required="true" id="newpassword" name="newpassword" placeholder="输入新的密码" type="password">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="control-group">
-                                                                    <label class="control-label" for="validation_password_confirmation">确认新密码</label>
-                                                                    <div class="controls">
-                                                                        <input data-rule-equalto="#newpassword" data-rule-required="true" id="validation_password_confirmation"  placeholder="再次输入新的密码" type="password">
-                                                                    </div>
-                                                                </div>
-                                                                <div class='form-actions' style='margin-bottom:0'>
-                                                                    <button class='btn btn-primary'>
-                                                                        <i class='icon-save'></i>
-                                                                        提交
-                                                                    </button>
-                                                                </div>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <hr class='hr-normal' />
-                                        </div>
-                                        <div class='box-content box-double-padding'>
-                                            <div class="page-header">
-                                                <h3 class='pull-left'>
-                                                    <i class='icon-signin text-contrast'></i>
-                                                    <span>个人信息</span>
-                                                </h3>
-                                                <div class='pull-right'>
-                                                    <a href="#" class='icon-edit text-contrast' data-target='#change-password' data-toggle='collapse' id='changepasswordcheck'>修改</a>
-                                                </div>
-                                            </div>
-                                            <div class="row-fluid">
-                                                <div class="span12">
-                                                    <div class="tabbable">
-                                                        <ul class="nav nav-tabs">
-                                                            <li class="active">
-                                                                <a data-toggle="tab" href="#tab3">
-                                                                    <i class="icon-indent-left text-blue"></i>
-                                                                    账户信息
-                                                                </a>
-                                                            </li>
-                                                            <!--<li>-->
-                                                            <!--<a data-toggle="tab" href="#tab4">-->
-                                                            <!--<i class="icon-edit text-red"></i>-->
-                                                            <!--权限-->
-                                                            <!--</a>-->
-                                                            <!--</li>-->
-                                                        </ul>
-                                                        <div class="tab-content">
-                                                            <div class="tab-pane active" id="tab3">
-                                                                <p>用户名：<?php echo ($currentUser['username']); ?></p>
-                                                                <p>真名：<?php echo ($currentUser['realname']); ?></p>
-                                                            </div>
-                                                            <div class="tab-pane" id="tab4">
-                                                                <p>预留</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                <div class='controls'>
+                                    <input class="span10" data-rule-minlength='1' data-rule-required='true' name='title' type='text'
+                                           value="<?php echo ($data["title"]); ?>"/>
                                 </div>
                             </div>
+
+
+                            <div class='control-group'>
+                                <label class='control-label'>发布人</label>
+
+                                <div class='controls'>
+                                    <input class="span10" data-rule-minlength='1' data-rule-required='true' name='author' type='text'
+                                           value="<?php echo ($data["author"]); ?>"/>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">添加时间</label>
+
+                                <div class="controls">
+                                    <input class="span10" id="time" name="addtime" value="<?php echo $data['addtime']?>"
+                                           placeholder="添加时间" type="text">
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label">正文内容</label>
+                                <div class="controls">
+                                    <?=W('Admin/editor', array('main', $data['main']))?>
+                                </div>
+                            </div>
+
+                            <div class='form-actions' style='margin-bottom:0'>
+                                <button class='btn btn-primary offset6' type='submit'>
+                                    <i class='icon-save'></i>
+                                    提交
+                                </button>
+                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -423,30 +318,8 @@
 
   
 
-
-<script type="text/javascript">
-    jQuery.validator.addMethod("chkPrepass", function(value, element, param) {
-        $.ajax({
-            type: "post",
-            async: false,
-            data:'pre_password=' + value,
-            url : '<?php echo U('/admin/managers/checkPassword');?>',
-            success : function(res){
-                if (res == 'false'){
-                    result = false;
-                } else {
-                    result = true;
-                }
-            },
-        });
-        return result;
-    }, "原密码不正确");
-
-    jQuery.validator.addMethod("chkRealname", function(value, element, param) {
-        var reg = /^[\u4e00-\u9fa5]+$/i;
-        return reg.test(value);
-    }, "请输入中文");
+<script>
+    window.onbeforeunload = function() {
+        return '这个页面比较重要！';
+    };
 </script>
-
-</body>
-</html>

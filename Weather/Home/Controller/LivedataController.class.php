@@ -14,6 +14,8 @@ use Common\Component\ArrayHelper;
 
 class LivedataController extends CommonController {
     public function index() {
+        session('download', null);
+
         $stlist = DataService::GetStation();
         $now = date('Y-m-d');
         $now2 = date('Y-m-d H:i:s');

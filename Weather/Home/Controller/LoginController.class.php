@@ -25,6 +25,9 @@ class LoginController extends CommonController {
 
         $result = MemberService::login($user, $password);
         if ($result === true) {
+            if ($this->currentMember['isdownload'] == 1) {
+                session('download', 0);
+            }
             session('mes', 1);
             $this->redirect('/');
         } else {

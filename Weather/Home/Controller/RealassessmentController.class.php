@@ -14,6 +14,8 @@ use Common\Component\ArrayHelper;
 
 class RealassessmentController extends CommonController {
     public function index() {
+        session('download', null);
+
         $stlist = DataService::GetStation();
         $location = DataService::getlocation();
 

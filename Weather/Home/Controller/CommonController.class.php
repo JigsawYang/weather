@@ -14,6 +14,11 @@ class CommonController extends Controller {
     public function __construct() {
         parent::__construct();
         $this->currentMember = MemberService::getCurrentMember();
+        $newsmodel = M("news");
+        $news = $newsmodel->limit(1)->order('id desc')->select();
+//        print_r($news);die;
+
+        $this->news = $news;
     }
 
     public function _empty() {

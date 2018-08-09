@@ -14,7 +14,7 @@ use Common\Component\ArrayHelper;
 
 class KnowController extends CommonController {
     public function index() {
-//        session("download", null);
+        session("download", null);
 
         $knowModel = M('knowledge');
         $count = $knowModel->count(); //一共多少个

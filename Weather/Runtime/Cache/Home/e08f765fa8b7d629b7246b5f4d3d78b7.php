@@ -32,12 +32,6 @@
             <header id="header" class="header">
                 <div class="header__top">
                     <div class="container">
-                        <?php  if (session('download') == 1) { ?>
-                        <div class="alert alert-warning alert-dismissible" role="alert">
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <strong>提示: </strong> 只有登陆后, 相关单位授权的用户才能下载.
-                        </div>
-                        <?php } ?>
                         <div class="row">
                             <div class="col-sm-7">
                                 <div class="wrap-logo">
@@ -89,7 +83,6 @@
                 </div>
                 <div class="header_down">
                     <div class="container">
-
                         <div class="wrapper clearfix bigmegamenu">
                             <!--Main Menu HTML Code-->
                             <nav class="wsmenu slideLeft clearfix">
@@ -185,7 +178,7 @@
     <!-- title -->
     <div class="wrap wrap_white">
         <div class="container title">
-            <h1 class="title__h1 underscore">温室小气候实况监测报警</h1>
+            <h1 class="title__h1 underscore">农田小气候预报预警信息</h1>
         </div>
     </div>
     <!-- END title -->
@@ -196,7 +189,7 @@
                     <div class="thumbnail">
                         <div class="thumbnail__news news">
                             <div>
-                                <form action="/warning" class="form-inline" id="wtform" method="post">
+                                <form action="/landwarning/feature" class="form-inline" id="wtform" method="post">
                                     <div class="form-group pick">
                                         <label for="dtp_input2" class="col-md-1 control-label">日期</label>
 
@@ -223,21 +216,21 @@
                                     </button>
                                 </form>
                             </div>
-                            <p class="news__category"><?php echo ($now); ?> <?php echo ($station[0]); ?>--<?php echo ($station[1]); ?> 结构温室作物冷害报警信息</p>
+                            <p class="news__category"><?php echo ($now); ?> <?php echo ($station[0]); ?>--<?php echo ($station[1]); ?> 地区作物冷害报警信息</p>
 
                             <table class="table table-striped table-hover table-bordered">
                                 <thead>
                                 <tr>
-                                    <th>冻害程度</th>
+                                    <th>冷害程度</th>
                                     <th>服务提示</th>
-                                    <th>受冻害影响的作物及生长期</th>
+                                    <th>受冷害影响的作物及生长期</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <?php if ($cold) { ?>
                                 <?php if(is_array($cold)): foreach($cold as $key=>$v): ?><tr>
                                         <td><?php echo ($v['dis']); ?></td>
-                                        <td>当前室内气温过低，部分农作物将遭受冻害影响，请视具体情况适当采取御寒保温措施</td>
+                                        <td>当前室外气温过低，部分农作物将遭受冷害影响，请视具体情况适当采取御寒保温措施</td>
                                         <td><?php echo ($v['plantdis']); ?></td>
                                     </tr><?php endforeach; endif; ?>
                                 <?php } else { ?>
@@ -249,7 +242,34 @@
                                 <?php } ?>
                                 </tbody>
                             </table>
-                            <p class="news__category"><?php echo ($now); ?> <?php echo ($station[0]); ?>--<?php echo ($station[1]); ?> 结构温室作物热害报警信息</p>
+
+                            <p class="news__category"><?php echo ($now); ?> <?php echo ($station[0]); ?>--<?php echo ($station[1]); ?> 地区作物霜冻报警信息</p>
+
+                            <table class="table table-striped table-hover table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>霜冻程度</th>
+                                    <th>服务提示</th>
+                                    <th>受霜冻影响的作物及生长期</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <?php if ($ice) { ?>
+                                <?php if(is_array($ice)): foreach($ice as $key=>$v): ?><tr>
+                                        <td><?php echo ($v['dis']); ?></td>
+                                        <td>当前室外气温过低，部分农作物将遭受霜冻影响，请视具体情况适当采取御寒保温措施</td>
+                                        <td><?php echo ($v['plantdis']); ?></td>
+                                    </tr><?php endforeach; endif; ?>
+                                <?php } else { ?>
+                                <tr>
+                                    <td>没有受害作物</td>
+                                    <!--<td>当前室内气温过低，部分农作物将遭受冻害影响，请视具体情况适当采取御寒保温措施</td>-->
+                                    <!--<td>没有受害作物</td>-->
+                                </tr>
+                                <?php } ?>
+                                </tbody>
+                            </table>
+                            <p class="news__category"><?php echo ($now); ?> <?php echo ($station[0]); ?>--<?php echo ($station[1]); ?> 地区作物热害报警信息</p>
 
                             <!--<h4 class="margin-bottom-15 st"><?php echo ($now); ?> <?php echo ($station[0]); ?>--<?php echo ($station[1]); ?> 结构温室作物热害报警信息</h4>-->
                             <!--<h4 class="station-head"><?php echo ($station); ?></h4>-->
@@ -274,121 +294,7 @@
                                 <?php } ?>
                                 </tbody>
                             </table>
-                            <p class="news__category"><?php echo ($now); ?> <?php echo ($station[0]); ?>--<?php echo ($station[1]); ?> 结构温室作物干旱报警信息</p>
-                            <!--<h4 class="station-head"><?php echo ($station); ?></h4>-->
-                            <table class="table table-striped table-hover table-bordered">
-                                <thead>
-                                <tr>
-                                    <th>服务提示</th>
-                                    <th>受空气干旱影响的作物及生长期</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <?php if ($airdry) { ?>
-                                <?php if(is_array($airdry)): foreach($airdry as $key=>$v): ?><tr>
-                                        <td>当前室内湿度过低，部分农作物将受到干旱影响，请视具体情况适当采取喷水、浇灌等增湿措施</td>
-                                        <td><?php echo ($v['plantdis']); ?></td>
-                                    </tr><?php endforeach; endif; ?>
-                                <?php } else { ?>
-                                <tr>
-                                    <!--<td>当前室内湿度过低，部分农作物将受到干旱影响，请视具体情况适当采取喷水、浇灌等增湿措施</td>-->
-                                    <td>没有受害作物</td>
-                                </tr>
-                                <?php } ?>
-                                </tbody>
-                            </table>
-                            <p class="news__category"><?php echo ($now); ?> <?php echo ($station[0]); ?>--<?php echo ($station[1]); ?> 结构温室作物土壤干旱报警信息</p>
-                            <!--<h4 class="station-head"><?php echo ($station); ?></h4>-->
-                            <table class="table table-striped table-hover table-bordered">
-                                <thead>
-                                <tr>
-                                    <th>服务提示</th>
-                                    <th>受土壤干旱影响的作物及生长期</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <?php if ($landdry) { ?>
-                                <?php if(is_array($landdry)): foreach($landdry as $key=>$v): ?><tr>
-                                        <td>当前室内土壤湿度过低，部分农作物将受到干旱影响，请视具体情况适当采取喷水、浇灌等增湿措施</td>
-                                        <td><?php echo ($v['plantdis']); ?></td>
-                                    </tr><?php endforeach; endif; ?>
-                                <?php } else { ?>
-                                <tr>
-                                    <!--<td>当前室内土壤湿度过低，部分农作物将受到干旱影响，请视具体情况适当采取喷水、浇灌等增湿措施</td>-->
-                                    <td>没有受害作物</td>
-                                </tr>
-                                <?php } ?>
-                                </tbody>
-                            </table>
-                            <p class="news__category"><?php echo ($now); ?> <?php echo ($station[0]); ?>--<?php echo ($station[1]); ?> 结构温室作物空气湿害报警信息</p>
-                            <!--<h4 class="station-head"><?php echo ($station); ?></h4>-->
-                            <table class="table table-striped table-hover table-bordered">
-                                <thead>
-                                <tr>
-                                    <th>服务提示</th>
-                                    <th>受空气湿害影响的作物及生长期</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <?php if ($airwet) { ?>
-                                <?php if(is_array($airwet)): foreach($airwet as $key=>$v): ?><tr>
-                                        <td>当前室内空气湿度过高，部分农作物将受到过湿影响，请视具体情况适当采取通风、增温等降湿措施</td>
-                                        <td><?php echo ($v['plantdis']); ?></td>
-                                    </tr><?php endforeach; endif; ?>
-                                <?php } else { ?>
-                                <tr>
-                                    <!--<td>当前室内空气湿度过高，部分农作物将受到过湿影响，请视具体情况适当采取通风、增温等降湿措施</td>-->
-                                    <td>没有受害作物</td>
-                                </tr>
-                                <?php } ?>
-                                </tbody>
-                            </table>
-                            <p class="news__category"><?php echo ($now); ?> <?php echo ($station[0]); ?>--<?php echo ($station[1]); ?> 结构温室作物土壤湿害报警信息</p>
-                            <!--<h4 class="station-head"><?php echo ($station); ?></h4>-->
-                            <table class="table table-striped table-hover table-bordered">
-                                <thead>
-                                <tr>
-                                    <th>服务提示</th>
-                                    <th>受土壤湿害影响的作物及生长期</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <?php if ($landwet) { ?>
-                                <?php if(is_array($landwet)): foreach($landwet as $key=>$v): ?><tr>
-                                        <td>当前室内土壤湿度过高，部分农作物将受到过湿影响，请视具体情况适当采取通风、增温等降湿措施</td>
-                                        <td><?php echo ($v['plantdis']); ?></td>
-                                    </tr><?php endforeach; endif; ?>
-                                <?php } else { ?>
-                                <tr>
-                                    <!--<td>当前室内土壤湿度过高，部分农作物将受到过湿影响，请视具体情况适当采取通风、增温等降湿措施</td>-->
-                                    <td>没有受害作物</td>
-                                </tr>
-                                <?php } ?>
-                                </tbody>
-                            </table>
-                            <p class="news__category"><?php echo ($now); ?> <?php echo ($station[0]); ?>--<?php echo ($station[1]); ?> 结构温室作物光照不足报警信息</p>
-                            <!--<h4 class="station-head"><?php echo ($station); ?></h4>-->
-                            <table class="table table-striped table-hover table-bordered">
-                                <thead>
-                                <tr>
-                                    <th>服务提示</th>
-                                    <th>受光照不足影响的作物及生长期</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <?php if ($sun) { ?>
-                                <?php if(is_array($sun)): foreach($sun as $key=>$v): ?><tr>
-                                        <td>室内光照不足，光合作用微弱，部分农作物生长发育将受到影响，请予以关注</td>
-                                        <td><?php echo ($v['plantdis']); ?></td>
-                                    </tr><?php endforeach; endif; ?>
-                                <?php } else { ?>
-                                <tr>
-                                    <!--<td>室内光照不足，光合作用微弱，部分农作物生长发育将受到影响，请予以关注</td>-->
-                                    <td>没有受害作物</td>
-                                </tr>
-                                <?php } ?>
-                                </tbody>
-                            </table>
+
 
                         </div>
                     </div>

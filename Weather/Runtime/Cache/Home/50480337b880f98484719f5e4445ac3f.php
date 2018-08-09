@@ -42,22 +42,22 @@
                                 <div class="col-xs-4 col-sm-9">
                                     <div class="weather">
 
-                                        <div class="weather__city">
-                                            <em>包头</em>
-                                            <div class="weather__city__list">
-                                                <ul>
-                                                    <li class="active">
-                                                        <a href="#">包头</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">Moscow</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">Kiev</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
+                                        <!--<div class="weather__city">-->
+                                            <!--<em>包头</em>-->
+                                            <!--<div class="weather__city__list">-->
+                                                <!--<ul>-->
+                                                    <!--<li class="active">-->
+                                                        <!--<a href="#">包头</a>-->
+                                                    <!--</li>-->
+                                                    <!--<li>-->
+                                                        <!--<a href="#">Moscow</a>-->
+                                                    <!--</li>-->
+                                                    <!--<li>-->
+                                                        <!--<a href="#">Kiev</a>-->
+                                                    <!--</li>-->
+                                                <!--</ul>-->
+                                            <!--</div>-->
+                                        <!--</div>-->
                                     </div>
                                 </div>
                             </div>
@@ -126,11 +126,35 @@
                                     <!--</li>-->
                                     <li>
                                         <span class="wsmenu-click"></span>
-                                        <a href="/advise">新闻资讯和生产信息</a>
+                                        <a href="">农田小气候实况监测报警和预警
+                                            <span class="arrow"></span>
+                                        </a>
+                                        <ul class="wsmenu-submenu">
+                                            <li>
+                                                <a href="/landwarning">农田小气候实况监测报警</a>
+                                            </li>
+                                            <li>
+                                                <a href="/landwarning/feature">农田小气候预报预警</a>
+                                            </li>
+
+
+                                        </ul>
                                     </li>
                                     <li>
                                         <span class="wsmenu-click"></span>
-                                        <a href="/know">农业气象服务科普信息</a>
+                                        <a href="">果树小气候实况监测报警和预警
+                                            <span class="arrow"></span>
+                                        </a>
+                                        <ul class="wsmenu-submenu">
+                                            <li>
+                                                <a href="/fruitwarning">果树小气候实况监测报警</a>
+                                            </li>
+                                            <li>
+                                                <a href="/fruitwarning/feature">果树小气候预报预警</a>
+                                            </li>
+
+
+                                        </ul>
                                     </li>
                                     <li>
                                         <span class="wsmenu-click"></span>

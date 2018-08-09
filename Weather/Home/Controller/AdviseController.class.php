@@ -14,6 +14,7 @@ use Common\Component\ArrayHelper;
 
 class AdviseController extends CommonController {
     public function index() {
+        session('download', null);
         $advModel = M('advise');
         $count = $advModel->count(); //一共多少个
         $Page = new \Think\Page($count, 10);//每页显示多少个
@@ -34,6 +35,8 @@ class AdviseController extends CommonController {
     }
 
     public function detail($id) {
+        session('download', null);
+
         $model = M('advise');
         $res = $model->where(['id' => $id])->select();
 //        print_r($res);die;

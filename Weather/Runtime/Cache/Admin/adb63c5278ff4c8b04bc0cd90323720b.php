@@ -32,8 +32,6 @@
       </script>
       <script src='/Public/admin/javascripts/jquery/jquery.min.js' type='text/javascript'></script>
 
-<!-- / jgrowl notifications -->
-<link href='/Public/admin/stylesheets/plugins/jgrowl/jquery.jgrowl.min.css' media='all' rel='stylesheet' type='text/css' />
 <!-- 此文件内容是左侧的导航 -->
 </head>
 
@@ -146,189 +144,136 @@
 
 <section id='content'>
     <div class='container-fluid'>
-        <div class='row-fluid' id='content-wrapper'>
-            <div class='span12'>
-                <div class='page-header'>
+        <div class='row-fluid'>
+            <div class='span12 box bordered-box orange-border' style='margin-bottom:0;'>
+                <div class='page-header'><!-- 标题栏 -->
                     <h1 class='pull-left'>
-                        <span>首页</span>
+                        <span>新闻</span>
                     </h1>
-                </div>
-
-                <div class='row-fluid'>
-                    <div class='span6 box'>
-                        <div class='row-fluid timeline'>
-                            <div class='span12'>
-                                <div class='alert alert-info'>
-                                    <a class='close' data-dismiss='alert' href='#'>&times;</a>
-                                    欢迎，
-                                    <strong><?php echo ($currentUser['username']); ?></strong>
-                                </div>
-                                <ol class='unstyled'>
-                                    <li>
-                                        <div class='icon purple-background'>
-                                            <i class='icon-check'></i>
-                                        </div>
-                                        <div class='title'>
-                                            登录
-                                            <small class='muted'>
-                                                <?php
- $t = time()-session('firstLogtime'); if ($t < 100) { echo $t."秒前"; } elseif ($t < 3600) { $t = ceil($t/60); echo $t."分钟前"; } ?>
-                                            </small>
-                                        </div>
-                                        <div class='content'>
-                                            登录ip:<?php echo get_client_ip();?>
-                                        </div>
-                                    </li>
-                                    <!--<li>-->
-                                    <!--<div class='icon blue-background'>-->
-                                    <!--<i class='icon-info'></i>-->
-                                    <!--</div>-->
-                                    <!--&lt;!&ndash;<div class='title'>&ndash;&gt;-->
-                                    <!--&lt;!&ndash;关键操作&ndash;&gt;-->
-                                    <!--&lt;!&ndash;<small class='muted'>&ndash;&gt;-->
-                                    <!--&lt;!&ndash;用来展示关键操作&ndash;&gt;-->
-                                    <!--&lt;!&ndash;</small>&ndash;&gt;-->
-                                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
-                                    <!--&lt;!&ndash;<div class='content'>&ndash;&gt;-->
-                                    <!--&lt;!&ndash;考虑到以后rbac&ndash;&gt;-->
-                                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
-                                    <!--</li>-->
-                                </ol>
-                            </div>
-                        </div>
+                    <div class="pull-right">
+                        <ul class='breadcrumb'>
+                            <li>
+                                <a href="<?php echo U('/admin');?>"><i class='icon-home'></i>
+                                </a>
+                            </li>
+                            <li class='separator'>
+                                <i class='icon-angle-right'></i>
+                            </li>
+                            <li>新闻</li>
+                        </ul>
                     </div>
-                    <div class='span6 box'>
-                        <div class='row-fluid' id='content-wrapper'>
-                            <div class='span12'>
-                                <div class='row-fluid'>
-                                    <div class='span12 box'>
-                                        <div id="change-password" class='collapse'>
-                                            <div class='box-header'>
-                                                <div class='title'>
-                                                    <i class='icon-edit'></i>
-                                                    修改个人信息
-                                                </div>
-                                            </div>
-                                            <div class="box-content">
-                                                <div class="tabbable">
-                                                    <ul class="nav nav-tabs">
-                                                        <li class="active">
-                                                            <a data-toggle="tab" href="#tab1">
-                                                                <i class="icon-indent-left text-blue"></i>
-                                                                个人信息
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a data-toggle="tab" href="#tab2">
-                                                                <i class="icon-edit text-red"></i>
-                                                                密码
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-
-                                                    <div class="tab-content">
-                                                        <div class="tab-pane active" id="tab1">
-                                                            <form novalidate="novalidate" class="form form-horizontal validate-form" style="margin-bottom: 0;" action="<?php echo U('/admin/members/edit');?>" method="post" >
-                                                                <div class='control-group'>
-                                                                    <label class='control-label' for='realname'>真名</label>
-                                                                    <div class='controls'>
-                                                                        <input data-rule-minlength='1' data-rule-required='true' data-rule-chkRealname='true' id='validation_name' name='realname' placeholder='' type='text' value="<?php echo ($currentUser["realname"]); ?>"/>
-                                                                    </div>
-                                                                </div>
-                                                                <div class='form-actions' style='margin-bottom:0'>
-                                                                    <button class='btn btn-primary' type='submit'>
-                                                                        <i class='icon-save'></i>
-                                                                        提交
-                                                                    </button>
-                                                                </div>
-                                                            </form>
-                                                        </div>
-
-                                                        <div class="tab-pane" id="tab2">
-                                                            <form id="changePass" novalidate="novalidate" class="form form-horizontal validate-form" style="margin-bottom: 0;" action="<?php echo U('/admin/members/edit');?>" method="post" >
-                                                                <div class="control-group">
-                                                                    <label class="control-label" for="validation_password">原密码</label>
-                                                                    <div class="controls">
-                                                                        <input data-rule-minlength="4" data-rule-password="true" data-rule-required="true"  data-rule-chkPrepass="true" name="pre_password" placeholder="输入原来的密码" type="password">
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="control-group">
-                                                                    <label class="control-label" for="validation_password">新密码</label>
-                                                                    <div class="controls">
-                                                                        <input data-rule-minlength="4" data-rule-password="true" data-rule-required="true" id="newpassword" name="newpassword" placeholder="输入新的密码" type="password">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="control-group">
-                                                                    <label class="control-label" for="validation_password_confirmation">确认新密码</label>
-                                                                    <div class="controls">
-                                                                        <input data-rule-equalto="#newpassword" data-rule-required="true" id="validation_password_confirmation"  placeholder="再次输入新的密码" type="password">
-                                                                    </div>
-                                                                </div>
-                                                                <div class='form-actions' style='margin-bottom:0'>
-                                                                    <button class='btn btn-primary'>
-                                                                        <i class='icon-save'></i>
-                                                                        提交
-                                                                    </button>
-                                                                </div>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <hr class='hr-normal' />
-                                        </div>
-                                        <div class='box-content box-double-padding'>
-                                            <div class="page-header">
-                                                <h3 class='pull-left'>
-                                                    <i class='icon-signin text-contrast'></i>
-                                                    <span>个人信息</span>
-                                                </h3>
-                                                <div class='pull-right'>
-                                                    <a href="#" class='icon-edit text-contrast' data-target='#change-password' data-toggle='collapse' id='changepasswordcheck'>修改</a>
-                                                </div>
-                                            </div>
-                                            <div class="row-fluid">
-                                                <div class="span12">
-                                                    <div class="tabbable">
-                                                        <ul class="nav nav-tabs">
-                                                            <li class="active">
-                                                                <a data-toggle="tab" href="#tab3">
-                                                                    <i class="icon-indent-left text-blue"></i>
-                                                                    账户信息
-                                                                </a>
-                                                            </li>
-                                                            <!--<li>-->
-                                                            <!--<a data-toggle="tab" href="#tab4">-->
-                                                            <!--<i class="icon-edit text-red"></i>-->
-                                                            <!--权限-->
-                                                            <!--</a>-->
-                                                            <!--</li>-->
-                                                        </ul>
-                                                        <div class="tab-content">
-                                                            <div class="tab-pane active" id="tab3">
-                                                                <p>用户名：<?php echo ($currentUser['username']); ?></p>
-                                                                <p>真名：<?php echo ($currentUser['realname']); ?></p>
-                                                            </div>
-                                                            <div class="tab-pane" id="tab4">
-                                                                <p>预留</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                </div><!-- end标题栏 -->
+                <!-- 搜索 -->
+                <div class="row-fluid">
+                    <form class="form form-horizontal" action="<?php echo U('/admin/news');?>" accept-charset="utf-8" method="get">
+                        <input name="id" value="<?php echo ($id); ?>" placeholder="按id搜索" class="form-control" type="text">
+                        <input name="title" value="<?php echo ($title); ?>" placeholder="按标题搜索" class="form-control" type="text">
+                        <button class="btn btn-default" type="submit">搜索</button>
+                        <div class="btn btn-default" onclick="to_url('<?php echo U('/admin/news');?>')">全部</div>
+                        <div class='btn btn-default' data-toggle="modal" href="#modal-example2" role="button">添加</div>
+                        <div id="count" value="<?php echo ($count); ?>" class="alert alert-info pull-right" style="padding-top:4px;padding-bottom:4px">共<?php echo ($count); ?>条记录</div>
+                    </form>
+                </div>
+                <!-- 添加用户的表单 -->
+                <div class="modal hide fade" id="modal-example2" role="dialog" tabindex="-1" style="display: none;" aria-hidden="true">
+                    <div class="modal-header text-center">
+                        <button class="close" data-dismiss="modal" type="button">×</button>
+                        <h3>发布新文章</h3>
+                    </div>
+                    <div class="modal-body">
+                        <form class='form form-horizontal validate-form' enctype="multipart/form-data" style='margin-bottom: 0;'
+                              action="<?php echo U('/admin/news/add');?>" method="post" />
+                        <div class='control-group'>
+                            <label class='control-label' for='title'>文章标题</label>
+                            <div class='controls'>
+                                <input data-rule-minlength='1' data-rule-required='true' name='title' placeholder='输入标题' type='text' />
                             </div>
                         </div>
+                        <div class='control-group'>
+                            <label class='control-label' for='doc'>上传图片</label>
+                            <div class='controls'>
+                                <input name='doc' placeholder='' type='file' value="上传"/>
+                            </div>
+                        </div>
+                        <div class='control-group'>
+                            <!--<label class='control-label' for='author'>发布人</label>-->
+                            <div class='controls'>
+                                <input data-rule-minlength='1' data-rule-required='true' data-rule-chkRealname='true'  id='validation_realname' name='author' placeholder='输入发布人' type='hidden' value="<?php echo ($real); ?>" />
+                            </div>
+                        </div>
+
+
+                        <!--<div class='control-group' id="cc">-->
+                        <!--<label class='control-label' for='role'>所属角色</label>-->
+                        <!--<select name="role_id[]">-->
+                        <!--<option value="" >请选择角色</option>-->
+                        <!--<?php if(is_array($role)): foreach($role as $key=>$v): ?>-->
+                        <!--<option value="<?php echo ($v['id']); ?>"><?php echo ($v["name"]); ?>(<?php echo ($v["remark"]); ?>)</option>-->
+                        <!--<?php endforeach; endif; ?>-->
+                        <!--</select>-->
+                        <!--<span class="add-role">添加一个角色</span>-->
+                        <!--</div>-->
+                        <div class='form-actions' style='margin-bottom:0' id="last">
+                            <button class='btn btn-primary' type='submit'>
+                                <i class='icon-save'></i>
+                                提交
+                            </button>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- /添加用户的表单 -->
+                <!-- /搜索 -->
+                <div class='box-content box-no-padding'>
+                    <table class='table table-striped' style='margin-bottom:0;'>
+                        <thead>
+                        <tr>
+                            <th width="10%">ID</th>
+                            <th width="30%">标题</th>
+                            <th width="10%">发布人</th>
+                            <th width="20%">发布时间</th>
+                            <!--<th width="10%">用户所属组</th>-->
+                            <th width="20%">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        <?php if(is_array($news_res)): foreach($news_res as $key=>$v): ?><tr>
+                                <td width=""><?php echo ($v["id"]); ?></td>
+                                <td width=""><?php echo ($v["title"]); ?></td>
+                                <td width=""><?php echo ($v["author"]); ?></td>
+                                <td width=""><?php echo ($v["addtime"]); ?></td>
+                                <!--<td width="">-->
+                                <!--<?php if($v["username"] == admin): ?>-->
+                                <!--超级管理员-->
+                                <!--<?php else: ?>-->
+                                <!--<ul>-->
+                                <!--<?php if(is_array($v["role"])): foreach($v["role"] as $key=>$value): ?>-->
+                                <!--<li><?php echo ($value["name"]); ?>(<?php echo ($value["remark"]); ?>)</li>-->
+                                <!--<?php endforeach; endif; ?>-->
+                                <!--</ul>-->
+                                <!--<?php endif; ?>-->
+                                <!--</td>-->
+                                <td>
+                                    <a class="btn btn-link has-tooltip" href="<?php echo U('/admin/'.$nav.'/edit/id/'.$v['id']);?>" data-original-title="编辑">
+                                        <i class="icon-edit text-blue"></i>
+                                    </a>
+                                    <a class="btn btn-link has-tooltip" href="#" onclick="to_url_delete('<?php echo U('/admin/'.$nav.'/delete/table/adv/id/'.$v['id']);?>',this)" data-original-title="删除">
+                                        <i class="icon-trash text-red"></i>
+                                    </a>
+                                </td>
+                            </tr><?php endforeach; endif; ?>
+                        </tbody>
+                    </table>
+                    <div class="pagination pagination-centered">
+                        <ul><?php echo ($page); ?></ul>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </div><!-- end <div class='container-fluid'> -->
 </section>
-</div>
+</div><!--end id='wrapper' -->
 
 <!-- / jquery -->
 <script src='/Public/admin/javascripts/jquery/jquery.form.js' type='text/javascript'></script>
@@ -425,27 +370,25 @@
 
 
 <script type="text/javascript">
-    jQuery.validator.addMethod("chkPrepass", function(value, element, param) {
-        $.ajax({
-            type: "post",
-            async: false,
-            data:'pre_password=' + value,
-            url : '<?php echo U('/admin/managers/checkPassword');?>',
-            success : function(res){
-                if (res == 'false'){
-                    result = false;
-                } else {
-                    result = true;
-                }
-            },
-        });
-        return result;
-    }, "原密码不正确");
-
     jQuery.validator.addMethod("chkRealname", function(value, element, param) {
         var reg = /^[\u4e00-\u9fa5]+$/i;
         return reg.test(value);
     }, "请输入中文");
+
+    jQuery.validator.addMethod("stringEN", function(value, element) {
+        var chrnum = /^([a-zA-Z0-9]+)$/;
+        return this.optional(element) || (chrnum.test(value));
+    }, "只能输入数字和字母(字符A-Z, a-z, 0-9)");
+    $(function(){
+                $('.add-role').click(function(){
+                            var obj = $(this).parents('#cc').clone();
+                            obj.find('.add-role').remove();
+                            $('#last').before(obj);
+                        }
+                )
+            }
+    )
+    //-->
 </script>
 
 </body>
