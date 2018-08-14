@@ -153,7 +153,7 @@
             <div class='span12 box bordered-box orange-border' style='margin-bottom:0;'>
                 <div class='page-header'><!-- 标题栏 -->
                     <h1 class='pull-left'>
-                        <span>农业生产建议</span>
+                        <span>预警发布</span>
                     </h1>
                     <div class="pull-right">
                         <ul class='breadcrumb'>
@@ -164,17 +164,17 @@
                             <li class='separator'>
                                 <i class='icon-angle-right'></i>
                             </li>
-                            <li>农业生产建议</li>
+                            <li>预警发布</li>
                         </ul>
                     </div>
                 </div><!-- end标题栏 -->
                 <!-- 搜索 -->
                 <div class="row-fluid">
-                    <form class="form form-horizontal" action="<?php echo U('/admin/advise');?>" accept-charset="utf-8" method="get">
+                    <form class="form form-horizontal" action="<?php echo U('/admin/disaster');?>" accept-charset="utf-8" method="get">
                         <input name="id" value="<?php echo ($id); ?>" placeholder="按id搜索" class="form-control" type="text">
                         <input name="title" value="<?php echo ($title); ?>" placeholder="按标题搜索" class="form-control" type="text">
                         <button class="btn btn-default" type="submit">搜索</button>
-                        <div class="btn btn-default" onclick="to_url('<?php echo U('/admin/advise');?>')">全部</div>
+                        <div class="btn btn-default" onclick="to_url('<?php echo U('/admin/disaster');?>')">全部</div>
                         <div class='btn btn-default' data-toggle="modal" href="#modal-example2" role="button">添加</div>
                         <div id="count" value="<?php echo ($count); ?>" class="alert alert-info pull-right" style="padding-top:4px;padding-bottom:4px">共<?php echo ($count); ?>条记录</div>
                     </form>
@@ -183,13 +183,13 @@
                 <div class="modal hide fade" id="modal-example2" role="dialog" tabindex="-1" style="display: none;" aria-hidden="true">
                     <div class="modal-header text-center">
                         <button class="close" data-dismiss="modal" type="button">×</button>
-                        <h3>发布新文章</h3>
+                        <h3>发布新预警</h3>
                     </div>
                     <div class="modal-body">
                         <form class='form form-horizontal validate-form' enctype="multipart/form-data" style='margin-bottom: 0;'
-                              action="<?php echo U('/admin/advise/add');?>" method="post" />
+                              action="<?php echo U('/admin/disaster/add');?>" method="post" />
                         <div class='control-group'>
-                            <label class='control-label' for='title'>文章标题</label>
+                            <label class='control-label' for='title'>预警标题</label>
                             <div class='controls'>
                                 <input data-rule-minlength='1' data-rule-required='true' name='title' placeholder='输入标题' type='text' />
                             </div>
@@ -234,7 +234,7 @@
                         <thead>
                         <tr>
                             <th width="10%">ID</th>
-                            <th width="30%">标题</th>
+                            <th width="30%">预警标题</th>
                             <th width="10%">发布人</th>
                             <th width="20%">发布时间</th>
                             <!--<th width="10%">用户所属组</th>-->
@@ -263,7 +263,7 @@
                                     <a class="btn btn-link has-tooltip" href="<?php echo U('/admin/'.$nav.'/edit/id/'.$v['id']);?>" data-original-title="编辑">
                                         <i class="icon-edit text-blue"></i>
                                     </a>
-                                    <a class="btn btn-link has-tooltip" href="#" onclick="to_url_delete('<?php echo U('/admin/'.$nav.'/delete/table/adv/id/'.$v['id']);?>',this)" data-original-title="删除">
+                                    <a class="btn btn-link has-tooltip" href="#" onclick="to_url_delete('<?php echo U('/admin/'.$nav.'/delete/table/dis/id/'.$v['id']);?>',this)" data-original-title="删除">
                                         <i class="icon-trash text-red"></i>
                                     </a>
                                 </td>

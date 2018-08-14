@@ -1,0 +1,29 @@
+<extend name="Public:base" />
+<!-- header slider -->
+<block name="content">
+    <!-- END header -->
+    <!-- content-->
+    <!-- title -->
+    <div class="wrap wrap_white">
+        <div class="container title">
+            <h1 class="title__h1">{$res['title']}</h1>
+            <span class="spauthor">发布人: {$res['author']} 发布于: {$res['addtime']}</span>
+        </div>
+    </div>
+    <!-- END title -->
+    <div class="wrap wrap_gray pt20 minheight">
+        <div class="container">
+            <div class="row">
+                <div class="wrap-thumbnail">
+                    <div class="thumbnail">
+                        <div class="thumbnail__news news">
+                            <p class="news__desc"><?=htmlspecialchars_decode($res['main'])?></p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END content-->
+</block>

@@ -149,136 +149,86 @@
 
 <section id='content'>
     <div class='container-fluid'>
-        <div class='row-fluid'>
-            <div class='span12 box bordered-box orange-border' style='margin-bottom:0;'>
-                <div class='page-header'><!-- 标题栏 -->
-                    <h1 class='pull-left'>
-                        <span>农业生产建议</span>
-                    </h1>
-                    <div class="pull-right">
-                        <ul class='breadcrumb'>
-                            <li>
-                                <a href="<?php echo U('/admin');?>"><i class='icon-home'></i>
-                                </a>
-                            </li>
-                            <li class='separator'>
-                                <i class='icon-angle-right'></i>
-                            </li>
-                            <li>农业生产建议</li>
-                        </ul>
-                    </div>
-                </div><!-- end标题栏 -->
-                <!-- 搜索 -->
-                <div class="row-fluid">
-                    <form class="form form-horizontal" action="<?php echo U('/admin/advise');?>" accept-charset="utf-8" method="get">
-                        <input name="id" value="<?php echo ($id); ?>" placeholder="按id搜索" class="form-control" type="text">
-                        <input name="title" value="<?php echo ($title); ?>" placeholder="按标题搜索" class="form-control" type="text">
-                        <button class="btn btn-default" type="submit">搜索</button>
-                        <div class="btn btn-default" onclick="to_url('<?php echo U('/admin/advise');?>')">全部</div>
-                        <div class='btn btn-default' data-toggle="modal" href="#modal-example2" role="button">添加</div>
-                        <div id="count" value="<?php echo ($count); ?>" class="alert alert-info pull-right" style="padding-top:4px;padding-bottom:4px">共<?php echo ($count); ?>条记录</div>
-                    </form>
-                </div>
-                <!-- 添加用户的表单 -->
-                <div class="modal hide fade" id="modal-example2" role="dialog" tabindex="-1" style="display: none;" aria-hidden="true">
-                    <div class="modal-header text-center">
-                        <button class="close" data-dismiss="modal" type="button">×</button>
-                        <h3>发布新文章</h3>
-                    </div>
-                    <div class="modal-body">
-                        <form class='form form-horizontal validate-form' enctype="multipart/form-data" style='margin-bottom: 0;'
-                              action="<?php echo U('/admin/advise/add');?>" method="post" />
-                        <div class='control-group'>
-                            <label class='control-label' for='title'>文章标题</label>
-                            <div class='controls'>
-                                <input data-rule-minlength='1' data-rule-required='true' name='title' placeholder='输入标题' type='text' />
+        <div class='row-fluid' id='content-wrapper'>
+            <div class='span12'>
+                <!-- 标题 -->
+                <div class='row-fluid'>
+                    <div class='span12'>
+                        <div class='page-header'>
+                            <h1 class='pull-left'>
+                                <span>编辑&nbsp<a href="<?php echo U('/admin/'.$nav.'/index/name/'.$data['name']);?>" style="color:#5879b8"><?php echo ($data["title"]); ?></span>
+                            </h1>
+
+                            <div class="pull-right">
+                                <ul class='breadcrumb'>
+                                    <li>
+                                        <a href="<?php echo U('/admin');?>"><i class='icon-home'></i>
+                                        </a>
+                                    </li>
+                                    <li class='separator'>
+                                        <i class='icon-angle-right'></i>
+                                    </li>
+                                    <li>编辑</li>
+                                </ul>
                             </div>
                         </div>
-                        <!--<div class='control-group'>-->
-                            <!--<label class='control-label' for='doc'>上传word文件</label>-->
-                            <!--<div class='controls'>-->
-                                <!--<input name='doc' placeholder='' type='file' value="上传"/>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                        <div class='control-group'>
-                            <!--<label class='control-label' for='author'>发布人</label>-->
-                            <div class='controls'>
-                                <input data-rule-minlength='1' data-rule-required='true' data-rule-chkRealname='true'  id='validation_realname' name='author' placeholder='输入发布人' type='hidden' value="<?php echo ($real); ?>" />
-                            </div>
-                        </div>
-
-
-                        <!--<div class='control-group' id="cc">-->
-                        <!--<label class='control-label' for='role'>所属角色</label>-->
-                        <!--<select name="role_id[]">-->
-                        <!--<option value="" >请选择角色</option>-->
-                        <!--<?php if(is_array($role)): foreach($role as $key=>$v): ?>-->
-                        <!--<option value="<?php echo ($v['id']); ?>"><?php echo ($v["name"]); ?>(<?php echo ($v["remark"]); ?>)</option>-->
-                        <!--<?php endforeach; endif; ?>-->
-                        <!--</select>-->
-                        <!--<span class="add-role">添加一个角色</span>-->
-                        <!--</div>-->
-                        <div class='form-actions' style='margin-bottom:0' id="last">
-                            <button class='btn btn-primary' type='submit'>
-                                <i class='icon-save'></i>
-                                提交
-                            </button>
-                        </div>
-                        </form>
                     </div>
                 </div>
-                <!-- /添加用户的表单 -->
-                <!-- /搜索 -->
-                <div class='box-content box-no-padding'>
-                    <table class='table table-striped' style='margin-bottom:0;'>
-                        <thead>
-                        <tr>
-                            <th width="10%">ID</th>
-                            <th width="30%">标题</th>
-                            <th width="10%">发布人</th>
-                            <th width="20%">发布时间</th>
-                            <!--<th width="10%">用户所属组</th>-->
-                            <th width="20%">操作</th>
-                        </tr>
-                        </thead>
-                        <tbody>
+                <!-- /标题 -->
+                <div class='row-fluid'>
+                    <div class='span10 box offset1'>
+                        <div class='box-content'>
+                            <form id="editForm" class='form form-horizontal validate-form' style='margin-bottom: 0;'
+                                  action="<?php echo U('/admin/'.$nav.'/edit/id/'.$data['id']);?>" method="post"/>
+                            <div class='control-group'>
+                                <label class='control-label'>预警标题</label>
 
-                        <?php if(is_array($advs)): foreach($advs as $key=>$v): ?><tr>
-                                <td width=""><?php echo ($v["id"]); ?></td>
-                                <td width=""><?php echo ($v["title"]); ?></td>
-                                <td width=""><?php echo ($v["author"]); ?></td>
-                                <td width=""><?php echo ($v["addtime"]); ?></td>
-                                <!--<td width="">-->
-                                <!--<?php if($v["username"] == admin): ?>-->
-                                <!--超级管理员-->
-                                <!--<?php else: ?>-->
-                                <!--<ul>-->
-                                <!--<?php if(is_array($v["role"])): foreach($v["role"] as $key=>$value): ?>-->
-                                <!--<li><?php echo ($value["name"]); ?>(<?php echo ($value["remark"]); ?>)</li>-->
-                                <!--<?php endforeach; endif; ?>-->
-                                <!--</ul>-->
-                                <!--<?php endif; ?>-->
-                                <!--</td>-->
-                                <td>
-                                    <a class="btn btn-link has-tooltip" href="<?php echo U('/admin/'.$nav.'/edit/id/'.$v['id']);?>" data-original-title="编辑">
-                                        <i class="icon-edit text-blue"></i>
-                                    </a>
-                                    <a class="btn btn-link has-tooltip" href="#" onclick="to_url_delete('<?php echo U('/admin/'.$nav.'/delete/table/adv/id/'.$v['id']);?>',this)" data-original-title="删除">
-                                        <i class="icon-trash text-red"></i>
-                                    </a>
-                                </td>
-                            </tr><?php endforeach; endif; ?>
-                        </tbody>
-                    </table>
-                    <div class="pagination pagination-centered">
-                        <ul><?php echo ($page); ?></ul>
+                                <div class='controls'>
+                                    <input class="span10" data-rule-minlength='1' data-rule-required='true' name='title' type='text'
+                                           value="<?php echo ($data["title"]); ?>"/>
+                                </div>
+                            </div>
+
+
+                            <div class='control-group'>
+                                <label class='control-label'>发布人</label>
+
+                                <div class='controls'>
+                                    <input class="span10" data-rule-minlength='1' data-rule-required='true' name='author' type='text'
+                                           value="<?php echo ($data["author"]); ?>"/>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">添加时间</label>
+
+                                <div class="controls">
+                                    <input class="span10" id="time" name="addtime" value="<?php echo $data['addtime']?>"
+                                           placeholder="添加时间" type="text">
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label">正文内容</label>
+                                <div class="controls">
+                                    <?=W('Admin/editor', array('main', $data['main']))?>
+                                </div>
+                            </div>
+
+                            <div class='form-actions' style='margin-bottom:0'>
+                                <button class='btn btn-primary offset6' type='submit'>
+                                    <i class='icon-save'></i>
+                                    提交
+                                </button>
+                            </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div><!-- end <div class='container-fluid'> -->
+    </div>
 </section>
-</div><!--end id='wrapper' -->
+</div>
 
 <!-- / jquery -->
 <script src='/Public/admin/javascripts/jquery/jquery.form.js' type='text/javascript'></script>
@@ -373,28 +323,8 @@
 
   
 
-
-<script type="text/javascript">
-    jQuery.validator.addMethod("chkRealname", function(value, element, param) {
-        var reg = /^[\u4e00-\u9fa5]+$/i;
-        return reg.test(value);
-    }, "请输入中文");
-
-    jQuery.validator.addMethod("stringEN", function(value, element) {
-        var chrnum = /^([a-zA-Z0-9]+)$/;
-        return this.optional(element) || (chrnum.test(value));
-    }, "只能输入数字和字母(字符A-Z, a-z, 0-9)");
-    $(function(){
-                $('.add-role').click(function(){
-                            var obj = $(this).parents('#cc').clone();
-                            obj.find('.add-role').remove();
-                            $('#last').before(obj);
-                        }
-                )
-            }
-    )
-    //-->
+<script>
+    window.onbeforeunload = function() {
+        return '这个页面比较重要！';
+    };
 </script>
-
-</body>
-</html>

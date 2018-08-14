@@ -312,8 +312,8 @@ class DataService {
 //*************************************************************************************
 //*******************************************************************************
     public static function GetLandStation() {
-        $model = D("Ghstation");
-        $res = $model->field('id,zdmc,location')->select();
+        $model = M("landstation");
+        $res = $model->field('id, location')->select();
 //        print_r($res);die;
         return $res;
     }

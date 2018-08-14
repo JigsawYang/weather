@@ -19,8 +19,21 @@ class AccontController extends CommonController {
         $y = date("Y");
         $m = date("m");
         $d = date("d");
-        $now1 =  $y.'-'.$m.'-'."01";
-        $now2 =  $y.'-'.$m.'-'.$d;
+        if ($d < 11) {
+            $m = $m - 1;
+            $now1 =  $y.'-'.$m.'-'."21";
+            $now2 =  date('Y-m-d', strtotime(date('Y-m-01') . ' -1 day'));
+//            print_r($now2);die;
+        }
+        if ($d >= 11 && $d < 21) {
+            $now1 =  $y.'-'.$m.'-'."01";
+            $now2 =  $y.'-'.$m.'-'."11";
+        }
+        if ($d >= 21) {
+            $now1 =  $y.'-'.$m.'-'."12";
+            $now2 =  $y.'-'.$m.'-'."21";
+        }
+
         $now1 = '2015-05-20';
         $now2 = '2015-05-31';
         // $st = I('get.station');
@@ -38,7 +51,7 @@ class AccontController extends CommonController {
             $land = DataService::land($now1, $now2, $st);
         } else {
             $air = DataService::air($now1, $now2, 'N0001');
-            // print_r($air);die;
+//             print_r($air);die;
             $land = DataService::land($now1, $now2, 'N0001');
             $station = DataService::GetStationDt()['N0001'];
             $st = 'N0001';

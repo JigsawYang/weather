@@ -185,27 +185,22 @@
     <!-- title -->
     <div class="wrap wrap_white">
         <div class="container title">
-            <h1 class="title__h1 underscore">预报服务信息及生产建议</h1>
+            <h1 class="title__h1"><?php echo ($res['title']); ?></h1>
+            <span class="spauthor">发布人: <?php echo ($res['author']); ?> 发布于: <?php echo ($res['addtime']); ?></span>
         </div>
     </div>
     <!-- END title -->
-    <div class="wrap wrap_gray pt20">
+    <div class="wrap wrap_gray pt20 minheight">
         <div class="container">
             <div class="row">
                 <div class="wrap-thumbnail">
-                    <?php foreach($advs as $key => $v) { ?>
-                        <div class="thumbnail">
-                                <div class="thumbnail__news news">
-                                    <a class="news__category" href="<?php echo U('advise/detail', ['id' => $v['id']]);?>"><?php echo ($v['title']); ?></a>
-                                </div>
+                    <div class="thumbnail">
+                        <div class="thumbnail__news news">
+                            <p class="news__desc"><?=htmlspecialchars_decode($res['main'])?></p>
                         </div>
-                    <?php  } ?>
-
-                    <div class="pages">
-                        <?php echo ($page); ?>
                     </div>
+
                 </div>
-                <div class="clearfix"></div>
             </div>
         </div>
     </div>

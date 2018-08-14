@@ -44,6 +44,17 @@ class AdvService {
         }
     }
 
+    public static function dis_save(array $data) {
+        $model = M('featuredisaster');
+        $result = $model->create($data);
+        if ($result) {
+            $res = $model->save();
+            return $res;
+        } else {
+            return $model->getError();
+        }
+    }
+
     public static function news_save(array $data) {
         $model = M('news');
         $result = $model->create($data);

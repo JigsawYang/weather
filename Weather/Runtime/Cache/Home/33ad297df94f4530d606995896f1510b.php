@@ -105,11 +105,11 @@
                                         </a>
                                         <ul class="wsmenu-submenu">
                                             <li>
-                                                <a href="/livedata">室外实况数据</a>
+                                                <a href="/livedata">室内实况数据</a>
                                             </li>
-                                            <li>
-                                                <a href="category.html">室内实况数据</a>
-                                            </li>
+                                            <!--<li>-->
+                                                <!--<a href="category.html">室内实况数据</a>-->
+                                            <!--</li>-->
                                         </ul>
                                     </li>
                                     <li>
@@ -186,7 +186,7 @@
                 <div class="container">
                     <div class="row header_news_panel">
                         <!-- Tab panes -->
-                        <div class="col-sm-8 tab-content tab-content_mob-p0">
+                        <div class="col-sm-7 tab-content tab-content_mob-p0">
                             <div role="tabpanel" class="tab-pane fade in active" id="home">
                                 <img src="/Public/upload/<?php echo ($news[0]['path']); ?>" alt="main img" class="tab-pane__img" height="466" width="791">
                                 <!--<div class="header_news_text tab-pane__block">-->
@@ -199,19 +199,34 @@
                         </div>
                         <!-- END Tab panes -->
                         <!-- Nav tabs -->
-                        <div class="col-sm-4 news-tabs">
-                            <p class="news-tabs__title h2">最新预警</p>
-                            <div id="demo" style="overflow:hidden;height:350px;width:450px;">
+                        <div class="col-sm-3 news-tabs">
+                            <p class="news-tabs__title h2">最新实况报警</p>
+                            <div id="demo" style="overflow:hidden;height:350px;width:300px;">
                                 <ul id="demo1" class="news-tabs__nav nav nav-tabs shadow_text" role="tablist">
 
-                                    <?php if(is_array($warn)): foreach($warn as $key=>$v): ?><li role="presentation" class="active">
-                                            <a href="" role="tab" data-toggle="tab">
-                                                <span class="time"><?php echo ($v['tm']); ?></span>
-                                                <?php echo ($v['content']); ?>
-                                            </a>
+                                    <?php if(is_array($livewarn)): foreach($livewarn as $key=>$v): ?><li role="presentation" class="active">
+                                            <p href="" role="tab" data-toggle="tab" class="nav_p">
+                                                <span class="time"><?php echo ($v['yj_tt']); ?></span>
+                                                <?php echo ($v['yj_content']); ?>
+                                            </p>
                                         </li><?php endforeach; endif; ?>
                                 </ul>
                                 <div id="demo2"></div>
+                            </div>
+                        </div>
+                        <div class="col-sm-2 news-tabs">
+                            <p class="news-tabs__title h2">灾害天气预警</p>
+                            <div id="demo6" style="overflow:hidden;height:360px;width:300px;">
+                                <ul id="demo8" class="news-tabs__nav nav nav-tabs shadow_text" role="tablist">
+
+                                    <?php if(is_array($yujing)): foreach($yujing as $key=>$v): ?><li role="presentation" class="active">
+                                            <a href="<?php echo U('disaster/detail', ['id' => $v['id']]);?>">
+                                                <span class="time"><?php echo ($v['addtime']); ?></span>
+                                                <?php echo ($v['title']); ?>
+                                            </a>
+                                        </li><?php endforeach; endif; ?>
+                                </ul>
+                                <div id="demo5"></div>
                             </div>
                         </div>
                         <!-- END Nav tabs -->
@@ -486,7 +501,7 @@
         }
         function toPage(now){
             $("#main").animate({top:(now+'px')},1000);     //jquery实现动画效果
-            //setTimeout("main.style.top = now + 'px'",1000);     javascript 实现动画效果
+//            setTimeout("main.style.top = now + 'px'",1000);     javascript 实现动画效果
         }
     </script>
     <script>
