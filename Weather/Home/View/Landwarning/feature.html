@@ -35,7 +35,7 @@
                                     <div class="form-group slwidth">
                                         <select class="form-control" name="station">
                                             <?php foreach ($stlist as $key => $v) { ?>
-                                            <option value="{$v['id']}">{$v['location']}--{$v['zdmc']}</option>
+                                            <option value="{$v['id']}">{$v['location']}</option>
                                             <?php } ?>
                                         </select>
                                     </div>
@@ -44,7 +44,7 @@
                                     </button>
                                 </form>
                             </div>
-                            <p class="news__category">{$now} {$station[0]}--{$station[1]} 地区作物冷害报警信息</p>
+                            <p class="news__category">{$now}时 {$station} 地区作物冷害报警信息</p>
 
                             <table class="table table-striped table-hover table-bordered">
                                 <thead>
@@ -73,7 +73,7 @@
                                 </tbody>
                             </table>
 
-                            <p class="news__category">{$now} {$station[0]}--{$station[1]} 地区作物霜冻报警信息</p>
+                            <p class="news__category">{$now}时 {$station} 地区作物霜冻报警信息</p>
 
                             <table class="table table-striped table-hover table-bordered">
                                 <thead>
@@ -101,7 +101,7 @@
                                 <?php } ?>
                                 </tbody>
                             </table>
-                            <p class="news__category">{$now} {$station[0]}--{$station[1]} 地区作物热害报警信息</p>
+                            <p class="news__category">{$now}时 {$station} 地区作物热害报警信息</p>
 
                             <!--<h4 class="margin-bottom-15 st">{$now} {$station[0]}--{$station[1]} 结构温室作物热害报警信息</h4>-->
                             <!--<h4 class="station-head">{$station}</h4>-->

@@ -56,14 +56,14 @@ class FruitwarningController extends CommonController
             $hot = DataService::Treewarning_hot($now, $st);
             //***********************************************************************
             //*******************************上线该成国家站点的 字典
-            $station = DataService::GetStationDt()[$st];
+            $station = DataService::GetLandStationDt()[$st];
         } else {
-            $cold = DataService::Treewarning_cold($now, '57');
-            $ice = DataService::Treewarning_ice($now, '57');
-            $hot = DataService::Treewarning_hot($now, '57');
+            $cold = DataService::Treewarning_cold($now, '53446');
+            $ice = DataService::Treewarning_ice($now, '53446');
+            $hot = DataService::Treewarning_hot($now, '53446');
             //***********************************************************************
             //*******************************上线该成国家站点的 字典
-            $station = DataService::GetStationDt()['H0002'];
+            $station = DataService::GetLandStationDt()['53446'];
         }
         $this->stlist = $stlist;
         $this->cold = $cold;

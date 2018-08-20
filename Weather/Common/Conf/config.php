@@ -13,7 +13,8 @@ $arr = array(
 //    'SHOW_PAGE_TRACE' => APP_DEBUG,//显示调试信息
     'TMPL_PARSE_STRING'  =>array(
         '__ASSETS__' => '/Public/assets',
-        '__DOWN__' => '/Public/upload/'
+        '__DOWN__' => '/Public/upload/',
+        '__ICON__' => '/Public/assets/images/ICON/'
     ),
     'DOC' => array(
         'mimes' => array('image/jpeg', 'image/png', 'image/jpg'),

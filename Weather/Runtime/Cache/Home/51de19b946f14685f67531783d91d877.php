@@ -104,9 +104,9 @@
                                             <li>
                                                 <a href="/livedata">室内实况数据</a>
                                             </li>
-                                            <li>
-                                                <a href="category.html">室外实况数据</a>
-                                            </li>
+                                            <!--<li>-->
+                                                <!--<a href="category.html">室外实况数据</a>-->
+                                            <!--</li>-->
                                         </ul>
                                     </li>
                                     <li>
@@ -214,7 +214,7 @@
                                     <div class="form-group slwidth">
                                         <select class="form-control" name="station">
                                             <?php foreach ($stlist as $key => $v) { ?>
-                                            <option value="<?php echo ($v['id']); ?>"><?php echo ($v['location']); ?>--<?php echo ($v['zdmc']); ?></option>
+                                            <option value="<?php echo ($v['id']); ?>"><?php echo ($v['location']); ?></option>
                                             <?php } ?>
                                         </select>
                                     </div>

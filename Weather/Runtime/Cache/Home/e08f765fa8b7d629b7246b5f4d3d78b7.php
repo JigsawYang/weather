@@ -32,6 +32,12 @@
             <header id="header" class="header">
                 <div class="header__top">
                     <div class="container">
+                        <?php  if (session('download') == 1) { ?>
+                        <div class="alert alert-warning alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <strong>提示: </strong> 只有登陆后, 相关单位授权的用户才能下载.
+                        </div>
+                        <?php } ?>
                         <div class="row">
                             <div class="col-sm-7">
                                 <div class="wrap-logo">
@@ -83,6 +89,7 @@
                 </div>
                 <div class="header_down">
                     <div class="container">
+
                         <div class="wrapper clearfix bigmegamenu">
                             <!--Main Menu HTML Code-->
                             <nav class="wsmenu slideLeft clearfix">
@@ -97,9 +104,9 @@
                                             <li>
                                                 <a href="/livedata">室内实况数据</a>
                                             </li>
-                                            <li>
-                                                <a href="category.html">室外实况数据</a>
-                                            </li>
+                                            <!--<li>-->
+                                                <!--<a href="category.html">室外实况数据</a>-->
+                                            <!--</li>-->
                                         </ul>
                                     </li>
                                     <li>
@@ -207,7 +214,7 @@
                                     <div class="form-group slwidth">
                                         <select class="form-control" name="station">
                                             <?php foreach ($stlist as $key => $v) { ?>
-                                            <option value="<?php echo ($v['id']); ?>"><?php echo ($v['location']); ?>--<?php echo ($v['zdmc']); ?></option>
+                                            <option value="<?php echo ($v['id']); ?>"><?php echo ($v['location']); ?></option>
                                             <?php } ?>
                                         </select>
                                     </div>
@@ -216,7 +223,7 @@
                                     </button>
                                 </form>
                             </div>
-                            <p class="news__category"><?php echo ($now); ?> <?php echo ($station[0]); ?>--<?php echo ($station[1]); ?> 地区作物冷害报警信息</p>
+                            <p class="news__category"><?php echo ($now); ?>时 <?php echo ($station); ?> 地区作物冷害报警信息</p>
 
                             <table class="table table-striped table-hover table-bordered">
                                 <thead>
@@ -243,7 +250,7 @@
                                 </tbody>
                             </table>
 
-                            <p class="news__category"><?php echo ($now); ?> <?php echo ($station[0]); ?>--<?php echo ($station[1]); ?> 地区作物霜冻报警信息</p>
+                            <p class="news__category"><?php echo ($now); ?>时 <?php echo ($station); ?> 地区作物霜冻报警信息</p>
 
                             <table class="table table-striped table-hover table-bordered">
                                 <thead>
@@ -269,7 +276,7 @@
                                 <?php } ?>
                                 </tbody>
                             </table>
-                            <p class="news__category"><?php echo ($now); ?> <?php echo ($station[0]); ?>--<?php echo ($station[1]); ?> 地区作物热害报警信息</p>
+                            <p class="news__category"><?php echo ($now); ?>时 <?php echo ($station); ?> 地区作物热害报警信息</p>
 
                             <!--<h4 class="margin-bottom-15 st"><?php echo ($now); ?> <?php echo ($station[0]); ?>--<?php echo ($station[1]); ?> 结构温室作物热害报警信息</h4>-->
                             <!--<h4 class="station-head"><?php echo ($station); ?></h4>-->

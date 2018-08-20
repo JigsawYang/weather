@@ -39,7 +39,7 @@ class LandWarningController extends CommonController
             $now = I("post.sdate1");
             $day = $now;
             $st = I("post.station");
-//            var_dump($st);
+//            var_dump($st);die;
             $now = $now . ' 06';
 //            print_r($now);die;
 //            $yesterday1 = date("Y-m-d", (strtotime($now) - 3600 * 24));
@@ -56,14 +56,15 @@ class LandWarningController extends CommonController
             $hot = DataService::Landwarning_hot($now, $st);
             //***********************************************************************
             //*******************************上线该成国家站点的 字典
-            $station = DataService::GetStationDt()[$st];
+            $station = DataService::GetLandStationDt()[$st];
         } else {
-            $cold = DataService::Landwarning_cold($now, '57');
-            $ice = DataService::Landwarning_ice($now, '57');
-            $hot = DataService::Landwarning_hot($now, '57');
+            $cold = DataService::Landwarning_cold($now, '53446');
+            $ice = DataService::Landwarning_ice($now, '53446');
+            $hot = DataService::Landwarning_hot($now, '53446');
             //***********************************************************************
             //*******************************上线该成国家站点的 字典
-            $station = DataService::GetStationDt()['H0002'];
+            $station = DataService::GetLandStationDt()['53446'];
+//            print_r($station);die;
         }
         $this->stlist = $stlist;
         $this->cold = $cold;
@@ -84,23 +85,23 @@ class LandWarningController extends CommonController
 //        $m = '11';
 //        $d = '18';
 //        $st = I('get.station');
-        $stlist = DataService::GetStation();
+        $stlist = DataService::GetLandStation();
         if (IS_POST) {
             $nows = I("post.sdate1");
             $st = I("post.station");
             $now = $nows." "."00:00:00.000";
 
 //            print_r($now);print_r($st);die;
-            $station = DataService::GetStationDt()[$st];
+            $station = DataService::GetLandStationDt()[$st];
             $cold = DataService::Flandwarning_cold($now, $st);
             $ice = DataService::Flandwarning_ice($now, $st);
             $hot = DataService::Flandwarning_hot($now, $st);
         } else {
-            $cold = DataService::Flandwarning_cold($now, "N0001");
-            $ice = DataService::Flandwarning_ice($now, "N0001");
-            $hot = DataService::Flandwarning_hot($now, 'N0001');
-            $station = ['包头', '厚墙体Ⅱ'];
-            $st = 'N0001';
+            $cold = DataService::Flandwarning_cold($now, "53446");
+            $ice = DataService::Flandwarning_ice($now, "53446");
+            $hot = DataService::Flandwarning_hot($now, '53446');
+            $station = DataService::GetLandStationDt()['53446'];
+//            $st = 'N0001';
         }
 
 

@@ -832,6 +832,17 @@ class DataService {
         return $st;
     }
 
+    public static function GetLandStationDt() {
+        $model = M("landstation");
+        $res = $model->field('id, location')->select();
+        $st = [];
+        foreach ($res as $key => $v) {
+            $st[$v['id']] = $v['location'];
+        }
+//        print_r($st);die;
+        return $st;
+    }
+
     public static function findstation($location, $st) {
         $model = D("Ghstation");
         $res = $model->where("location='%s' and zdmc='%s'", $location, $st)->field('id,zdmc,location')->select();
@@ -1111,7 +1122,7 @@ class DataService {
 
     public static function Landwarning_cold($date, $station)
     {
-        $sql = sprintf("SELECT [BC] FROM [nqdb-new].[dbo].[HC4048] where [ID] = '%s' and [TT] = '%s:00:00.000'", $station, $date);
+        $sql = sprintf("SELECT [BC] FROM [nqdb-new].[dbo].[H".$station."] where [TT] = '%s:00:00.000'", $date);
         $Model = new \Think\Model(); // 实例化一个model对象 没有对应任何数据表
         $res = $Model->query($sql);
         $airnum = $res[0]['BC'] / 10;
@@ -1133,7 +1144,7 @@ class DataService {
 
     public static function Landwarning_ice($date, $station)
     {
-        $sql = sprintf("SELECT [BC] FROM [nqdb-new].[dbo].[HC4048] where [ID] = '%s' and [TT] = '%s:00:00.000'", $station, $date);
+        $sql = sprintf("SELECT [BC] FROM [nqdb-new].[dbo].[H".$station."] where [TT] = '%s:00:00.000'", $date);
         $Model = new \Think\Model(); // 实例化一个model对象 没有对应任何数据表
         $res = $Model->query($sql);
         $airnum = $res[0]['BC'] / 10;
@@ -1155,7 +1166,7 @@ class DataService {
 
     public static function Landwarning_hot($date, $station)
     {
-        $sql = sprintf("SELECT [BC] FROM [nqdb-new].[dbo].[HC4048] where [ID] = '%s' and [TT] = '%s:00:00.000'", $station, $date);
+        $sql = sprintf("SELECT [BC] FROM [nqdb-new].[dbo].[H".$station."] where [TT] = '%s:00:00.000'", $date);
         $Model = new \Think\Model(); // 实例化一个model对象 没有对应任何数据表
         $res = $Model->query($sql);
         $airnum = $res[0]['BC'] / 10;
@@ -1238,7 +1249,7 @@ class DataService {
 
     public static function Treewarning_cold($date, $station)
     {
-        $sql = sprintf("SELECT [BC] FROM [nqdb-new].[dbo].[HC4048] where [ID] = '%s' and [TT] = '%s:00:00.000'", $station, $date);
+        $sql = sprintf("SELECT [BC] FROM [nqdb-new].[dbo].[H".$station."] where [TT] = '%s:00:00.000'", $date);
         $Model = new \Think\Model(); // 实例化一个model对象 没有对应任何数据表
         $res = $Model->query($sql);
         $airnum = $res[0]['BC'] / 10;
@@ -1260,7 +1271,7 @@ class DataService {
 
     public static function Treewarning_ice($date, $station)
     {
-        $sql = sprintf("SELECT [BC] FROM [nqdb-new].[dbo].[HC4048] where [ID] = '%s' and [TT] = '%s:00:00.000'", $station, $date);
+        $sql = sprintf("SELECT [BC] FROM [nqdb-new].[dbo].[H".$station."] where [TT] = '%s:00:00.000'", $date);
         $Model = new \Think\Model(); // 实例化一个model对象 没有对应任何数据表
         $res = $Model->query($sql);
         $airnum = $res[0]['BC'] / 10;
@@ -1282,7 +1293,7 @@ class DataService {
 
     public static function Treewarning_hot($date, $station)
     {
-        $sql = sprintf("SELECT [BC] FROM [nqdb-new].[dbo].[HC4048] where [ID] = '%s' and [TT] = '%s:00:00.000'", $station, $date);
+        $sql = sprintf("SELECT [BC] FROM [nqdb-new].[dbo].[H".$station."] where [TT] = '%s:00:00.000'", $date);
         $Model = new \Think\Model(); // 实例化一个model对象 没有对应任何数据表
         $res = $Model->query($sql);
         $airnum = $res[0]['BC'] / 10;
