@@ -18,7 +18,29 @@ class IndexController extends CommonController {
         $livewarn = DisasterService::baojing($now);
         $yujing = DisasterService::yujing($day);
 
+
+
+
+        $now = '2015-05-28';
+        $now2 = '2015-05-28 10:00:00';
+        $y = "2015-05-27 10:00:00";
+//        空气温度
+        $tmp = DataService::tmp_search($y, $now2, 'N0001');
+        if ($tmp === false) {
+            $this->error('查询错误或者无数据');
+            $this->redirect('/');
+        } else {
+            $tmp = ArrayHelper::tmpreture($tmp);
+
+        }
+
+
+        $tmp = json_encode($tmp);
+
+
+
 //        print_r($yujing);die;
+        $this->tmp = $tmp;
         $this->livewarn = $livewarn;
         $this->yujing = $yujing;
         $this->warn = $warn;

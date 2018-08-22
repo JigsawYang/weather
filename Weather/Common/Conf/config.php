@@ -10,7 +10,7 @@ $arr = array(
     'URL_MODEL'                    => '2',
     'URL_CASE_INSENSITIVE' => false,
 
-//    'SHOW_PAGE_TRACE' => APP_DEBUG,//显示调试信息
+    'SHOW_PAGE_TRACE' => APP_DEBUG,//显示调试信息
     'TMPL_PARSE_STRING'  =>array(
         '__ASSETS__' => '/Public/assets',
         '__DOWN__' => '/Public/upload/',

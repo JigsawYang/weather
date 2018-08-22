@@ -29,7 +29,7 @@ class DisasterService {
         $tmodel = D('Baojingtype');
         $info = array();
         $baojing = $model->field('yj_tt, yj_tq_type, yj_xzqh_name, yj_zd_name, yj_tq_grade, yj_tq_name, yj_content')->where(['yj_tt'=>$time])->select();
-//        print_r($baojing);die;
+//        print_r($model->getLastSql());die;
         $info = array();
         foreach($baojing as $key => $val) {
             $tp = $tmodel->field('tq_note, icon')->where(['tq_type_parent_id' => $val['yj_tq_type'], 'tq_grade' => $val['yj_tq_grade']])->select();

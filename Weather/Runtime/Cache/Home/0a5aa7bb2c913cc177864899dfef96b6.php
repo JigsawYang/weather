@@ -104,9 +104,9 @@
                                             <li>
                                                 <a href="/livedata">室内实况数据</a>
                                             </li>
-                                            <li>
-                                                <a href="category.html">室外实况数据</a>
-                                            </li>
+                                            <!--<li>-->
+                                                <!--<a href="category.html">室外实况数据</a>-->
+                                            <!--</li>-->
                                         </ul>
                                     </li>
                                     <li>

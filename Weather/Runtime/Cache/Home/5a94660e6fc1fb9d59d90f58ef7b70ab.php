@@ -185,7 +185,7 @@
     <!-- title -->
     <div class="wrap wrap_white">
         <div class="container title">
-            <h1 class="title__h1">大田农业灾害性天气实况报警</h1>
+            <h1 class="title__h1">农业灾害性天气实况报警</h1>
         </div>
     </div>
     <!-- END title -->
@@ -208,7 +208,7 @@
                                                         <span class="glyphicon glyphicon-calendar"></span>
                                                     </span>
                                         </div>
-                                        <input type="hidden" id="dtp_input2" value="<?php echo ($now); ?>" name="sdate1"/>
+                                        <input type="hidden" id="dtp_input2" value="<?php echo ($day); ?>" name="sdate1"/>
                                         <br/>
                                     </div>
                                     <div class="form-group slwidth">
