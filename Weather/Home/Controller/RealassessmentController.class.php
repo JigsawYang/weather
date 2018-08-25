@@ -24,19 +24,19 @@ class RealassessmentController extends CommonController {
         $hour = date('H');
         $now = $day.' '.$hour;
         $now = '2015-06-01 09';
-//        $st = I('get.station');
-//        if (!$st) {
+        $st = I('get.station');
+        if (!$st) {
             $res = DataService::TmpReport($now, 'N0001');
             $resnum = DataService::TopNUM($now, 'N0001');
 
 //            $station = DataService::$station_dict['N0001'];
             $station = DataService::GetStationDt()['N0001'];
 
-//        } else {
-//            $res = DataService::TmpReport($now, $st);
-//            $resnum = DataService::TopNUM($now, $st);
-//            $station = DataService::GetStationDt()[$st];
-//        }
+        } else {
+            $res = DataService::TmpReport($now, $st);
+            $resnum = DataService::TopNUM($now, $st);
+            $station = DataService::GetStationDt()[$st];
+        }
 //        print_r($resnum);die;
         $this->station = $station;
         $this->stlist = $stlist;

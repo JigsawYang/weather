@@ -89,7 +89,7 @@ class LivedataController extends CommonController {
         $ldwt = json_encode($ldwt);
         $sun = json_encode($sun);
         $co2 = json_encode($co2);
-
+//print_r($tmp);die;
 
         $this->stlist = $stlist;
         $this->sdate = $now2;

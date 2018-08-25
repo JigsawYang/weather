@@ -14,7 +14,9 @@ $arr = array(
     'TMPL_PARSE_STRING'  =>array(
         '__ASSETS__' => '/Public/assets',
         '__DOWN__' => '/Public/upload/',
-        '__ICON__' => '/Public/assets/images/ICON/'
+        '__ICON__' => '/Public/assets/images/ICON/',
+        '__W__' => '/Public/assets/images/picweather/'
+
     ),
     'DOC' => array(
         'mimes' => array('image/jpeg', 'image/png', 'image/jpg'),

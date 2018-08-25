@@ -14,7 +14,6 @@
     <!-- custom CSS -->
     <link href="__ASSETS__/css/main.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="__ASSETS__/css/jquery.fullPage.css">
-    <script src="__ASSETS__/js/validata.js"></script>
     <link href="__ASSETS__/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
 
     <!-- END custom CSS -->
@@ -345,51 +344,69 @@
                         <h1 class="title__h1 underscore">最新天气实况</h1>
                     </div>
                 </div>
+
                 <!-- END title -->
                 <div class="wrap wrap_gray pt20">
                     <div class="container">
                         <div class="row">
+                            <div>
+                                <form action="/index/getdata" class="form-inline" id="wtform" method="post">
+                                    <div class="form-group pick">
+                                        <label for="dtp_input2" class="col-md-1 control-label">日期</label>
+
+                                        <div class="input-group date form_date col-md-8" data-date="" data-date-format="yyyy-mm-dd"
+                                             data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                                            <input class="form-control" size="16" type="text" value="{$day}" readonly>
+                                                    <span class="input-group-addon">
+                                                        <span class="glyphicon glyphicon-calendar"></span>
+                                                    </span>
+                                        </div>
+                                        <input type="hidden" id="dtp_input2" value="{$day}" name="sdate"/>
+                                        <br/>
+                                    </div>
+                                    <div class="form-group slwidth">
+                                        <select class="form-control" name="station">
+                                            <option value=""></option>
+                                            <?php foreach ($stlist as $key => $v) { ?>
+                                            <option value="{$v['id']}">{$v['location']}</option>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+                                    <!--<a href="/index/show_table" class="btn btn-primary pull-right" id="tb-btn">表格</a>-->
+                                    <button id="btnsub" type="submit" class="btn btn-primary btn-orange pull-right">刷新</button>
+                                </form>
+                            </div>
+
                             <div class="col-sm-12">
                                     <div class="col-md-12 col-sm-12" id="out" style="height:500px">
 
                             </div>
                             <div>
+                                <div class="col-md-8"></div>
+                                <div class="col-md-4">
                                 <table class="table table-striped table-hover table-bordered">
                                     <thead>
                                     <tr>
-                                        <th colspan="7">过去7天天气实况</th>
-                                        <th colspan="3">未来3天天气实况</th>
+                                        <th colspan="3">未来3天天气预报</th>
                                     </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody id="skyt">
                                         <tr>
-                                           <td>1日</td>
-                                            <td>1日</td>
-                                            <td>1日</td>
-                                            <td>1日</td>
-                                            <td>1日</td>
-                                            <td>1日</td>
-                                            <td>1日</td>
-                                            <td>1日</td>
-                                            <td>1日</td>
-                                            <td>1日</td>
+                                            <foreach name="sky" item="v">
+                                               <td>{$v['time']}</td>
+                                            </foreach>
+
                                         </tr>
                                         <tr>
-                                            <td><img src="__ICON__feng1.png" alt=""/></td>
-                                            <td><img src="__ICON__feng1.png" alt=""/></td>
-                                            <td><img src="__ICON__feng1.png" alt=""/></td>
-                                            <td><img src="__ICON__feng1.png" alt=""/></td>
-                                            <td><img src="__ICON__feng1.png" alt=""/></td>
-                                            <td><img src="__ICON__feng1.png" alt=""/></td>
-                                            <td><img src="__ICON__feng1.png" alt=""/></td>
-                                            <td><img src="__ICON__feng1.png" alt=""/></td>
-                                            <td><img src="__ICON__feng1.png" alt=""/></td>
-                                            <td><img src="__ICON__feng1.png" alt=""/></td>
+                                            <foreach name="sky" item="v">
+                                                <td align="center" style="width: 60px; height: 60px;"><img height="50" width="50" src="__W__{$v['icon']}" alt="" /></td>
+                                            </foreach>
+
 
                                         </tr>
                                     </tbody>
                                 </table>
-
+                                </div>
                             </div>
                         </div>
 
@@ -510,8 +527,23 @@
 <script src="__ASSETS__/js/bootstrap.min.js"></script>
 <script src="__ASSETS__/js/echarts.js"></script>
 <script src="__ASSETS__/js/main.js"></script>
+<script src="__ASSETS__/js/validata.js"></script>
 <script type="text/javascript" src="__ASSETS__/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
 <script type="text/javascript" src="__ASSETS__/js/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
+<script type="text/javascript">
+
+    $('.form_date').datetimepicker({
+        language:  'zh-CN',
+        weekStart: 1,
+        todayBtn:  1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 2,
+        minView: 2,
+        forceParse: 0
+    });
+
+</script>
 <script type="text/javascript">
     require.config({
         paths: {
@@ -529,21 +561,31 @@
 //                    'echarts/chart/polar'
             ],
             function (ec) {
-                var tmp = {$tmp};
+
+                var tmp = {$wrp};
 //                    console.log(linenumw);
                 if (tmp.length != 0) {
                     var dom_tmp = ec.init(document.getElementById('out'));
                     var tmptime = [];
                     var linenum1 = [];
                     var linenum2 = [];
+                    var bar1 = [];
 //                        var lineout = linenumw;
 
                     for (var val in tmp) {
+
                         tmptime.push(tmp[val]['time']);
-                        linenum1.push(parseInt(tmp[val]['ta_cu']) / 10);
-                        linenum2.push(parseInt(tmp[val]['ta_cd']) / 10);
+                        linenum1.push(tmp[val]['max']);
+                        linenum2.push(tmp[val]['min']);
+                        if (tmp[val]['water']) {
+                            bar1.push(tmp[val]['water']);
+                        }
                     }
 //                        console.log(linenum1);
+//                    console.log(linenum2);
+//                    console.log(bar1);
+//                    var maxactive = calMax(bar1);//活跃Y轴值
+
                     tmp_op = {
                         title: {
                             textStyle: {
@@ -552,8 +594,8 @@
                                 color: '#333'          // 主标题文字颜色
                             },
                             x: 'left',
-                            text: '{$sdate}温度',
-                            subtext: '实时数据'
+                            text: '{$sdate}',
+                            subtext: '实况数据'
                         },
                         tooltip: {
                             trigger: 'axis'
@@ -561,7 +603,7 @@
                         legend: {
                             orient: 'vertical',
                             x: 'right',
-                            data: ['150cm气温', '100cm气温']
+                            data: ['最高温度', '最低温度', '降水']
                         },
 
                         toolbox: {
@@ -585,23 +627,37 @@
                         yAxis: [
                             {
                                 type: 'value',
+
                                 axisLabel: {
-                                    formatter: '{value} °C'
+                                    formatter: '{value}'
                                 }
                             },
                             {
                                 type: 'value',
                                 axisLabel: {
-                                    formatter: '{value} °CCCCC'
+                                    formatter: '{value}毫米cccccccccccc'
                                 }
                             }
 
                         ],
                         series: [
                             {
-                                name: '150cm气温',
+                                name: '降水',
+                                type: 'bar',
+                                yAxisIndex: 0,
+                                data: bar1,
+                                markPoint: {
+                                    data: [
+                                        {type: 'max', name: '最大值'},
+                                        {type: 'min', name: '最小值'}
+                                    ]
+                                }
+
+                            },
+                            {
+                                name: '最高温度',
                                 type: 'line',
-                                yAxisIndex: 1,
+                                yAxisIndex: 0,
                                 data: linenum1,
                                 markPoint: {
                                     data: [
@@ -616,8 +672,9 @@
                                 }
                             },
                             {
-                                name: '100cm气温',
-                                type: 'bar',
+                                name: '最低温度',
+                                type: 'line',
+                                yAxisIndex: 0,
                                 data: linenum2,
                                 markPoint: {
                                     data: [
@@ -633,14 +690,194 @@
                                 }
                             }
 
+
                         ]
                     };
                     dom_tmp.setOption(tmp_op);
                 } else {
-                    $('#tempreture').html('<div class="alert alert-info" role="alert">没有此站点数据</div>');
+                    $('#out').html('<div class="alert alert-info" role="alert">没有此站点数据</div>');
                 }
             }
     )
+</script>
+<script type="text/javascript">
+    var form = $('#wtform');
+    form.Validform({
+        btnSubmit: "#btnsub",
+        ajaxPost: true,
+        callback: function (data) {
+            if (data.status) {
+                console.log(data.sky);
+                if (data.res) {
+                    require(
+                            [
+                                'echarts',
+                                'echarts/chart/line',// 使用柱状图就加载bar模块，按需加载
+                                'echarts/chart/bar'
+                            ],
+                            function (ec) {
+                                // 基于准备好的dom，初始化echarts图表
+                                var dom_tmp1 = ec.init(document.getElementById('out'));
+
+//                                    var outtmp = data.outtmp;
+                                var tmp1 = data.res;
+//                                console.log(tmp1);
+                                var tmptime1 = [];
+                                var linenum11 = [];
+                                var linenum22 = [];
+                                var bar11 = [];
+//                        var lineout = linenumw;
+
+                                for (var val in tmp1) {
+                                    tmptime1.push(tmp1[val]['time']);
+                                    linenum11.push(tmp1[val]['max']);
+                                    linenum22.push(tmp1[val]['min']);
+                                    if (tmp1[val]['water']) {
+                                        bar11.push(tmp1[val]['water']);
+                                    }
+                                }
+//                                console.log(linenum11);
+//                                console.log(linenum22);
+//                                console.log(bar11);
+//                    var maxactive = calMax(bar1);//活跃Y轴值
+
+                                tmp_op1 = {
+                                    title: {
+                                        textStyle: {
+                                            fontSize: 14,
+                                            fontWeight: 'bolder',
+                                            color: '#333'          // 主标题文字颜色
+                                        },
+                                        x: 'left',
+                                        text: '{$sdate}',
+                                        subtext: '实况数据'
+                                    },
+                                    tooltip: {
+                                        trigger: 'axis'
+                                    },
+                                    legend: {
+                                        orient: 'vertical',
+                                        x: 'right',
+                                        data: ['最高温度', '最低温度', '降水']
+                                    },
+
+                                    toolbox: {
+                                        show: true,
+                                        feature: {
+//                                    mark: {show: true}
+//                                    dataView: {show: true, readOnly: false},
+//                                    magicType: {show: true, type: ['line', 'bar']},
+//                                    restore: {show: true},
+//                                    saveAsImage: {show: true}
+                                        }
+                                    },
+                                    calculable: true,
+                                    xAxis: [
+                                        {
+                                            type: 'category',
+//                                boundaryGap: false,
+                                            data: tmptime1
+                                        }
+                                    ],
+                                    yAxis: [
+                                        {
+                                            type: 'value',
+
+                                            axisLabel: {
+                                                formatter: '{value}'
+                                            }
+                                        },
+                                        {
+                                            type: 'value',
+                                            axisLabel: {
+                                                formatter: '{value}毫米cccccccccccc'
+                                            }
+                                        }
+
+                                    ],
+                                    series: [
+                                        {
+                                            name: '降水',
+                                            type: 'bar',
+                                            yAxisIndex: 0,
+                                            data: bar11,
+                                            markPoint: {
+                                                data: [
+                                                    {type: 'max', name: '最大值'},
+                                                    {type: 'min', name: '最小值'}
+                                                ]
+                                            }
+
+                                        },
+                                        {
+                                            name: '最高温度',
+                                            type: 'line',
+                                            yAxisIndex: 0,
+                                            data: linenum11,
+                                            markPoint: {
+                                                data: [
+                                                    {type: 'max', name: '最大值'},
+                                                    {type: 'min', name: '最小值'}
+                                                ]
+                                            },
+                                            markLine: {
+                                                data: [
+                                                    {type: 'average', name: '平均值'}
+                                                ]
+                                            }
+                                        },
+                                        {
+                                            name: '最低温度',
+                                            type: 'line',
+                                            yAxisIndex: 0,
+                                            data: linenum22,
+                                            markPoint: {
+                                                data: [
+                                                    {type: 'max', name: '最大值',symbolSize:18},
+                                                    {type: 'min', name: '最小值'}
+                                                ]
+                                            },
+                                            markLine: {
+                                                data: [
+                                                    {type: 'average', name: '平均值'}
+
+                                                ]
+                                            }
+                                        }
+
+
+                                    ]
+                                };
+                                dom_tmp1.setOption(tmp_op1);
+                            }
+                    );
+                } else {
+                    $('#out').html('<div class="alert alert-info" role="alert">没有此站点数据</div>');
+
+                }
+                if (data.sky) {
+                    var str = '';
+                    str += "<tr><td>" + data.sky[0]['time'] + "</td>";
+                    str += "<td>" + data.sky[1]['time'] + "</td>";
+                    str += "<td>" + data.sky[2]['time'] + "</td></tr>";
+
+                    str += '<tr><td align="center" style="width: 60px; height: 60px;"><img height="50" width="50" src="__W__' + data.sky[0]['icon'] + '" alt="" /></td>';
+                    str += '<td align="center" style="width: 60px; height: 60px;"><img height="50" width="50" src="__W__' + data.sky[1]['icon'] + '" alt="" /></td>';
+                    str += '<td align="center" style="width: 60px; height: 60px;"><img height="50" width="50" src="__W__' + data.sky[2]['icon'] + '" alt="" /></td></tr>';
+
+                    console.log(str);
+                    $('#skyt').html(str);
+                }else {
+                    $('#skyt').html('<div class="alert alert-info" role="alert">没有此站点数据</div>');
+                }
+            } else {
+                $('#out').html('<div class="alert alert-info" role="alert">没有此站点数据</div>');
+            }
+        }
+    });
+</script>
+<script>
+    $("#Validform_msg").remove();
 </script>
 </body>
 </html>

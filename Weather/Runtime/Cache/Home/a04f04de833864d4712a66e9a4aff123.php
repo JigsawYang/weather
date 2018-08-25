@@ -198,28 +198,21 @@
                                 <p class="news__category" id="realinfo"><?php echo ($now); ?> <?php echo ($station[0]); ?>--<?php echo ($station[1]); ?></p>
                                 <div class="table-responsive">
                                     <div>
-                                        <form action="/realassessment/getdata" class="form-inline" id="realform" method="post">
-                                            <div class="form-group slwidth1">
-                                                <select class="form-control" name="location">
-                                                    <option value=""></option>
-                                                    <?php foreach ($location as $key => $v) { ?>
-                                                    <option value="<?php echo ($v['location']); ?>"><?php echo ($v['location']); ?></option>
-                                                    <?php } ?>
-                                                </select>
-                                            </div>
+                                        <div class="btn-group pull-right" id="templatemo_sort_btn">
+                                            <button type="button" class="btn btn-default">设施农业站点</button>
+                                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                                <span class="caret"></span>
+                                                <span class="sr-only">Toggle Dropdown</span>
+                                            </button>
+                                            <ul class="dropdown-menu" role="menu">
+                                                <?php foreach ($stlist as $key => $v) { ?>
+                                                <li>
+                                                    <a href="/realassessment/index/station/<?php echo ($v['id']); ?>.html"><?php echo ($v['location']); ?>--<?php echo ($v['zdmc']); ?></a>
+                                                </li>
+                                                <?php } ?>
 
-                                            <div class="form-group slwidth2">
-                                                <select class="form-control" name="station">
-                                                    <option value=""></option>
-
-                                                    <?php foreach ($stlist as $key => $v) { ?>
-                                                    <option value="<?php echo ($v['zdmc']); ?>"><?php echo ($v['zdmc']); ?></option>
-                                                    <?php } ?>
-                                                </select>
-                                            </div>
-                                            <!--<a href="/index/show_table" class="btn btn-primary pull-right" id="tb-btn">表格</a>-->
-                                            <button id="realsub" type="submit" class="btn btn-primary btn-orange pull-right">刷新</button>
-                                        </form>
+                                            </ul>
+                                        </div>
                                     </div>
                                     <table class="table table-striped table-hover table-bordered" id="removetb">
                                         <thead id="realtable">

@@ -960,7 +960,7 @@
                                     var linenum1 = [];
                                     var linenum2 = [];
 //                                    var lineout = [];
-
+                                    console.log(tmp);
                                     for (var val in tmp) {
                                         dtime.push(tmp[val]['time']);
                                         linenum1.push(parseInt(tmp[val]['ta_cu']) / 10);

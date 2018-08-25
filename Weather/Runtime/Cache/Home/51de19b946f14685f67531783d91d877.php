@@ -223,7 +223,7 @@
                                     </button>
                                 </form>
                             </div>
-                            <p class="news__category"><?php echo ($now); ?> <?php echo ($station[0]); ?>--<?php echo ($station[1]); ?> 地区果树冷害报警信息</p>
+                            <p class="news__category"><?php echo ($now); ?>时 <?php echo ($station); ?> 地区果树冷害报警信息</p>
 
                             <table class="table table-striped table-hover table-bordered">
                                 <thead>
@@ -250,7 +250,7 @@
                                 </tbody>
                             </table>
 
-                            <p class="news__category"><?php echo ($now); ?> <?php echo ($station[0]); ?>--<?php echo ($station[1]); ?> 地区果树霜冻报警信息</p>
+                            <p class="news__category"><?php echo ($now); ?>时 <?php echo ($station); ?> 地区果树霜冻报警信息</p>
 
                             <table class="table table-striped table-hover table-bordered">
                                 <thead>
@@ -276,7 +276,7 @@
                                 <?php } ?>
                                 </tbody>
                             </table>
-                            <p class="news__category"><?php echo ($now); ?> <?php echo ($station[0]); ?>--<?php echo ($station[1]); ?> 地区果树热害报警信息</p>
+                            <p class="news__category"><?php echo ($now); ?>时 <?php echo ($station); ?> 地区果树热害报警信息</p>
 
                             <!--<h4 class="margin-bottom-15 st"><?php echo ($now); ?> <?php echo ($station[0]); ?>--<?php echo ($station[1]); ?> 结构温室果树热害报警信息</h4>-->
                             <!--<h4 class="station-head"><?php echo ($station); ?></h4>-->

@@ -32,6 +32,12 @@
             <header id="header" class="header">
                 <div class="header__top">
                     <div class="container">
+                        <?php  if (session('download') == 1) { ?>
+                        <div class="alert alert-warning alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <strong>提示: </strong> 只有登陆后, 相关单位授权的用户才能下载.
+                        </div>
+                        <?php } ?>
                         <div class="row">
                             <div class="col-sm-7">
                                 <div class="wrap-logo">
@@ -83,6 +89,7 @@
                 </div>
                 <div class="header_down">
                     <div class="container">
+
                         <div class="wrapper clearfix bigmegamenu">
                             <!--Main Menu HTML Code-->
                             <nav class="wsmenu slideLeft clearfix">
@@ -95,11 +102,11 @@
                                         </a>
                                         <ul class="wsmenu-submenu">
                                             <li>
-                                                <a href="/livedata">室外实况数据</a>
+                                                <a href="/livedata">室内实况数据</a>
                                             </li>
-                                            <li>
-                                                <a href="category.html">室内实况数据</a>
-                                            </li>
+                                            <!--<li>-->
+                                                <!--<a href="category.html">室外实况数据</a>-->
+                                            <!--</li>-->
                                         </ul>
                                     </li>
                                     <li>
