@@ -25,7 +25,7 @@
     <script src="/Public/assets/js/html5shiv.min.js"></script>
     <script src="/Public/assets/js/respond.min.js"></script>
     <![endif]-->
-    <title>包头市现代智慧农业服务系统</title>
+    <title>包头市智慧农业气象服务系统</title>
 </head>
 <body>
             <!-- Header -->
@@ -41,7 +41,7 @@
                         <div class="row">
                             <div class="col-sm-7">
                                 <div class="wrap-logo">
-                                    <a class="ptitle" href="/">包头市现代智慧农业服务系统</a>
+                                    <a class="ptitle" href="/">包头市智慧农业气象服务系统</a>
                                 </div>
                             </div>
                             <div class="col-sm-2">
@@ -960,7 +960,7 @@
                                     var linenum1 = [];
                                     var linenum2 = [];
 //                                    var lineout = [];
-                                    console.log(tmp);
+//                                    console.log(tmp);
                                     for (var val in tmp) {
                                         dtime.push(tmp[val]['time']);
                                         linenum1.push(parseInt(tmp[val]['ta_cu']) / 10);

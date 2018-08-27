@@ -24,7 +24,7 @@
     <script src="/Public/assets/js/html5shiv.min.js"></script>
     <script src="/Public/assets/js/respond.min.js"></script>
     <![endif]-->
-    <title>包头市现代智慧农业服务系统</title>
+    <title>包头市智慧农业气象服务系统</title>
 </head>
 <body>
 <div id="wrap">
@@ -43,7 +43,7 @@
                         <div class="row">
                             <div class="col-sm-7">
                                 <div class="wrap-logo">
-                                    <a class="ptitle" href="/">包头市现代智慧农业服务系统</a>
+                                    <a class="ptitle" href="/">包头市智慧农业气象服务系统</a>
                                 </div>
                             </div>
                             <div class="col-sm-2">
@@ -167,12 +167,13 @@
                                     </li>
                                     <li>
                                         <span class="wsmenu-click"></span>
+                                        <a href="/livedisaster">灾害性天气实况报警</a>
+                                    </li>
+                                    <li>
+                                        <span class="wsmenu-click"></span>
                                         <a href="/accont">数据统计</a>
                                     </li>
-                                    <!-- <li>
-                                        <span class="wsmenu-click"></span>
-                                        <a href="category.html">数据查询</a>
-                                    </li> -->
+
                                 </ul>
                             </nav>
                             <!--Menu HTML Code-->
@@ -217,13 +218,16 @@
                             <p class="news-tabs__title h2">灾害天气预警</p>
                             <div id="demo6" style="overflow:hidden;height:360px;width:300px;">
                                 <ul id="demo8" class="news-tabs__nav nav nav-tabs shadow_text" role="tablist">
-
+                                    <?php if($yujing) { ?>
                                     <?php if(is_array($yujing)): foreach($yujing as $key=>$v): ?><li role="presentation" class="active">
                                             <a href="<?php echo U('disaster/detail', ['id' => $v['id']]);?>">
                                                 <span class="time"><?php echo ($v['addtime']); ?></span>
                                                 <?php echo ($v['title']); ?>
                                             </a>
                                         </li><?php endforeach; endif; ?>
+                                    <?php } else { ?>
+                                    <p class="p_yujing">无灾害预警</p>
+                                     <?php } ?>
                                 </ul>
                                 <div id="demo5"></div>
                             </div>
@@ -251,10 +255,10 @@
                             <!--</div>-->
                             <div class="col-md-3 brilliant-grid">
                                 <div class="brilliant-left">
-                                    <a href="/livedisaster"><i class="glyphicon glyphicon-cloud" aria-hidden="true"></i></a>
+                                    <a href="/"><i class="glyphicon glyphicon-cloud" aria-hidden="true"></i></a>
                                 </div>
                                 <div class="brilliant-right">
-                                    <h4>气象灾害实况报警</h4>
+                                    <a href=""><h4>农业气象服务信息</h4></a>
                                 </div>
                                 <div class="clearfix"></div>
                             </div>
@@ -272,7 +276,7 @@
                                     <a href="/advise"><i class="glyphicon glyphicon-globe" aria-hidden="true"></i></a>
                                 </div>
                                 <div class="brilliant-right">
-                                    <h4>新闻资讯和生产信息</h4>
+                                    <h4>新闻资讯</h4>
                                 </div>
                                 <div class="clearfix"></div>
                             </div>
@@ -281,7 +285,7 @@
                                     <a href="/know"><i class="glyphicon glyphicon-link" aria-hidden="true"></i></a>
                                 </div>
                                 <div class="brilliant-right">
-                                    <h4>农业气象服务科普信息</h4>
+                                    <h4>科普信息</h4>
                                 </div>
                                 <div class="clearfix"></div>
                             </div>
