@@ -190,21 +190,13 @@
     <div class="wrap wrap_white">
         <div class="container title">
             <h1 class="title__h1"><?php echo ($res['title']); ?></h1>
-            <span class="spauthor">发布人: <?php echo ($res['author']); ?> 发布于: <?php echo ($res['addtime']); ?></span>
         </div>
     </div>
     <!-- END title -->
     <div class="wrap wrap_gray pt20">
         <div class="container">
             <div class="row">
-                <div class="wrap-thumbnail">
-                    <div class="thumbnail">
-                        <div class="thumbnail__news news">
-                            <p class="news__desc"><?=htmlspecialchars_decode($res['main'])?></p>
-                        </div>
-                    </div>
-
-                </div>
+                <iframe style="margin-left: 12em;" src="<?php echo ($res['link']); ?>" width="900" height="1000"></iframe>
             </div>
         </div>
     </div>

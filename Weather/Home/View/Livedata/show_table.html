@@ -1,0 +1,294 @@
+<extend name="Public:base" />
+<!-- header slider -->
+<block name="content">
+        <!-- END header -->
+        <!-- content-->
+        <!-- title -->
+        <div class="wrap wrap_white">
+            <div class="container title">
+                <h1 class="title__h1 underscore">温室内小气候实时监测数据</h1>
+            </div>
+        </div>
+        <!-- END title -->
+        <div class="wrap wrap_gray pt20">
+            <div class="container">
+                <div class="row">
+                    <div class="wrap-thumbnail">
+                        <div class="thumbnail">
+                            <div class="thumbnail__news news">
+                                <p class="news__category" id="realinfo">{$now} {$station[0]}--{$station[1]}</p>
+                                <div class="table-responsive">
+                                    <div>
+                                        <div class="btn-group pull-right" id="templatemo_sort_btn">
+                                            <button type="button" class="btn btn-default">设施农业站点</button>
+                                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                                <span class="caret"></span>
+                                                <span class="sr-only">Toggle Dropdown</span>
+                                            </button>
+                                            <ul class="dropdown-menu" role="menu">
+                                                <?php foreach ($stlist as $key => $v) { ?>
+                                                <li>
+                                                    <a href="/livedata/show_table/station/{$v['id']}.html">{$v['location']}--{$v['zdmc']}</a>
+                                                </li>
+                                                <?php } ?>
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <table class="table table-striped table-hover table-bordered">
+                                        <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th colspan="3">空气温度</th>
+                                            <th colspan="3">空气湿度</th>
+                                            <th colspan="3">土壤温度</th>
+                                            <th colspan="3">土壤湿度</th>
+                                            <th colspan="2">太阳总辐射</th>
+                                            <th colspan="2">太阳有效辐射</th>
+                                            <th colspan="2">二氧化碳浓度</th>
+                                        </tr>
+
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td></td>
+                                            <td>当前温度</td>
+                                            <td>24小时最高值</td>
+                                            <td>24小时最低值</td>
+                                            <td>当前湿度值</td>
+                                            <td>24小时最高值</td>
+                                            <td>24小时最低值</td>
+                                            <td>当前温度值</td>
+                                            <td>24小时最高值</td>
+                                            <td>24小时最低值</td>
+                                            <td>当前湿度值</td>
+                                            <td>24小时最高值</td>
+                                            <td>24小时最低值</td>
+                                            <td>当前辐射值</td>
+                                            <td>24小时最高值</td>
+                                            <td>当前辐射值</td>
+                                            <td>24小时最高值</td>
+                                            <td>夜间最高值</td>
+                                            <td>白天最低值</td>
+                                        </tr>
+                                        <tr>
+                                            <td>150厘米</td>
+                                            <td>{$tmpnow150}</td>
+                                            <td>{$tmp['max150']}</td>
+                                            <td>{$tmp['min150']}</td>
+                                            <td>{$air_wet_now}</td>
+                                            <td>{$air['max150']}</td>
+                                            <td>{$air['min150']}</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td>{$sunall}</td>
+                                            <td>{$sun['maxall']}</td>
+                                            <td>{$sunpar}</td>
+                                            <td>{$sun['maxpar']}</td>
+                                            <td>{$co2['maxco2']}</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>100厘米</td>
+                                            <td>{$tmpnow100}</td>
+                                            <td>{$tmp['max100']}</td>
+                                            <td>{$tmp['min100']}</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>0厘米</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td>{$ldair_now_0}</td>
+                                            <td>{$ldair['max0']}</td>
+                                            <td>{$ldair['min0']}</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+
+                                        </tr>
+                                        <tr>
+                                            <td>-10厘米</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+
+                                            <td>{$ldair_now_10}</td>
+                                            <td>{$ldair['max10']}</td>
+                                            <td>{$ldair['min10']}</td>
+                                            <td>{$ldwet_now_10}</td>
+                                            <td>{$ldwet['max10']}</td>
+                                            <td>{$ldwet['min10']}</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>-20厘米</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+
+                                            <td>{$ldair_now_20}</td>
+                                            <td>{$ldair['max20']}</td>
+                                            <td>{$ldair['min20']}</td>
+                                            <td>{$ldwet_now_20}</td>
+                                            <td>{$ldwet['max20']}</td>
+                                            <td>{$ldwet['min20']}</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>-30厘米</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td>{$ldwet_now_30}</td>
+                                            <td>{$ldwet['max30']}</td>
+                                            <td>{$ldwet['min30']}</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END content-->
+</block>
+
+<block name="js">
+    <script type="text/javascript">
+        var form = $('#realform');
+        form.Validform({
+            btnSubmit: "#realsub",
+            ajaxPost: true,
+            callback: function (data) {
+                if (data.status) {
+//                    console.log(data.now);
+                    $('#realinfo').text(data.now + '时' + ' ' + data.location + "---" + data.station);
+                    $('#realtable').html(
+                            '<tr> <th>#</th> <th>农作物</th> <th>发育期</th> <th>空气温度(100厘米)</th> <th>空气湿度</th> <th>土壤温度(-10厘米)</th> <th>土壤湿度(-10厘米)</th> <th>太阳辐射</th> <!-- <th>二氧化碳</th> --> </tr> <tr> <th>#</th> <th></th> <th></th> <th>' + data.resnum["airtmp"] + '</th> <th>' + data.resnum["airwet"] + '</th> <th>' + data.resnum["landtmp"] + '</th> <th>' + data.resnum["landwet"] + '</th> <th>' + data.resnum["sun"] + '</th> <!-- <th></th> --> </tr>'
+
+                    );
+                    var str = '';
+                    for (var a in data.res) {
+//                        console.log(data.res[a]);
+                        str += '<tr>' + '<td>' + a + '</td>';
+                        if (data.res[a]['name']) {
+                            str += "<td>" + data.res[a]['name'] + "</td>";
+                        } else {
+                            str += "<td>" + "未到预定值" + "</td>";
+                        }
+
+                        if (data.res[a]['huaqi']) {
+                            str += "<td>" + data.res[a]['huaqi'] + "</td>";
+                        } else {
+                            str += "<td>" + "未到预定值" + "</td>";
+                        }
+
+                        if (data.res[a]['air']) {
+                            str += "<td>" + data.res[a]['air'] + "</td>";
+                        } else {
+                            str += "<td>" + "未到预定值" + "</td>";
+                        }
+
+                        if (data.res[a]['airwet']) {
+                            str += "<td>" + data.res[a]['airwet'] + "</td>";
+                        } else {
+                            str += "<td>" + "未到预定值" + "</td>";
+                        }
+
+                        if (data.res[a]['land']) {
+                            str += "<td>" + data.res[a]['land'] + "</td>";
+                        } else {
+                            str += "<td>" + "未到预定值" + "</td>";
+                        }
+                        if (data.res[a]['landwet']) {
+                            str += "<td>" + data.res[a]['landwet'] + "</td>";
+                        } else {
+                            str += "<td>" + "未到预定值" + "</td>";
+                        }
+                        if (data.res[a]['sun']) {
+                            str += "<td>" + data.res[a]['sun'] + "</td>";
+                        } else {
+                            str += "<td>" + "未到预定值" + "</td>";
+                        }
+
+
+                        str += "</tr>";
+
+
+                    }
+
+//                                            console.log(str);
+                    $('#realtb').html(str);
+
+                } else {
+                    $('#removetb').html('<div class="alert alert-info" role="alert">此地区没有此站点, 请确认后再查询</div>');
+                }
+            }
+        })
+    </script>
+    <script>
+        $("#Validform_msg").remove();
+    </script>
+
+</block>

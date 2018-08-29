@@ -1570,4 +1570,251 @@ class DataService {
         return $tmp;
 
     }
+
+    public static function tmp_max_min($date1, $date2, $station)
+    {
+        $sql = sprintf("SELECT [TA_CU], [TA_CD] FROM [tabtimedata] where [id] = '%s' and [time] between '%s' and '%s' AND DATEPART(MINUTE,[time])=0 AND DATEPART(SECOND,[time])=0", $station, $date1, $date2);
+        $Model = new \Think\Model(); // 实例化一个model对象 没有对应任何数据表
+        $res = $Model->query($sql);
+
+        $temp = [];
+        $t150 = [];
+        $t100 = [];
+
+        foreach ($res as $a) {
+            array_push($t150, $a["ta_cu"]);
+            array_push($t100, $a["ta_cd"]);
+        }
+        $max150 = max($t150) / 10;
+        $min150 = min($t150) / 10;
+        $max100 = max($t100) / 10;
+        $min100 = min($t100) / 10;
+        $temp['max150'] = $max150;
+        $temp['max100'] = $max100;
+        $temp['min150'] = $min150;
+        $temp['min100'] = $min100;
+        return $temp;
+    }
+
+    public static function tmp_100($date, $station)
+    {
+        $sql = sprintf("SELECT [TA_CD] FROM [tabtimedata] where [id] = '%s' and [time] = '%s:00:00.000'", $station, $date);
+        $Model = new \Think\Model(); // 实例化一个model对象 没有对应任何数据表
+        $res = $Model->query($sql);
+        $airnum = $res[0]['ta_cd'] / 10;
+        return $airnum;
+    }
+
+    public static function tmp_150($date, $station)
+    {
+        $sql = sprintf("SELECT [TA_CU] FROM [tabtimedata] where [id] = '%s' and [time] = '%s:00:00.000'", $station, $date);
+        $Model = new \Think\Model(); // 实例化一个model对象 没有对应任何数据表
+        $res = $Model->query($sql);
+        $airnum = $res[0]['ta_cu'] / 10;
+        return $airnum;
+    }
+
+    public static function air_max_min($date1, $date2, $station)
+    {
+        $sql = sprintf("SELECT [RH_C] FROM [tabtimedata] where [id] = '%s' and [time] between '%s' and '%s' AND DATEPART(MINUTE,[time])=0 AND DATEPART(SECOND,[time])=0", $station, $date1, $date2);
+        $Model = new \Think\Model(); // 实例化一个model对象 没有对应任何数据表
+        $res = $Model->query($sql);
+
+        $temp = [];
+        $t150 = [];
+
+        foreach ($res as $a) {
+            array_push($t150, $a["rh_c"]);
+        }
+        $max150 = max($t150);
+        $min150 = min($t150);
+        $temp['max150'] = $max150;
+        $temp['min150'] = $min150;
+        return $temp;
+    }
+    public static function air_wet_t($date, $station)
+    {
+        $sql = sprintf("SELECT [RH_C] FROM [tabtimedata] where [id] = '%s' and [time] = '%s:00:00.000'", $station, $date);
+        $Model = new \Think\Model(); // 实例化一个model对象 没有对应任何数据表
+        $res = $Model->query($sql);
+        $airwetnum = $res[0]['rh_c'];
+        return $airwetnum;
+    }
+    public static function land_tmp_0($date, $station)
+    {
+        $sql = sprintf("SELECT [TS_U] FROM [tabtimedata] where [id] = '%s' and [time] = '%s:00:00.000'", $station, $date);
+        $Model = new \Think\Model(); // 实例化一个model对象 没有对应任何数据表
+        $res = $Model->query($sql);
+        $landnum = $res[0]['ts_u'] / 10;
+        return $landnum;
+    }
+
+    public static function land_tmp_10($date, $station)
+    {
+        $sql = sprintf("SELECT [TS_M] FROM [tabtimedata] where [id] = '%s' and [time] = '%s:00:00.000'", $station, $date);
+        $Model = new \Think\Model(); // 实例化一个model对象 没有对应任何数据表
+        $res = $Model->query($sql);
+        $landnum = $res[0]['ts_m'] / 10;
+        return $landnum;
+    }
+
+    public static function land_tmp_20($date, $station)
+    {
+        $sql = sprintf("SELECT [TS_D] FROM [tabtimedata] where [id] = '%s' and [time] = '%s:00:00.000'", $station, $date);
+        $Model = new \Think\Model(); // 实例化一个model对象 没有对应任何数据表
+        $res = $Model->query($sql);
+        $landnum = $res[0]['ts_d'] / 10;
+        return $landnum;
+    }
+    public static function ldair_max_min($date1, $date2, $station)
+    {
+        $sql = sprintf("SELECT [TS_U], [TS_M], [TS_D] FROM [tabtimedata] where [id] = '%s' and [time] between '%s' and '%s' AND DATEPART(MINUTE,[time])=0 AND DATEPART(SECOND,[time])=0", $station, $date1, $date2);
+        $Model = new \Think\Model(); // 实例化一个model对象 没有对应任何数据表
+        $res = $Model->query($sql);
+
+        $temp = [];
+        $t0 = [];
+        $t10 = [];
+        $t20 = [];
+
+        foreach ($res as $a) {
+            array_push($t0, $a["ts_u"]);
+            array_push($t10, $a["ts_m"]);
+            array_push($t20, $a["ts_d"]);
+        }
+        $max0 = max($t0) / 10;
+        $min0 = min($t0) / 10;
+        $max10 = max($t10) / 10;
+        $min10 = min($t10) / 10;
+        $max20 = max($t20) / 10;
+        $min20 = min($t20) / 10;
+        $temp['max0'] = $max0;
+        $temp['max10'] = $max10;
+        $temp['max20'] = $max20;
+        $temp['min0'] = $min0;
+        $temp['min10'] = $min10;
+        $temp['min20'] = $min20;
+        return $temp;
+    }
+
+    public static function ldwt_max_min($date1, $date2, $station)
+    {
+        $sql = sprintf("SELECT [SH_U], [SH_M], [SH_D] FROM [tabtimedata] where [id] = '%s' and [time] between '%s' and '%s' AND DATEPART(MINUTE,[time])=0 AND DATEPART(SECOND,[time])=0", $station, $date1, $date2);
+        $Model = new \Think\Model(); // 实例化一个model对象 没有对应任何数据表
+        $res = $Model->query($sql);
+
+        $temp = [];
+        $t10 = [];
+        $t20 = [];
+        $t30 = [];
+
+        foreach ($res as $a) {
+            array_push($t10, $a["sh_u"]);
+            array_push($t20, $a["sh_m"]);
+            array_push($t30, $a["sh_d"]);
+        }
+        $max10 = max($t10);
+        $min10 = min($t10);
+        $max20 = max($t20);
+        $min20 = min($t20);
+        $max30 = max($t30);
+        $min30 = min($t30);
+        $temp['max10'] = $max10;
+        $temp['max20'] = $max20;
+        $temp['max30'] = $max30;
+        $temp['min10'] = $min10;
+        $temp['min20'] = $min20;
+        $temp['min30'] = $min30;
+        return $temp;
+    }
+
+    public static function land_wet_10($date, $station)
+    {
+        $sql = sprintf("SELECT [SH_U] FROM [tabtimedata] where [id] = '%s' and [time] = '%s:00:00.000'", $station, $date);
+        $Model = new \Think\Model(); // 实例化一个model对象 没有对应任何数据表
+        $res = $Model->query($sql);
+        $landnum = $res[0]['sh_u'];
+        return $landnum;
+    }
+
+    public static function land_wet_20($date, $station)
+    {
+        $sql = sprintf("SELECT [SH_M] FROM [tabtimedata] where [id] = '%s' and [time] = '%s:00:00.000'", $station, $date);
+        $Model = new \Think\Model(); // 实例化一个model对象 没有对应任何数据表
+        $res = $Model->query($sql);
+        $landnum = $res[0]['sh_m'];
+        return $landnum;
+    }
+
+    public static function land_wet_30($date, $station)
+    {
+        $sql = sprintf("SELECT [SH_D] FROM [tabtimedata] where [id] = '%s' and [time] = '%s:00:00.000'", $station, $date);
+        $Model = new \Think\Model(); // 实例化一个model对象 没有对应任何数据表
+        $res = $Model->query($sql);
+        $landnum = $res[0]['sh_d'];
+        return $landnum;
+    }
+    public static function sun_max($date1, $date2, $station)
+    {
+        $sql = sprintf("SELECT [R_U], [PAR_U] FROM [tabtimedata] where [id] = '%s' and [time] between '%s' and '%s' AND DATEPART(MINUTE,[time])=0 AND DATEPART(SECOND,[time])=0", $station, $date1, $date2);
+        $Model = new \Think\Model(); // 实例化一个model对象 没有对应任何数据表
+        $res = $Model->query($sql);
+
+        $temp = [];
+        $tall = [];
+        $tpar = [];
+
+        foreach ($res as $a) {
+            array_push($tall, $a["r_u"]);
+            array_push($tpar, $a["par_u"]);
+        }
+        $maxall = max($tall);
+        $maxpar = min($tpar);
+        $temp['maxall'] = $maxall;
+        $temp['maxpar'] = $maxpar;
+        return $temp;
+    }
+
+    public static function sun_all($date, $station)
+    {
+        $sql = sprintf("SELECT [R_U] FROM [tabtimedata] where [id] = '%s' and [time] = '%s:00:00.000'", $station, $date);
+        $Model = new \Think\Model(); // 实例化一个model对象 没有对应任何数据表
+        $res = $Model->query($sql);
+        $airwetnum = $res[0]['r_u'];
+        return $airwetnum;
+    }
+
+    public static function sun_par($date, $station)
+    {
+        $sql = sprintf("SELECT [PAR_U] FROM [tabtimedata] where [id] = '%s' and [time] = '%s:00:00.000'", $station, $date);
+        $Model = new \Think\Model(); // 实例化一个model对象 没有对应任何数据表
+        $res = $Model->query($sql);
+        $airwetnum = $res[0]['par_u'];
+        return $airwetnum;
+    }
+    public static function co2_max($date1, $date2, $station)
+    {
+        $sql = sprintf("SELECT [CO2_U] FROM [tabtimedata] where [id] = '%s' and [time] between '%s' and '%s' AND DATEPART(MINUTE,[time])=0 AND DATEPART(SECOND,[time])=0", $station, $date1, $date2);
+        $Model = new \Think\Model(); // 实例化一个model对象 没有对应任何数据表
+        $res = $Model->query($sql);
+
+        $temp = [];
+        $tco2 = [];
+
+        foreach ($res as $a) {
+            array_push($tco2, $a["co2_u"]);
+        }
+        $maxco2 = max($tco2);
+        $temp['maxco2'] = $maxco2;
+        return $temp;
+    }
+
+    public static function co2_t($date, $station)
+    {
+        $sql = sprintf("SELECT [CO2_U] FROM [tabtimedata] where [id] = '%s' and [time] = '%s:00:00.000'", $station, $date);
+        $Model = new \Think\Model(); // 实例化一个model对象 没有对应任何数据表
+        $res = $Model->query($sql);
+        $airwetnum = $res[0]['co2_u'];
+        return $airwetnum;
+    }
 }

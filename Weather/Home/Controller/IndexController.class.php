@@ -62,4 +62,6 @@ class IndexController extends CommonController {
             $this->redirect('/');
         }
     }
+
+
 }

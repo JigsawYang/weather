@@ -150,4 +150,126 @@ class LivedataController extends CommonController {
             $this->redirect('/');
         }
     }
+
+    public function show_table() {
+
+
+        session("download", null);
+
+        $day = date('Y-m-d');//实际上线时候 吧这个注释去掉
+        $hour = date('H');
+        $now = $day.' '.$hour;
+//         $now = '2015-05-28 10';
+//        $now2 = '2015-05-28 10:00:00';
+//        $y = "2015-05-27 10:00:00";
+        $y = date("Y-m-d H:i:s",strtotime("-1 day"));
+        $now2 = date("Y-m-d H:i:s");
+        $stlist = DataService::GetStation();
+        $st = I('get.station');
+        if (!$st) {
+            //空气温度
+            $tmpnow150 = DataService::tmp_150($now, 'N0001');
+            $tmpnow100 = DataService::tmp_100($now, 'N0001');
+            $tmp = DataService::tmp_max_min($y, $now2, 'N0001');
+//            print_r($tmp);
+//             print_r($tmpnow);die;
+
+            //空气湿度
+            $air_wet_now = DataService::air_wet_t($now, "N0001");
+            $air = DataService::air_max_min($y, $now2, "N0001");
+//            print_r($air_wet_now);print_r($air);die;
+
+            //土壤温度
+            $ldair_now_0 = DataService::land_tmp_0($now, "N0001");
+            $ldair_now_10 = DataService::land_tmp_10($now, "N0001");
+            $ldair_now_20 = DataService::land_tmp_20($now, "N0001");
+            $ldair = DataService::ldair_max_min($y, $now2, "N0001");
+//            print_r($ldair_now_0);
+//            print_r($ldair_now_10);
+//            print_r($ldair_now_20);
+//            print_r($ldair);die;
+//            print_r($ldair);die;
+
+
+            $ldwet_now_10 = DataService::land_wet_10($now, "N0001");
+            $ldwet_now_20 = DataService::land_wet_20($now, "N0001");
+            $ldwet_now_30 = DataService::land_wet_30($now, "N0001");
+            $ldwet = DataService::ldwt_max_min($y, $now2, "N0001");
+
+
+            $sun_all = DataService::sun_all($now, "N0001");
+            $sun_par = DataService::sun_par($now, "N0001");
+            $sun = DataService::sun_max($y, $now2, "N0001");
+
+            $co2_now = DataService::co2_t($now, "N0001");
+            $co2 = DataService::co2_max($y, $now2, "N0001");
+
+
+            $station = DataService::GetStationDt()['N0001'];
+        } else {
+            //空气温度
+            $tmpnow150 = DataService::tmp_150($now, $st);
+            $tmpnow100 = DataService::tmp_100($now, $st);
+            $tmp = DataService::tmp_max_min($y, $now2, $st);
+//            print_r($tmp);
+//             print_r($tmpnow);die;
+
+            //空气湿度
+            $air_wet_now = DataService::air_wet_t($now, $st);
+            $air = DataService::air_max_min($y, $now2, $st);
+//            print_r($air_wet_now);print_r($air);die;
+
+            //土壤温度
+            $ldair_now_0 = DataService::land_tmp_0($now, $st);
+            $ldair_now_10 = DataService::land_tmp_10($now, $st);
+            $ldair_now_20 = DataService::land_tmp_20($now, $st);
+            $ldair = DataService::ldair_max_min($y, $now2, $st);
+//            print_r($ldair_now_0);
+//            print_r($ldair_now_10);
+//            print_r($ldair_now_20);
+
+            $ldwet_now_10 = DataService::land_wet_10($now, $st);
+            $ldwet_now_20 = DataService::land_wet_20($now, $st);
+            $ldwet_now_30 = DataService::land_wet_30($now, $st);
+            $ldwet = DataService::ldwt_max_min($y, $now2, $st);
+//            print_r($ldwet);die;
+
+
+            $sun_all = DataService::sun_all($now, $st);
+            $sun_par = DataService::sun_par($now, $st);
+            $sun = DataService::sun_max($y, $now2, $st);
+
+            $co2_now = DataService::co2_t($now, $st);
+            $co2 = DataService::co2_max($y, $now2, $st);
+            $station = DataService::GetStationDt()[$st];
+        }
+        $this->station = $station;
+        $this->now = $now . '时';
+        $this->tmpnow150 = $tmpnow150;
+        $this->tmpnow100 = $tmpnow100;
+        $this->tmp = $tmp;
+
+        $this->stlist = $stlist;
+
+        $this->air_wet_now = $air_wet_now;
+        $this->air = $air;
+
+        $this->ldair_now_0 = $ldair_now_0;
+        $this->ldair_now_10 = $ldair_now_10;
+        $this->ldair_now_20 = $ldair_now_20;
+        $this->ldair = $ldair;
+//        print_r($ldair);die;
+        $this->ldwet_now_10 = $ldwet_now_10;
+        $this->ldwet_now_20 = $ldwet_now_20;
+        $this->ldwet_now_30 = $ldwet_now_30;
+        $this->ldwet = $ldwet;
+
+        $this->sunall = $sun_all;
+        $this->sunpar = $sun_par;
+        $this->sun = $sun;
+
+        $this->co2_now = $co2_now;
+        $this->co2 = $co2;
+        $this->display();
+    }
 }
