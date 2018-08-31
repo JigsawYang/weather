@@ -216,12 +216,22 @@
                                         <br/>
                                     </div>
                                     <div class="form-group slwidth">
-                                        <select class="form-control" name="station">
-                                            <option value=""></option>
-
+                                        <select class="form-control" id="qulist" name="qustation" autocomplete="off">
                                             <?php foreach ($stlist as $key => $v) { ?>
-                                            <option value="<?php echo ($v['id']); ?>"><?php echo ($v['location']); ?></option>
+                                            <?php if ($st == $v['xzqh_id']) { ?>
+                                            <option value="<?php echo ($v['xzqh_id']); ?>" selected><?php echo ($v['xzqh_name']); ?></option>
+                                            <?php } else { ?>
+                                            <option value="<?php echo ($v['xzqh_id']); ?>"><?php echo ($v['xzqh_name']); ?></option>
                                             <?php } ?>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+                                    <div class="form-group slwidth" id="xilist">
+                                        <select class="form-control" name="station">
+                                            <!--<option value=""></option>-->
+                                            <!--<?php foreach ($stlist as $key => $v) { ?>-->
+                                            <!--<option value="<?php echo ($v['id']); ?>"><?php echo ($v['location']); ?></option>-->
+                                            <!--<?php } ?>-->
                                         </select>
                                     </div>
                                     <!--<a href="/index/show_table" class="btn btn-primary pull-right" id="tb-btn">表格</a>-->
@@ -354,6 +364,40 @@
     });
 
 </script>
+
+    <script>
+        function getxilist(){
+            var brandId = $("select[name=qustation]").val();
+            console.log(brandId);
+            $("select[name=station]").empty();		//清空
+            $.ajax({url:'/landwarning/getxian',
+                type:"post",
+                data:{
+                    quid : brandId
+                },
+                cache: false,
+                error:function(){
+                },
+                success:function(data){
+                    var modelList = data.res;
+                    if(modelList && modelList.length != 0){
+                        for(var i=0; i<modelList.length; i++){
+                            var option="<option value=\""+modelList[i].zd_code+"\"";
+//                            if(_LastModelId && _LastModelId==modelList[i].zd_code){
+//                                option += " selected=\"selected\" "; //默认选中
+//                                _LastModelId=null;
+//                            }
+                            option += ">"+modelList[i].zd_name+"</option>";  //动态添加数据
+                            $("select[name=station]").append(option);
+                        }
+                    }
+                }
+            });
+        }
+        $("#qulist").change(function(){
+            getxilist();
+        });
+    </script>
 
 
 </body>

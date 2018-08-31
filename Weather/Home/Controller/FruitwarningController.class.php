@@ -34,7 +34,9 @@ class FruitwarningController extends CommonController
         }
         $now = '2017-04-21 06';
         $day = '2015-06-01';
-        $stlist = DataService::GetLandStation();
+//        $stlist = DataService::GetLandStation();
+        $qulist = DataService::GetquStation();
+
         if (IS_POST) {
             $now = I("post.sdate1");
             $day = $now;
@@ -65,7 +67,7 @@ class FruitwarningController extends CommonController
             //*******************************上线该成国家站点的 字典
             $station = DataService::GetLandStationDt()['53446'];
         }
-        $this->stlist = $stlist;
+        $this->stlist = $qulist;
         $this->cold = $cold;
         $this->ice = $ice;
         $this->hot = $hot;
@@ -78,13 +80,16 @@ class FruitwarningController extends CommonController
     public function feature() {
         session("download", null);
         $nows = date("Y-m-d");
+        $day = $nows;
         $now = $nows." "."00:00:00.000";
 //        $now = '2014-11-18';
 //        $y = '2014';
 //        $m = '11';
 //        $d = '18';
 //        $st = I('get.station');
-        $stlist = DataService::GetStation();
+//        $stlist = DataService::GetStation();
+        $qulist = DataService::GetquStation();
+
         if (IS_POST) {
             $nows = I("post.sdate1");
             $st = I("post.station");
@@ -104,9 +109,10 @@ class FruitwarningController extends CommonController
         }
 
 
-        $this->stlist = $stlist;
+        $this->stlist = $qulist;
         $this->cold = $cold;
         $this->hot = $hot;
+        $this->day =$day;
         $this->station = $station;
         $this->st = $st;
         $this->now = $nows;

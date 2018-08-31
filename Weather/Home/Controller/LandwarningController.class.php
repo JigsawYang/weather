@@ -34,7 +34,9 @@ class LandWarningController extends CommonController
         }
         $now = '2017-04-21 06';
         $day = '2015-06-01';
-        $stlist = DataService::GetLandStation();
+//        $stlist = DataService::GetLandStation();
+        $qulist = DataService::GetquStation();
+//        print_r($qulist);die;
         if (IS_POST) {
             $now = I("post.sdate1");
             $day = $now;
@@ -64,9 +66,11 @@ class LandWarningController extends CommonController
             //***********************************************************************
             //*******************************上线该成国家站点的 字典
             $station = DataService::GetLandStationDt()['53446'];
+            $this->st = "4";
+
 //            print_r($station);die;
         }
-        $this->stlist = $stlist;
+        $this->stlist = $qulist;
         $this->cold = $cold;
         $this->ice = $ice;
         $this->hot = $hot;
@@ -85,7 +89,9 @@ class LandWarningController extends CommonController
 //        $m = '11';
 //        $d = '18';
 //        $st = I('get.station');
-        $stlist = DataService::GetLandStation();
+//        $stlist = DataService::GetLandStation();
+        $qulist = DataService::GetquStation();
+
         if (IS_POST) {
             $nows = I("post.sdate1");
             $st = I("post.station");
@@ -105,7 +111,7 @@ class LandWarningController extends CommonController
         }
 
 
-        $this->stlist = $stlist;
+        $this->stlist = $qulist;
         $this->cold = $cold;
         $this->hot = $hot;
         $this->station = $station;
@@ -114,5 +120,25 @@ class LandWarningController extends CommonController
         $this->display();
 
     }
+
+    public function getxian() {
+        if (IS_POST) {
+            $data = I('post.');
+//            print_r($data);die;
+            $xiid = $data['quid'];
+            $res = DataService::getxianid($xiid);
+//            print_r($res);die;
+
+            if ($res) {
+                $this->ajaxReturn(['status' => true, 'res' => $res]);
+            } else {
+                $this->ajaxReturn(['status' => false, 'res' => '全部没数据']);
+            }
+        } else {
+            $this->error('非法操作');
+            $this->redirect('/');
+        }
+    }
+
 
 }

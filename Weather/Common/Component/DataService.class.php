@@ -318,6 +318,12 @@ class DataService {
         return $res;
     }
 
+    public static function GetquStation() {
+        $model = D("Txzqh");
+        $res = $model->field('xzqh_id,xzqh_name')->select();
+//        print_r($res);die;
+        return $res;
+    }
 
     public static function getlocation() {
         $model = D('Ghstation');
@@ -875,6 +881,12 @@ class DataService {
         }
 //        print_r($st);die;
         return $st;
+    }
+
+    public static function getxianid($id) {
+        $model = D('Tzd');
+        $res = $model->field('zd_code,zd_name')->where("zd_xzqh_id='%s' and zd_ys >1", $id)->select();
+        return $res;
     }
 
     public static function findstation($location, $st) {
