@@ -345,7 +345,7 @@
                 <!-- title -->
                 <div class="wrap wrap_white">
                     <div class="container title">
-                        <h1 class="title__h1 underscore">最新天气实况</h1>
+                        <h1 class="title__h1 underscore">最新天气情况</h1>
                     </div>
                 </div>
 
@@ -369,52 +369,71 @@
                                         <br/>
                                     </div>
                                     <div class="form-group slwidth">
-                                        <select class="form-control" name="station">
-                                            <option value=""></option>
+                                        <select class="form-control" name="station" autocomplete="off">
                                             <?php foreach ($stlist as $key => $v) { ?>
+                                            <?php if ($st == $v['id']) { ?>
+                                            <option value="{$v['id']}" selected>{$v['location']}</option>
+                                            <?php } else { ?>
                                             <option value="{$v['id']}">{$v['location']}</option>
+                                            <?php } ?>
                                             <?php } ?>
                                         </select>
                                     </div>
-                                    <!--<a href="/index/show_table" class="btn btn-primary pull-right" id="tb-btn">表格</a>-->
+                                    <a href="/index/show_table" class="btn btn-orange btn-m pull-right" id="tb-btn">表格</a>
+
                                     <button id="btnsub" type="submit" class="btn btn-primary btn-orange pull-right">刷新</button>
                                 </form>
                             </div>
 
-                            <div class="col-sm-12">
-                                    <div class="col-md-12 col-sm-12" id="out" style="height:500px">
+                                    <div class="col-md-7 col-sm-7" id="out" style="height:570px"></div>
+                                    <div class="col-md-5 col-sm-5" id="feat" style="height:570px">
+                                        <table class="table table-striped table-hover table-bordered">
+                                            <thead>
+                                            <tr>
+                                                <th colspan="2">地区</th>
+                                                <th colspan="3">未来3天天气预报</th>
+                                            </tr>
+                                            <tr>
+                                                <th></th>
+                                                <th></th>
+                                                <th id="t1">{$res_f[0]['time']}</th>
+                                                <th id="t2">{$res_f[1]['time']}</th>
+                                                <th id="t3">{$res_f[2]['time']}</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <th rowspan="5">包头</th>
+                                                <td rowspan="1">最高温度</td>
+                                                <td id="m1">{$res_f[0]['max']}</td>
+                                                <td id="m2">{$res_f[1]['max']}</td>
+                                                <td id="m3">{$res_f[2]['max']}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>最低温度</td>
+                                                <td id="n1">{$res_f[0]['min']}</td>
+                                                <td id="n2">{$res_f[1]['min']}</td>
+                                                <td id="n3">{$res_f[2]['min']}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>天空状况</td>
+                                                <td id="s1">{$sky[0]['st']}</td>
+                                                <td id="s2">{$sky[1]['st']}</td>
+                                                <td id="s3">{$sky[2]['st']}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>图标</td>
+                                                <td id="i1"><img height="50" width="50" src="__W__{$sky[0]['icon']}" alt="" /></td>
+                                                <td id="i2"><img height="50" width="50" src="__W__{$sky[1]['icon']}" alt="" /></td>
+                                                <td id="i3"><img height="50" width="50" src="__W__{$sky[2]['icon']}" alt="" /></td>
+                                            </tr>
 
-                            </div>
-                            <div>
-                                <div class="col-md-8"></div>
-                                <div class="col-md-4">
-                                <table class="table table-striped table-hover table-bordered">
-                                    <thead>
-                                    <tr>
-                                        <th colspan="3">未来3天天气预报</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody id="skyt">
-                                        <tr>
-                                            <foreach name="sky" item="v">
-                                               <td>{$v['time']}</td>
-                                            </foreach>
-
-                                        </tr>
-                                        <tr>
-                                            <foreach name="sky" item="v">
-                                                <td align="center" style="width: 60px; height: 60px;"><img height="50" width="50" src="__W__{$v['icon']}" alt="" /></td>
-                                            </foreach>
+                                            </tbody>
+                                        </table>
+                                    </div>
 
 
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                </div>
-                            </div>
                         </div>
-
-                    </div>
                     <!-- btn load-->
                     <!--   <div class="ajax_load">
                           <i class="icon-arrows-cw"></i>Load more
@@ -624,6 +643,10 @@
                         xAxis: [
                             {
                                 type: 'category',
+                                axisLabel: {
+                                    formatter: '{value}',
+                                    interval:0
+                                },
 //                                boundaryGap: false,
                                 data: tmptime
                             }
@@ -649,7 +672,13 @@
                                 name: '降水',
                                 type: 'bar',
                                 yAxisIndex: 0,
+                                barWidth: 20,
                                 data: bar1,
+                                itemStyle:{
+                                    normal:{
+                                        color:'#6699CC'
+                                    }
+                                },
                                 markPoint: {
                                     data: [
                                         {type: 'max', name: '最大值'},
@@ -779,6 +808,10 @@
                                     xAxis: [
                                         {
                                             type: 'category',
+                                            axisLabel: {
+                                                formatter: '{value}',
+                                                interval:0
+                                            },
 //                                boundaryGap: false,
                                             data: tmptime1
                                         }
@@ -803,8 +836,14 @@
                                         {
                                             name: '降水',
                                             type: 'bar',
+                                            barWidth: 20,
                                             yAxisIndex: 0,
                                             data: bar11,
+                                            itemStyle:{
+                                                normal:{
+                                                    color:'#6699CC'
+                                                }
+                                            },
                                             markPoint: {
                                                 data: [
                                                     {type: 'max', name: '最大值'},
@@ -859,18 +898,36 @@
                     $('#out').html('<div class="alert alert-info" role="alert">没有此站点数据</div>');
 
                 }
+                console.log(data.resf);
+                if (data.resf) {
+                    $('#t1').text(data.resf[0]['time']);
+//                    console.log(data.resf[0]['time']);
+                    $('#t2').text(data.resf[1]['time']);
+
+                    $('#t3').text(data.resf[2]['time']);
+
+                    $('#m1').text(data.resf[0]['max']);
+                    $('#m2').text(data.resf[1]['max']);
+                    $('#m3').text(data.resf[2]['max']);
+
+                    $('#n1').text(data.resf[0]['min']);
+                    $('#n2').text(data.resf[1]['min']);
+                    $('#n3').text(data.resf[2]['min']);
+
+
+
+
+
+                }
                 if (data.sky) {
-                    var str = '';
-                    str += "<tr><td>" + data.sky[0]['time'] + "</td>";
-                    str += "<td>" + data.sky[1]['time'] + "</td>";
-                    str += "<td>" + data.sky[2]['time'] + "</td></tr>";
+                   $('#i1').html('<img height="50" width="50" src="__W__'+data.sky[0]['icon']+'" alt="" />');
+                    $('#i2').html('<img height="50" width="50" src="__W__'+data.sky[1]['icon']+'" alt="" />');
+                    $('#i3').html('<img height="50" width="50" src="__W__'+data.sky[2]['icon']+'" alt="" />');
 
-                    str += '<tr><td align="center" style="width: 60px; height: 60px;"><img height="50" width="50" src="__W__' + data.sky[0]['icon'] + '" alt="" /></td>';
-                    str += '<td align="center" style="width: 60px; height: 60px;"><img height="50" width="50" src="__W__' + data.sky[1]['icon'] + '" alt="" /></td>';
-                    str += '<td align="center" style="width: 60px; height: 60px;"><img height="50" width="50" src="__W__' + data.sky[2]['icon'] + '" alt="" /></td></tr>';
+                    $('#s1').text(data.resf[0]['st']);
+                    $('#s2').text(data.resf[1]['st']);
+                    $('#s3').text(data.resf[2]['st']);
 
-                    console.log(str);
-                    $('#skyt').html(str);
                 }else {
                     $('#skyt').html('<div class="alert alert-info" role="alert">没有此站点数据</div>');
                 }

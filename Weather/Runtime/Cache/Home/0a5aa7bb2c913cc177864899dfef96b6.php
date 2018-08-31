@@ -212,13 +212,16 @@
                                 <input type="hidden" id="dtp_input2" value="<?php echo ($day); ?>" name="sdate"/>
                                 <br/>
                             </div>
-                            <div class="form-group slwidth">
-                                <select class="form-control" name="station">
-                                    <?php foreach ($stlist as $key => $v) { ?>
-                                    <option value="<?php echo ($v['id']); ?>"><?php echo ($v['location']); ?>--<?php echo ($v['zdmc']); ?></option>
-                                    <?php } ?>
-                                </select>
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="设施编号" aria-describedby="basic-addon1" name="station">
                             </div>
+                            <!--<div class="form-group slwidth">-->
+                                <!--<select class="form-control" name="station">-->
+                                    <!--<?php foreach ($stlist as $key => $v) { ?>-->
+                                    <!--<option value="<?php echo ($v['id']); ?>"><?php echo ($v['location']); ?>--<?php echo ($v['zdmc']); ?></option>-->
+                                    <!--<?php } ?>-->
+                                <!--</select>-->
+                            <!--</div>-->
                             <a href="/livedata/show_table" class="btn btn-orange btn-m pull-right" id="tb-btn">表格</a>
                             <button id="btnsub" type="submit" class="btn btn-primary btn-orange pull-right">刷新</button>
                         </form>

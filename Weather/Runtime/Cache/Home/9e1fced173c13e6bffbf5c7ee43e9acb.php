@@ -25,7 +25,7 @@
     <script src="/Public/assets/js/html5shiv.min.js"></script>
     <script src="/Public/assets/js/respond.min.js"></script>
     <![endif]-->
-    <title>包头市现代智慧农业服务系统</title>
+    <title>包头市智慧农业气象服务系统</title>
 </head>
 <body>
             <!-- Header -->
@@ -41,7 +41,7 @@
                         <div class="row">
                             <div class="col-sm-7">
                                 <div class="wrap-logo">
-                                    <a class="ptitle" href="/">包头市现代智慧农业服务系统</a>
+                                    <a class="ptitle" href="/">包头市智慧农业气象服务系统</a>
                                 </div>
                             </div>
                             <div class="col-sm-2">
@@ -165,6 +165,10 @@
                                     </li>
                                     <li>
                                         <span class="wsmenu-click"></span>
+                                        <a href="/livedisaster">灾害性天气实况报警</a>
+                                    </li>
+                                    <li>
+                                        <span class="wsmenu-click"></span>
                                         <a href="/accont">数据统计</a>
                                     </li>
                                     <!-- <li>
@@ -196,12 +200,12 @@
                     <div class="thumbnail">
                         <div class="thumbnail__news news">
                             <div>
+
                                 <form action="/warning/feature" class="form-inline" id="wtform" method="post">
                                     <div class="form-group pick">
                                         <label for="dtp_input2" class="col-md-1 control-label">日期</label>
 
-                                        <div class="input-group date form_date col-md-8" data-date=""
-                                             data-date-format="yyyy-mm-dd"
+                                        <div class="input-group date form_date col-md-8" data-date="" data-date-format="yyyy-mm-dd"
                                              data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
                                             <input class="form-control" size="16" type="text" value="<?php echo ($now); ?>" readonly>
                                                     <span class="input-group-addon">
@@ -211,18 +215,74 @@
                                         <input type="hidden" id="dtp_input2" value="<?php echo ($now); ?>" name="sdate1"/>
                                         <br/>
                                     </div>
-                                    <div class="form-group slwidth">
-                                        <select class="form-control" name="station">
-                                            <?php foreach ($stlist as $key => $v) { ?>
-                                            <option value="<?php echo ($v['id']); ?>"><?php echo ($v['location']); ?>--<?php echo ($v['zdmc']); ?></option>
-                                            <?php } ?>
-                                        </select>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="设施编号" aria-describedby="basic-addon1" name="satid">
                                     </div>
+                                    <!--<div class="form-group slwidth">-->
+                                        <!--<select class="form-control" name="station">-->
+                                            <!--<?php foreach ($stlist as $key => $v) { ?>-->
+                                            <!--<option value="<?php echo ($v['id']); ?>"><?php echo ($v['location']); ?>--<?php echo ($v['zdmc']); ?></option>-->
+                                            <!--<?php } ?>-->
+                                        <!--</select>-->
+                                    <!--</div>-->
+
                                     <!--<a href="/index/show_table" class="btn btn-primary pull-right" id="tb-btn">表格</a>-->
                                     <button id="btnsub" type="submit" class="btn btn-primary btn-orange pull-right">刷新
                                     </button>
                                 </form>
                             </div>
+                            <p class="news__category"><?php echo ($no); ?> <?php echo ($station[0]); ?>--<?php echo ($station[1]); ?></p>
+
+                            <table class="table table-striped table-hover table-bordered">
+                                <thead>
+                                <tr>
+                                    <th colspan="2">设施内</th>
+                                    <th colspan="12">设施外</th>
+                                </tr>
+                                <tr>
+                                    <th colspan="2">100厘米气温</th>
+                                    <th>降水量</th>
+                                    <th colspan="8">未来最大风速</th>
+                                    <th colspan="3">未来云量</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>白天最高值</td>
+                                    <td>夜间最低值</td>
+                                    <td>未来08-08时</td>
+                                    <td>11时</td>
+                                    <td>14时</td>
+                                    <td>17时</td>
+                                    <td>20时</td>
+                                    <td>23时</td>
+                                    <td>02时</td>
+                                    <td>05时</td>
+                                    <td>08时</td>
+                                    <td>08-24时</td>
+                                    <td>24-48时</td>
+                                    <td>48-72时</td>
+                                </tr>
+                                <tr>
+                                    <td><?php echo ($res[0]['tg']); ?></td>
+                                    <td><?php echo ($res[0]['td']); ?></td>
+                                    <td><?php echo ($res[0]['js']); ?></td>
+                                    <td><?php echo ($res[0]['btfs1']); ?></td>
+                                    <td><?php echo ($res[0]['btfs2']); ?></td>
+                                    <td><?php echo ($res[0]['btfs3']); ?></td>
+                                    <td><?php echo ($res[0]['btfs4']); ?></td>
+                                    <td><?php echo ($res[0]['btfs5']); ?></td>
+                                    <td><?php echo ($res[0]['btfs6']); ?></td>
+                                    <td><?php echo ($res[0]['btfs7']); ?></td>
+                                    <td><?php echo ($res[0]['btfs8']); ?></td>
+                                    <td><?php echo ($res[0]['yl24']); ?></td>
+                                    <td><?php echo ($res[0]['yl48']); ?></td>
+                                    <td><?php echo ($res[0]['yl72']); ?></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <p class="news__category"><?php echo ($now); ?> <?php echo ($station[0]); ?>--<?php echo ($station[1]); ?> 结构温室作物冻害预报预警信息</p>
+
                             <table class="table table-striped table-hover table-bordered">
                                 <thead>
                                 <tr>

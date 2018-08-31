@@ -380,25 +380,24 @@ class DataService {
         $standarModel = M('standar');
 //        $dataModel = D('Tabtimedata');
         $result = [];
-
-        $sql = sprintf("SELECT [TA_CD] FROM [tabtimedata] where [id] = '%s' and [time] = '%s:00:00.000'", $station, $date);
+//print_r($date);die;
+        $sql = sprintf("SELECT [TA_CD] FROM [tabtimedata] where [id] = '%s' and [time] = '%s:00.000'", $station, $date);
         $Model = new \Think\Model(); // 实例化一个model对象 没有对应任何数据表
         $res = $Model->query($sql);
         $airnum = $res[0]['ta_cd'] / 10;
 
-
-        $sql = sprintf("SELECT [RH_C] FROM [tabtimedata] where [id] = '%s' and [time] = '%s:00:00.000'", $station, $date);
+        $sql = sprintf("SELECT [RH_C] FROM [tabtimedata] where [id] = '%s' and [time] = '%s:00.000'", $station, $date);
         $Model = new \Think\Model(); // 实例化一个model对象 没有对应任何数据表
         $res = $Model->query($sql);
         $airwetnum = round($res[0]['rh_c']);
 
-        $sql = sprintf("SELECT [TS_M] FROM [tabtimedata] where [id] = '%s' and [time] = '%s:00:00.000'", $station, $date);
+        $sql = sprintf("SELECT [TS_M] FROM [tabtimedata] where [id] = '%s' and [time] = '%s:00.000'", $station, $date);
         $Model = new \Think\Model(); // 实例化一个model对象 没有对应任何数据表
         $res = $Model->query($sql);
         $landnum = $res[0]['ts_m'] / 10;
 
 
-        $sql = sprintf("SELECT [SH_M] FROM [tabtimedata] where [id] = '%s' and [time] = '%s:00:00.000'", $station, $date);
+        $sql = sprintf("SELECT [SH_M] FROM [tabtimedata] where [id] = '%s' and [time] = '%s:00.000'", $station, $date);
         $Model = new \Think\Model(); // 实例化一个model对象 没有对应任何数据表
         $res = $Model->query($sql);
         $landwetnum = $res[0]['sh_m'];
@@ -407,7 +406,7 @@ class DataService {
 
 
 
-        $sql = sprintf("SELECT [R_U] FROM [tabtimedata] where [id] = '%s' and [time] = '%s:00:00.000'", $station, $date);
+        $sql = sprintf("SELECT [R_U] FROM [tabtimedata] where [id] = '%s' and [time] = '%s:00.000'", $station, $date);
         $Model = new \Think\Model(); // 实例化一个model对象 没有对应任何数据表
         $res = $Model->query($sql);
         $sunnum = $res[0]['r_u'];
@@ -429,7 +428,7 @@ class DataService {
                 array_push($result, $metadata);
             }
         }
-
+//        print_r($result);die;
 
         if ($airnum) {
 
@@ -442,9 +441,16 @@ class DataService {
 
                     $temp = $standarModel->where(['PLANTID' => $pid, 'FYQID' => $key, 'STYPE' => 'TA_CD'])->select();
                     foreach ($temp as $index => $sdata) {
-                        if ($airnum > $sdata['t50d'] && $airnum < $sdata['t50u']) {
+                        if ($airnum > (float)$sdata['t50d'] && $airnum < (float)$sdata['t50u']) {
 //                       print_r($sdata['t50dis']);
-                            $tm = $sdata['t50dis'];
+                            $tt = '';
+//                            var_dump($airnum, (float)$sdata['t50d']);die;
+                            if ($sdata['t50dis'] == '偏高') {
+                                $tt = $airnum - (float)$sdata['t50d'];
+                            } elseif($sdata['t50dis'] == '偏低') {
+                                $tt = (float)$sdata['t50u'] - $airnum;
+                            }
+                            $tm = $sdata['t50dis'] . " ".$tt;
                             array_push($airtemp, $tm);
                         }
                     }
@@ -468,9 +474,16 @@ class DataService {
 
                     $temp = $standarModel->where(['PLANTID' => $pid, 'FYQID' => $key, 'STYPE' => 'RH_C'])->select();
                     foreach ($temp as $index => $sdata) {
-                        if ($airwetnum > $sdata['t50d'] && $airwetnum < $sdata['t50u']) {
+                        if ($airwetnum > (float)$sdata['t50d'] && $airwetnum < (float)$sdata['t50u']) {
 //                       print_r($sdata['t50dis']);
-                            $wet = $sdata['t50dis'];
+                            $tt = '';
+//                            var_dump($airnum, (float)$sdata['t50d']);die;
+                            if ($sdata['t50dis'] == '偏高') {
+                                $tt = $airwetnum - (float)$sdata['t50d'];
+                            } elseif($sdata['t50dis'] == '偏低') {
+                                $tt = (float)$sdata['t50u'] - $airwetnum;
+                            }
+                            $wet = $sdata['t50dis'] . " ".$tt;
                             array_push($awettemp, $wet);
                         }
                     }
@@ -494,9 +507,16 @@ class DataService {
 
                     $temp = $standarModel->where(['PLANTID' => $pid, 'FYQID' => $key, 'STYPE' => 'TS_M'])->select();
                     foreach ($temp as $index => $sdata) {
-                        if ($landnum > $sdata['t50d'] && $landnum < $sdata['t50u']) {
+                        if ($landnum > (float)$sdata['t50d'] && $landnum < (float)$sdata['t50u']) {
 //                       print_r($sdata['t50dis']);
-                            $land = $sdata['t50dis'];
+                            $tt = '';
+//                            var_dump($airnum, (float)$sdata['t50d']);die;
+                            if ($sdata['t50dis'] == '偏高') {
+                                $tt = $landnum - (float)$sdata['t50d'];
+                            } elseif($sdata['t50dis'] == '偏低') {
+                                $tt = (float)$sdata['t50u'] - $landnum;
+                            }
+                            $land = $sdata['t50dis'] . " ".$tt;
                             array_push($landtemp, $land);
                         }
                     }
@@ -520,9 +540,16 @@ class DataService {
 
                     $temp = $standarModel->where(['PLANTID' => $pid, 'FYQID' => $key, 'STYPE' => 'SH_M'])->select();
                     foreach ($temp as $index => $sdata) {
-                        if ($landwetnum > $sdata['t50d'] && $landwetnum < $sdata['t50u']) {
+                        if ($landwetnum > (float)$sdata['t50d'] && $landwetnum < (float)$sdata['t50u']) {
 //                       print_r($sdata['t50dis']);
-                            $landwet = $sdata['t50dis'];
+                            $tt = '';
+//                            var_dump($airnum, (float)$sdata['t50d']);die;
+                            if ($sdata['t50dis'] == '偏高') {
+                                $tt = $landwetnum - (float)$sdata['t50d'];
+                            } elseif($sdata['t50dis'] == '偏低') {
+                                $tt = (float)$sdata['t50u'] - $landwetnum;
+                            }
+                            $landwet = $sdata['t50dis'] . " ".$tt;
                             array_push($landwettemp, $landwet);
                         }
                     }
@@ -546,9 +573,16 @@ class DataService {
 
                     $temp = $standarModel->where(['PLANTID' => $pid, 'FYQID' => $key, 'STYPE' => 'R_U'])->select();
                     foreach ($temp as $index => $sdata) {
-                        if ($sunnum > $sdata['t50d'] && $sunnum < $sdata['t50u']) {
+                        if ($sunnum > (float)$sdata['t50d'] && $sunnum < (float)$sdata['t50u']) {
 //                       print_r($sdata['t50dis']);
-                            $sun = $sdata['t50dis'];
+                            $tt = '';
+//                            var_dump($airnum, (float)$sdata['t50d']);die;
+                            if ($sdata['t50dis'] == '偏高') {
+                                $tt = $sunnum - (float)$sdata['t50d'];
+                            } elseif($sdata['t50dis'] == '偏低') {
+                                $tt = (float)$sdata['t50u'] - $sunnum;
+                            }
+                            $sun = $sdata['t50dis'] . " ".$tt;
                             array_push($suntemp, $sun);
                         }
                     }
@@ -580,24 +614,24 @@ class DataService {
 //        $dataModel = D('Tabtimedata');
         $result = [];
 
-        $sql = sprintf("SELECT [TA_CD] FROM [tabtimedata] where [id] = '%s' and [time] = '%s:00:00.000'", $station, $date);
+        $sql = sprintf("SELECT [TA_CD] FROM [tabtimedata] where [id] = '%s' and [time] = '%s:00.000'", $station, $date);
         $Model = new \Think\Model(); // 实例化一个model对象 没有对应任何数据表
         $res = $Model->query($sql);
         $airnum = $res[0]['ta_cd'] / 10;
 
 
-        $sql = sprintf("SELECT [RH_C] FROM [tabtimedata] where [id] = '%s' and [time] = '%s:00:00.000'", $station, $date);
+        $sql = sprintf("SELECT [RH_C] FROM [tabtimedata] where [id] = '%s' and [time] = '%s:00.000'", $station, $date);
         $Model = new \Think\Model(); // 实例化一个model对象 没有对应任何数据表
         $res = $Model->query($sql);
         $airwetnum = round($res[0]['rh_c']);
 
-        $sql = sprintf("SELECT [TS_M] FROM [tabtimedata] where [id] = '%s' and [time] = '%s:00:00.000'", $station, $date);
+        $sql = sprintf("SELECT [TS_M] FROM [tabtimedata] where [id] = '%s' and [time] = '%s:00.000'", $station, $date);
         $Model = new \Think\Model(); // 实例化一个model对象 没有对应任何数据表
         $res = $Model->query($sql);
         $landnum = $res[0]['ts_m'] / 10;
 
 
-        $sql = sprintf("SELECT [SH_M] FROM [tabtimedata] where [id] = '%s' and [time] = '%s:00:00.000'", $station, $date);
+        $sql = sprintf("SELECT [SH_M] FROM [tabtimedata] where [id] = '%s' and [time] = '%s:00.000'", $station, $date);
         $Model = new \Think\Model(); // 实例化一个model对象 没有对应任何数据表
         $res = $Model->query($sql);
         $landwetnum = $res[0]['sh_m'];
@@ -606,7 +640,7 @@ class DataService {
 
 
 
-        $sql = sprintf("SELECT [R_U] FROM [tabtimedata] where [id] = '%s' and [time] = '%s:00:00.000'", $station, $date);
+        $sql = sprintf("SELECT [R_U] FROM [tabtimedata] where [id] = '%s' and [time] = '%s:00.000'", $station, $date);
         $Model = new \Think\Model(); // 实例化一个model对象 没有对应任何数据表
         $res = $Model->query($sql);
         $sunnum = $res[0]['r_u'];
@@ -1383,9 +1417,6 @@ class DataService {
     public static function weather_rp($station, $time) {
 //        print_r($time);die;
 
-        $model = D('Weather_forecast');
-        $res = $model->where(['stationID' => $station, 'qbsj' => $time])->field("maxT24,minT24,nWeather24,maxT48,minT48,nWeather48,maxT72,minT72,nWeather72")->select();
-        $res = json_encode($res);
 //        print_r($res);die;
         $tmp = [];
         $day1 = date("Y-m-d",(strtotime($time) - 3600*168));
@@ -1521,6 +1552,30 @@ class DataService {
         array_push($tmp, $f);
 //        print_r($Model->getLastSql());
 //        echo number_format((float)$for1[0][NULL]/10,2);
+
+//        print_r(json_encode($tmp));die;
+        return $tmp;
+    }
+
+
+    public static function weather_rpt($station, $time)
+    {
+//        print_r($time);print_r($station);die;
+
+        $model = D('Weather_forecast');
+        $res = $model->where(['stationID' => $station, 'qbsj' => $time])->field("maxT24,minT24,nWeather24,maxT48,minT48,nWeather48,maxT72,minT72,nWeather72")->select();
+//        $res = json_encode($res);
+
+//        print_r($model->getLastSql());die;
+        $tmp = [];
+
+        $str = explode(" ", $time);
+        $day8 = $str[0];
+//        $day8 = "2018-07-12";
+        $day9 = date("Y-m-d", (strtotime($time) + 3600 * 24));
+
+//        $day9 = date("Y-m-d", strtotime("+1 day"));
+        $day10 = date("Y-m-d", (strtotime($time) + 3600 * 48));
         $t = [];
         $t['time'] = $day8; $t['max'] = $res[0]['maxt24']; $t['min'] = $res[0]['mint24'];
         array_push($tmp, $t);
@@ -1530,7 +1585,6 @@ class DataService {
 
         $t['time'] = $day10; $t['max'] = $res[0]['maxt72']; $t['min'] = $res[0]['mint72'];
         array_push($tmp, $t);
-//        print_r(json_encode($tmp));die;
         return $tmp;
     }
 
@@ -1543,12 +1597,12 @@ class DataService {
     {
         $model = D('Weather_forecast');
         $m = M('wtype');
-        $res = $model->where(['stationID' => $station, 'qbsj' => $time])->field("maxT24,minT24,nWeather24,maxT48,minT48,nWeather48,maxT72,minT72,nWeather72")->select();
+        $res = $model->where(['stationID' => $station, 'qbsj' => $time])->field("nWeather24,maxT48,minT48,nWeather48,maxT72,minT72,nWeather72")->select();
 //        $res = json_encode($res);
         $tmp = [];
-        $s24 = $m->where(['code' => $res[0]['nweather24']])->field('icon')->select();
-        $s48 = $m->where(['code' => $res[0]['nweather48']])->field('icon')->select();
-        $s72 = $m->where(['code' => $res[0]['nweather72']])->field('icon')->select();
+        $s24 = $m->where(['code' => $res[0]['nweather24']])->field('winfor,icon')->select();
+        $s48 = $m->where(['code' => $res[0]['nweather48']])->field('winfor,icon')->select();
+        $s72 = $m->where(['code' => $res[0]['nweather72']])->field('winfor,icon')->select();
 
 
         $day8 = date("Y-m-d");
@@ -1558,12 +1612,16 @@ class DataService {
         $t = [];
         $t['time'] = $day8;
         $t['icon'] = $s24[0]['icon'];
+        $t['st'] = $s24[0]['winfor'];
         array_push($tmp, $t);
 
         $t['time'] = $day9;
         $t['icon'] = $s48[0]['icon'];
+        $t['st'] = $s48[0]['winfor'];
+
         array_push($tmp, $t);
         $t['time'] = $day10;
+        $t['st'] = $s72[0]['winfor'];
         $t['icon'] = $s72[0]['icon'];
         array_push($tmp, $t);
 //        print_r($tmp);die;
@@ -1816,5 +1874,11 @@ class DataService {
         $res = $Model->query($sql);
         $airwetnum = $res[0]['co2_u'];
         return $airwetnum;
+    }
+    public static function NewFeature($tm, $station)
+    {
+        $model = D('Ssnydpyb');
+        $res = $model->where(['station' => $station, 'time' => $tm])->select();
+        return $res;
     }
 }

@@ -25,7 +25,7 @@
     <script src="/Public/assets/js/html5shiv.min.js"></script>
     <script src="/Public/assets/js/respond.min.js"></script>
     <![endif]-->
-    <title>包头市现代智慧农业服务系统</title>
+    <title>包头市智慧农业气象服务系统</title>
 </head>
 <body>
             <!-- Header -->
@@ -41,7 +41,7 @@
                         <div class="row">
                             <div class="col-sm-7">
                                 <div class="wrap-logo">
-                                    <a class="ptitle" href="/">包头市现代智慧农业服务系统</a>
+                                    <a class="ptitle" href="/">包头市智慧农业气象服务系统</a>
                                 </div>
                             </div>
                             <div class="col-sm-2">
@@ -165,6 +165,10 @@
                                     </li>
                                     <li>
                                         <span class="wsmenu-click"></span>
+                                        <a href="/livedisaster">灾害性天气实况报警</a>
+                                    </li>
+                                    <li>
+                                        <span class="wsmenu-click"></span>
                                         <a href="/accont">数据统计</a>
                                     </li>
                                     <!-- <li>
@@ -225,17 +229,20 @@
                                         <input type="hidden" id="dtp_input2" value="<?php echo ($now2); ?>" name="sdate2"/>
                                         <br/>
                                     </div>
-                                    <div class="form-group slwidth">
-                                        <select class="form-control" name="station">
-                                            <?php foreach ($stlist as $key => $v) { ?>
-                                            <?php if ($st == $v['id']) { ?>
-                                            <option value="<?php echo ($v['id']); ?>" selected><?php echo ($v['location']); ?>--<?php echo ($v['zdmc']); ?></option>
-                                            <?php } else { ?>
-                                            <option value="<?php echo ($v['id']); ?>"><?php echo ($v['location']); ?>--<?php echo ($v['zdmc']); ?></option>
-                                            <?php } ?>
-                                            <?php } ?>
-                                        </select>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="设施编号" aria-describedby="basic-addon1" name="station">
                                     </div>
+                                    <!--<div class="form-group slwidth">-->
+                                        <!--<select class="form-control" name="station">-->
+                                            <!--<?php foreach ($stlist as $key => $v) { ?>-->
+                                            <!--<?php if ($st == $v['id']) { ?>-->
+                                            <!--<option value="<?php echo ($v['id']); ?>" selected><?php echo ($v['location']); ?>--<?php echo ($v['zdmc']); ?></option>-->
+                                            <!--<?php } else { ?>-->
+                                            <!--<option value="<?php echo ($v['id']); ?>"><?php echo ($v['location']); ?>--<?php echo ($v['zdmc']); ?></option>-->
+                                            <!--<?php } ?>-->
+                                            <!--<?php } ?>-->
+                                        <!--</select>-->
+                                    <!--</div>-->
                                     <button id="btnsub" type="submit" class="btn btn-orange pull-right">刷新</button>
                                 </form>
                             </div>

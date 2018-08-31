@@ -25,7 +25,7 @@
     <script src="/Public/assets/js/html5shiv.min.js"></script>
     <script src="/Public/assets/js/respond.min.js"></script>
     <![endif]-->
-    <title>包头市现代智慧农业服务系统</title>
+    <title>包头市智慧农业气象服务系统</title>
 </head>
 <body>
             <!-- Header -->
@@ -41,7 +41,7 @@
                         <div class="row">
                             <div class="col-sm-7">
                                 <div class="wrap-logo">
-                                    <a class="ptitle" href="/">包头市现代智慧农业服务系统</a>
+                                    <a class="ptitle" href="/">包头市智慧农业气象服务系统</a>
                                 </div>
                             </div>
                             <div class="col-sm-2">
@@ -165,6 +165,10 @@
                                     </li>
                                     <li>
                                         <span class="wsmenu-click"></span>
+                                        <a href="/livedisaster">灾害性天气实况报警</a>
+                                    </li>
+                                    <li>
+                                        <span class="wsmenu-click"></span>
                                         <a href="/accont">数据统计</a>
                                     </li>
                                     <!-- <li>
@@ -213,6 +217,8 @@
                                     </div>
                                     <div class="form-group slwidth">
                                         <select class="form-control" name="station">
+                                            <option value=""></option>
+
                                             <?php foreach ($stlist as $key => $v) { ?>
                                             <option value="<?php echo ($v['id']); ?>"><?php echo ($v['location']); ?></option>
                                             <?php } ?>

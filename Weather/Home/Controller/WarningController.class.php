@@ -114,17 +114,29 @@ class WarningController extends CommonController {
         $d = '18';
         $st = I('get.station');//**
         $stlist = DataService::GetStation();
+        $stdt = DataService::GetStationDt();
+
+        $n = date("Y-m-d",strtotime("-1 day"));
+        $no = $n." "."00:00:00.000";
+
         if (IS_POST) {
             $nows = I("post.sdate1");
-            $st = I("post.station");
+            $st = I("post.satid");
             $now = $nows." "."00:00:00.000";
 
-//            print_r($now);print_r($st);die;
+//            print_r($nows);die;
+            $res = DataService::NewFeature($no, $st);
+
             $station = DataService::GetStationDt()[$st];
+//            print_r($station);die;
+
             $cold = DataService::Fwarning_cold($now, $st);
             $hot = DataService::Fwarning_hot($now, $st);
             $sun = DataService::Fwarning_sun($now, $st);
+
         } else {
+            $res = DataService::NewFeature($no, 'N0001');
+            $station = $stdt['N0001'];
             $cold = DataService::Fwarning_cold($now, "N0001");
             $hot = DataService::Fwarning_hot($now, 'N0001');
             $sun = DataService::Fwarning_sun($now, 'N0001');
@@ -142,14 +154,15 @@ class WarningController extends CommonController {
 //            $hot = DataService::Fwarning_hot($y, $m, $d, $station);
 //            $sun = DataService::Fwarning_sun($y, $m, $d, $station);
 //        }
-
+        $this->no = $n;
+        $this->res = $res;
         $this->stlist = $stlist;
         $this->cold = $cold;
         $this->hot = $hot;
         $this->sun = $sun;
         $this->station = $station;
         $this->st = $st;
-        $this->now = $now;
+        $this->now = $nows;
         $this->display();
 
     }
