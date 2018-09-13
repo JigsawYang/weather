@@ -169,7 +169,19 @@
                                     </li>
                                     <li>
                                         <span class="wsmenu-click"></span>
-                                        <a href="/accont">数据统计</a>
+                                        <a href="">农业气象服务信息
+                                            <span class="arrow"></span>
+                                        </a>
+                                        <ul class="wsmenu-submenu">
+                                            <li>
+                                                <a href="/nyservice">农业气象</a>
+                                            </li>
+                                            <li>
+                                                <a href="/nyservice/shengtai">生态气象</a>
+                                            </li>
+
+
+                                        </ul>
                                     </li>
                                     <!-- <li>
                                         <span class="wsmenu-click"></span>

@@ -14,7 +14,7 @@ class DataService {
 
     public static function Warning_cold($date, $station)
     {
-        $sql = sprintf("SELECT [TA_CD] FROM [tabtimedata] where [id] = '%s' and [time] = '%s:00:00.000'", $station, $date);
+        $sql = sprintf("SELECT [TA_CD] FROM [tabtimedata] where [id] = '%s' and [time] = '%s:00.000'", $station, $date);
         $Model = new \Think\Model(); // 实例化一个model对象 没有对应任何数据表
         $res = $Model->query($sql);
         $airnum = $res[0]['ta_cd'] / 10;
@@ -35,7 +35,7 @@ class DataService {
 
     public static function Warning_hot($date, $station)
     {
-        $sql = sprintf("SELECT [TA_CD] FROM [tabtimedata] where [id] = '%s' and [time] = '%s:00:00.000'", $station, $date);
+        $sql = sprintf("SELECT [TA_CD] FROM [tabtimedata] where [id] = '%s' and [time] = '%s:00.000'", $station, $date);
         $Model = new \Think\Model(); // 实例化一个model对象 没有对应任何数据表
         $res = $Model->query($sql);
         $airnum = $res[0]['ta_cd'] / 10;

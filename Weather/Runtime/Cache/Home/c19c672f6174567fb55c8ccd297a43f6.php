@@ -201,20 +201,20 @@
                         <div class="thumbnail__news news">
                             <div>
                                 <form action="/warning" class="form-inline" id="wtform" method="post">
-                                    <div class="form-group pick">
-                                        <label for="dtp_input2" class="col-md-1 control-label">日期</label>
+                                    <!--<div class="form-group pick">-->
+                                        <!--<label for="dtp_input2" class="col-md-1 control-label">日期</label>-->
 
-                                        <div class="input-group date form_date col-md-8" data-date=""
-                                             data-date-format="yyyy-mm-dd"
-                                             data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                                            <input class="form-control" size="16" type="text" value="<?php echo ($day); ?>" readonly>
-                                                    <span class="input-group-addon">
-                                                        <span class="glyphicon glyphicon-calendar"></span>
-                                                    </span>
-                                        </div>
-                                        <input type="hidden" id="dtp_input2" value="<?php echo ($day); ?>" name="sdate1"/>
-                                        <br/>
-                                    </div>
+                                        <!--<div class="input-group date form_date col-md-8" data-date=""-->
+                                             <!--data-date-format="yyyy-mm-dd"-->
+                                             <!--data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">-->
+                                            <!--<input class="form-control" size="16" type="text" value="<?php echo ($day); ?>" readonly>-->
+                                                    <!--<span class="input-group-addon">-->
+                                                        <!--<span class="glyphicon glyphicon-calendar"></span>-->
+                                                    <!--</span>-->
+                                        <!--</div>-->
+                                        <!--<input type="hidden" id="dtp_input2" value="<?php echo ($day); ?>" name="sdate1"/>-->
+                                        <!--<br/>-->
+                                    <!--</div>-->
                                     <div class="input-group">
                                         <input type="text" class="form-control" placeholder="设施编号" aria-describedby="basic-addon1" name="station">
                                     </div>
