@@ -1,7 +1,7 @@
 <?php
 $user_loginname=$_POST['user_loginname'];
 $password=$_POST['password'];
-header("Content-type:text/html; charset=utf-8");
+header("Content-type:text/html; charset=GB2312");
 
 include "../conn.php";
 $sql="update sp_member set password='{$password}' where username='{$user_loginname}'";

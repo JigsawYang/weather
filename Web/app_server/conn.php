@@ -1,6 +1,6 @@
 <?php
 error_reporting(E_ALL);
-$conInfo=array('Database'=>'zhny', 'UID'=>'sa', 'PWD'=>'sasa');
+$conInfo=array('Database'=>'zhny', 'UID'=>'sa', 'PWD'=>'SA123sa');
 $conn=sqlsrv_connect('localhost', $conInfo);
 /*判断连接成功与否：*/
 if( $conn == false )

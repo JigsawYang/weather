@@ -1,5 +1,5 @@
 <?php
-header("Content-type:text/html; charset=utf-8");
+header("Content-type:text/html; charset=GB2312");
 $user_loginname=$_POST['user_loginname'];
 $user_name=$_POST['user_name'];
 $password=$_POST['password'];
@@ -8,7 +8,7 @@ $user_email=$_POST['user_email'];
 
 include "conn.php";
 $sql="select * from sp_member where username='{$user_loginname}'";
-//$sql=iconv("utf-8", "gb2312",$sql);
+$sql=iconv("utf-8", "gb2312",$sql);
 $rs=sqlsrv_query($conn,$sql);
 if($row = sqlsrv_fetch_array($rs)) {
 	//用户登录名已经存在

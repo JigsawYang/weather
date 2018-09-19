@@ -97,7 +97,7 @@
 
                                     <li class="active">
                                         <span class="wsmenu-click"></span>
-                                        <a href="">实况数据
+                                        <a href="/livedata">实况数据
                                             <span class="arrow"></span>
                                         </a>
                                         <ul class="wsmenu-submenu">

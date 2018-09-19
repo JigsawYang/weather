@@ -462,7 +462,7 @@
                         </div>
                         <div class="col-md-1">
                             <div>
-        <img src="/Public/assets/images/11.gif" alt="二维码">
+        <img src="/Public/assets/images/11.png" alt="二维码">
         <p id="qrcode-center" style="margin-left:13px;">扫描安卓APP下载</p>
     </div>
                         </div>

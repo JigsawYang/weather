@@ -2,7 +2,7 @@
 //种植科普
 $user_id=$_POST['user_id'];
 $id=$_POST['id'];
-header("Content-type:text/json; charset=utf-8");
+header("Content-type:text/json; charset=GB2312");
 function arrayRecursive(&$array, $function, $apply_to_keys_also = false){
 	static $recursive_counter = 0;
 	if (++$recursive_counter > 1000) {

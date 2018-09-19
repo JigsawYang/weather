@@ -1,5 +1,5 @@
 <?php
-header("Content-type:text/json; charset=utf-8");
+header("Content-type:text/json; charset=GB2312");
 $zd_id=$_POST['zd_id'];
 function arrayRecursive(&$array, $function, $apply_to_keys_also = false){
 	static $recursive_counter = 0;

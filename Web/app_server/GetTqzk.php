@@ -44,17 +44,17 @@ if($zd = sqlsrv_fetch_array($rs,SQLSRV_FETCH_ASSOC)) {
 	$zdcode=$zd['zd_code'];
 	$sql="select top 1 (bc/10) as bc,'晴天' as tkzk,convert(varchar(10),bd)+'%' as bd,dbo.GetFsGrade(af)+' '+dbo.GetFW(ae)+'风' as fsfx,'no.png' as bj_icon from H{$zdcode} order by tt desc";
 	//$sql=iconv("utf-8", "utf-8",$sql);
-	echo $sql;
-	die();
+	// echo $sql;
+	// die();
 	$rs1=sqlsrv_query($conn,$sql);
 	if($qx = sqlsrv_fetch_array($rs1,SQLSRV_FETCH_ASSOC)) {
 		$arr[0]=$qx;
 		//获取实况天气警报图标
-		echo $zdcode;
-		die();
+		// echo $zdcode;
+		// die();
 		$sql="select top 1 yj_tq_name,yj_tq_grade from t_yj where yj_zd_code='{$zdcode}' order by yj_tt desc";
-		echo $sql;
-		die();
+		// echo $sql;
+		// die();
 		$rs2=sqlsrv_query($conn,$sql);
 		if($bj = sqlsrv_fetch_array($rs2,SQLSRV_FETCH_ASSOC)) {
 			//获取报警天气图标文件名称

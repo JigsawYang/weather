@@ -1,5 +1,5 @@
 <?php
-header("Content-type:text/json; charset=utf-8");
+header("Content-type:text/json; charset=GB2312");
 $pageNo=isset($_POST['pageNo'])?$_POST['pageNo']:1;
 $pSize=isset($_POST['pageSize'])?$_POST['pageSize']:10;
 $title_info=isset($_POST['title_info'])?$_POST['title_info']:'';

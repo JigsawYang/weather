@@ -3,10 +3,10 @@ $user_loginname=$_POST['user_loginname'];
 $user_token=$_POST['user_token'];
 //$user_name='user';
 //$user_token='f8e17c6ba06fa7e81000c6fed5209783';
-header("Content-type:text/html; charset=utf-8");
+header("Content-type:text/html; charset=GB2312");
 
 include "conn.php";
-//$user_loginname=iconv("utf-8", "gb2312",$user_loginname);
+$user_loginname=iconv("utf-8", "gb2312",$user_loginname);
 $sql="select * from sp_member where username='{$user_loginname}'";
 $rs=sqlsrv_query($conn,$sql);
 if($row = sqlsrv_fetch_array($rs)) {

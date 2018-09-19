@@ -1,7 +1,7 @@
 <?php
 $user_id=$_POST['user_id'];
 $id=$_POST['id'];
-header("Content-type:text/html; charset=utf-8");
+header("Content-type:text/html; charset=GB2312");
 include "conn.php";
 if($id>0){
 	//设置用户消息表为已读状态
