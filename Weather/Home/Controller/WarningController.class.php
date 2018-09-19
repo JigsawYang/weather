@@ -26,16 +26,16 @@ class WarningController extends CommonController {
         if (date('H') > 20) {
             $now1 = date('Y-m-d');
             $yesterday1 = date("Y-m-d",strtotime("-1 day"));
-            $now1 = '2015-06-01';
-            $yesterday1 = '2015-05-31';
+           // $now1 = '2015-06-01';
+            //$yesterday1 = '2015-05-31';
         } else {
             $now1 = date("Y-m-d",strtotime("-1 day"));
             $yesterday1 = date("Y-m-d",strtotime("-2 day"));
-            $now1 = '2015-06-01';
-            $yesterday1 = '2015-05-31';
+            //$now1 = '2015-06-01';
+            //$yesterday1 = '2015-05-31';
         }
-         $now = '2015-06-01 09:20';
-         $day = '2015-06-01';
+         //$now = '2015-06-01 09:20';
+         //$day = '2015-06-01';
         $stlist = DataService::GetStation();
         if (IS_POST) {
 //            $now = I("post.sdate1");
@@ -116,15 +116,15 @@ class WarningController extends CommonController {
         if (date('H') > 20) {
             $now1 = date('Y-m-d');
             $yesterday1 = date("Y-m-d",strtotime("-1 day"));
-            $now1 = '2015-06-01';
-            $yesterday1 = '2015-05-31';
+            //$now1 = '2015-06-01';
+            //$yesterday1 = '2015-05-31';
         } else {
             $now1 = date("Y-m-d",strtotime("-1 day"));
             $yesterday1 = date("Y-m-d",strtotime("-2 day"));
-            $now1 = '2015-06-01';
-            $yesterday1 = '2015-05-31';
+            //$now1 = '2015-06-01';
+           // $yesterday1 = '2015-05-31';
         }
-        $now = '2015-06-01 09:20';
+       // $now = '2015-06-01 09:20';
         if (IS_POST) {
 //            $now = I("post.sdate1");
 //            $day = $now;
@@ -158,14 +158,14 @@ class WarningController extends CommonController {
         session("download", null);
         $nows = date("Y-m-d");
         $now = $nows." "."00:00:00.000";
-        $now = '2017-06-20 00:00:00.000'; //注释
+        //$now = '2017-06-20 00:00:00.000'; //注释
 
         $stlist = DataService::GetStation();
         $stdt = DataService::GetStationDt();
 
         $n = date("Y-m-d",strtotime("-1 day"));
         $no = $n." "."00:00:00.000";
-        $no ='2017-06-20 00:00:00.000'; //注释
+        //$no ='2017-06-20 00:00:00.000'; //注释
         if (IS_POST) {
 //            $nows = I("post.sdate1");
             $st = I("post.satid");
@@ -217,12 +217,12 @@ class WarningController extends CommonController {
     public function syujing() {
         $nows = date("Y-m-d");
         $now = $nows . " " . "00:00:00.000";
-        $now = '2017-06-20 00:00:00.000'; //注释
+       // $now = '2017-06-20 00:00:00.000'; //注释
 
 
         $n = date("Y-m-d", strtotime("-1 day"));
         $no = $n . " " . "00:00:00.000";
-        $no = '2017-06-20 00:00:00.000'; //注释
+       // $no = '2017-06-20 00:00:00.000'; //注释
         if (IS_POST) {
             $st = I("post.satid");
             $res = DataService::NewFeature($no, $st);

@@ -22,7 +22,7 @@ class RealassessmentController extends CommonController {
 
         $day = date('Y-m-d H:i');//实际上线时候 吧这个注释去掉
         $now = $day;
-        $now = '2015-06-01 09:10';
+        //$now = '2015-06-01 09:10';
         $st = I('get.station');
         if (!$st) {
             $res = DataService::TmpReport($now, 'N0001');

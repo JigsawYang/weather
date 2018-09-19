@@ -24,19 +24,19 @@ class LandWarningController extends CommonController
         if (date('H') > 20) {
             $now1 = date('Y-m-d');
             $yesterday1 = date("Y-m-d", strtotime("-1 day"));
-            $now1 = '2015-06-01';
-            $yesterday1 = '2015-05-31';
+            // $now1 = '2015-06-01';
+            // $yesterday1 = '2015-05-31';
         } else {
             $now1 = date("Y-m-d", strtotime("-1 day"));
             $yesterday1 = date("Y-m-d", strtotime("-2 day"));
-            $now1 = '2015-06-01';
-            $yesterday1 = '2015-05-31';
+            // $now1 = '2015-06-01';
+            // $yesterday1 = '2015-05-31';
         }
-        $now = '2017-04-21 06';
-        $day = '2015-06-01';
+        // $now = '2017-04-21 06';
+        // $day = '2015-06-01';
 //        $stlist = DataService::GetLandStation();
         $qulist = DataService::GetquStation();
-//        print_r($qulist);die;
+       // print_r($qulist);die;
         if (IS_POST) {
             $now = I("post.sdate1");
             $day = $now;

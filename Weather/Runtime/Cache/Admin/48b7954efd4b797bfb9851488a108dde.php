@@ -80,9 +80,10 @@
                     <a href='<?php echo U('/admin/members');?>'> <i class='icon-caret-right'></i> <span>后台</span></a>
                 </li>
             </ul>
+
             <!--</li>-->
             <li class="<?php echo 'datas'==$nav?'active':'';?>">
-                <a class='dropdown-collapse' href='#'> <i class='icon-shield'></i> <span>农业生产建议</span> <i
+                <a class='dropdown-collapse' href='#'> <i class='icon-shield'></i> <span>新闻资讯</span> <i
                         class='icon-angle-down angle-down'></i> </a>
                 <ul class='<?php echo ' advise
                 '==$nav?'in':'';?> nav nav-stacked'>
@@ -117,7 +118,7 @@
             <!--</li>-->
 
             <li class="<?php echo 'datas'==$nav?'active':'';?>">
-                <a class='dropdown-collapse' href='#'> <i class='icon-facebook'></i> <span>气象知识科普</span> <i
+                <a class='dropdown-collapse' href='#'> <i class='icon-facebook'></i> <span>科普知识</span> <i
                         class='icon-angle-down angle-down'></i> </a>
                 <ul class='<?php echo ' know
                 '==$nav?'in':'';?> nav nav-stacked'>
@@ -133,11 +134,15 @@
             <!--</li>-->
             </ul>
             </li>
-            <!--<li class="<?php echo 'home'==$nav?'active':'';?>">-->
-                <!--<a href='<?php echo U('/admin/news');?>'><i class='icon-leaf'></i><span>新闻</span></a>-->
-            <!--</li>-->
-
-            </ul></li></ul>
+            <li class="<?php echo 'home'==$nav?'active':'';?>">
+                <a href='<?php echo U('/admin/news');?>'><i class='icon-leaf'></i><span>首页图片</span></a>
+            </li>
+            <li class="<?php echo 'home'==$nav?'active':'';?>">
+                <a href='<?php echo U('/admin/disaster');?>'><i class='icon-asterisk'></i><span>灾情预警</span></a>
+            </li>
+            </ul>
+            </li>
+            </ul>
         </div>
     </nav>
 

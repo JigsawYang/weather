@@ -34,8 +34,8 @@ class AccontController extends CommonController {
             $now2 =  $y.'-'.$m.'-'."21";
         }
 
-        $now1 = '2015-05-20';
-        $now2 = '2015-05-31';
+        // $now1 = '2015-05-20';
+        // $now2 = '2015-05-31';
         // $st = I('get.station');
         $stlist = DataService::GetStation();
 

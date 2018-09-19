@@ -14,7 +14,7 @@ class DataService {
 
     public static function Warning_cold($date, $station)
     {
-        $sql = sprintf("SELECT [TA_CD] FROM [tabtimedata] where [id] = '%s' and [time] = '%s:00.000'", $station, $date);
+        $sql = sprintf("SELECT top 1 [TA_CD] FROM [tabtimedata] where [id] = '%s' ORDER by time desc", $station, $date);
         $Model = new \Think\Model(); // 实例化一个model对象 没有对应任何数据表
         $res = $Model->query($sql);
         $airnum = $res[0]['ta_cd'] / 10;
@@ -35,7 +35,7 @@ class DataService {
 
     public static function Warning_hot($date, $station)
     {
-        $sql = sprintf("SELECT [TA_CD] FROM [tabtimedata] where [id] = '%s' and [time] = '%s:00.000'", $station, $date);
+        $sql = sprintf("SELECT TOP 1 [TA_CD] FROM [tabtimedata] where [id] = '%s' ORDER by time desc", $station, $date);
         $Model = new \Think\Model(); // 实例化一个model对象 没有对应任何数据表
         $res = $Model->query($sql);
         $airnum = $res[0]['ta_cd'] / 10;
@@ -193,18 +193,18 @@ class DataService {
         $now = $day . ' ' . $hour;
 
         //上线注释
-        $now = '2015-06-01 09';
+        //$now = '2015-06-01 09';
 
         if (date('H') > 20) {
             $now1 = date('Y-m-d');
             $yesterday1 = date("Y-m-d", strtotime("-1 day"));
-            $now1 = '2015-06-01';
-            $yesterday1 = '2015-05-31';
+            //$now1 = '2015-06-01';
+            //$yesterday1 = '2015-05-31';
         } else {
             $now1 = date("Y-m-d", strtotime("-1 day"));
             $yesterday1 = date("Y-m-d", strtotime("-2 day"));
-            $now1 = '2015-06-01';
-            $yesterday1 = '2015-05-31';
+            //$now1 = '2015-06-01';
+            //$yesterday1 = '2015-05-31';
         }
         return ["now1" => $now1, "yesterday" => $yesterday1, "now" => $now];
     }
@@ -387,23 +387,23 @@ class DataService {
 //        $dataModel = D('Tabtimedata');
         $result = [];
 //print_r($date);die;
-        $sql = sprintf("SELECT [TA_CD] FROM [tabtimedata] where [id] = '%s' and [time] = '%s:00.000'", $station, $date);
+        $sql = sprintf("SELECT TOP 1 [TA_CD] FROM [tabtimedata] where [id] = '%s' ORDER by time desc", $station, $date);
         $Model = new \Think\Model(); // 实例化一个model对象 没有对应任何数据表
         $res = $Model->query($sql);
         $airnum = $res[0]['ta_cd'] / 10;
 
-        $sql = sprintf("SELECT [RH_C] FROM [tabtimedata] where [id] = '%s' and [time] = '%s:00.000'", $station, $date);
+        $sql = sprintf("SELECT TOP 1 [RH_C] FROM [tabtimedata] where [id] = '%s' ORDER by time desc", $station, $date);
         $Model = new \Think\Model(); // 实例化一个model对象 没有对应任何数据表
         $res = $Model->query($sql);
         $airwetnum = round($res[0]['rh_c']);
 
-        $sql = sprintf("SELECT [TS_M] FROM [tabtimedata] where [id] = '%s' and [time] = '%s:00.000'", $station, $date);
+        $sql = sprintf("SELECT TOP 1 [TS_M] FROM [tabtimedata] where [id] = '%s' ORDER by time desc", $station, $date);
         $Model = new \Think\Model(); // 实例化一个model对象 没有对应任何数据表
         $res = $Model->query($sql);
         $landnum = $res[0]['ts_m'] / 10;
 
 
-        $sql = sprintf("SELECT [SH_M] FROM [tabtimedata] where [id] = '%s' and [time] = '%s:00.000'", $station, $date);
+        $sql = sprintf("SELECT TOP 1 [SH_M] FROM [tabtimedata] where [id] = '%s' ORDER by time desc", $station, $date);
         $Model = new \Think\Model(); // 实例化一个model对象 没有对应任何数据表
         $res = $Model->query($sql);
         $landwetnum = $res[0]['sh_m'];
@@ -412,7 +412,7 @@ class DataService {
 
 
 
-        $sql = sprintf("SELECT [R_U] FROM [tabtimedata] where [id] = '%s' and [time] = '%s:00.000'", $station, $date);
+        $sql = sprintf("SELECT TOP 1 [R_U] FROM [tabtimedata] where [id] = '%s' ORDER by time desc", $station, $date);
         $Model = new \Think\Model(); // 实例化一个model对象 没有对应任何数据表
         $res = $Model->query($sql);
         $sunnum = $res[0]['r_u'];
@@ -620,24 +620,24 @@ class DataService {
 //        $dataModel = D('Tabtimedata');
         $result = [];
 
-        $sql = sprintf("SELECT [TA_CD] FROM [tabtimedata] where [id] = '%s' and [time] = '%s:00.000'", $station, $date);
+        $sql = sprintf("SELECT TOP 1 [TA_CD] FROM [tabtimedata] where [id] = '%s' ORDER by time desc", $station, $date);
         $Model = new \Think\Model(); // 实例化一个model对象 没有对应任何数据表
         $res = $Model->query($sql);
         $airnum = $res[0]['ta_cd'] / 10;
 
 
-        $sql = sprintf("SELECT [RH_C] FROM [tabtimedata] where [id] = '%s' and [time] = '%s:00.000'", $station, $date);
+        $sql = sprintf("SELECT top 1 [RH_C] FROM [tabtimedata] where [id] = '%s' ORDER by time desc", $station, $date);
         $Model = new \Think\Model(); // 实例化一个model对象 没有对应任何数据表
         $res = $Model->query($sql);
         $airwetnum = round($res[0]['rh_c']);
 
-        $sql = sprintf("SELECT [TS_M] FROM [tabtimedata] where [id] = '%s' and [time] = '%s:00.000'", $station, $date);
+        $sql = sprintf("SELECT TOP 1 [TS_M] FROM [tabtimedata] where [id] = '%s' ORDER by time desc", $station, $date);
         $Model = new \Think\Model(); // 实例化一个model对象 没有对应任何数据表
         $res = $Model->query($sql);
         $landnum = $res[0]['ts_m'] / 10;
 
 
-        $sql = sprintf("SELECT [SH_M] FROM [tabtimedata] where [id] = '%s' and [time] = '%s:00.000'", $station, $date);
+        $sql = sprintf("SELECT top 1 [SH_M] FROM [tabtimedata] where [id] = '%s' ORDER by time desc", $station, $date);
         $Model = new \Think\Model(); // 实例化一个model对象 没有对应任何数据表
         $res = $Model->query($sql);
         $landwetnum = $res[0]['sh_m'];
@@ -646,7 +646,7 @@ class DataService {
 
 
 
-        $sql = sprintf("SELECT [R_U] FROM [tabtimedata] where [id] = '%s' and [time] = '%s:00.000'", $station, $date);
+        $sql = sprintf("SELECT TOP 1 [R_U] FROM [tabtimedata] where [id] = '%s' ORDER by time desc", $station, $date);
         $Model = new \Think\Model(); // 实例化一个model对象 没有对应任何数据表
         $res = $Model->query($sql);
         $sunnum = $res[0]['r_u'];
@@ -885,7 +885,8 @@ class DataService {
 
     public static function getxianid($id) {
         $model = D('Tzd');
-        $res = $model->field('zd_code,zd_name')->where("zd_xzqh_id='%s' and zd_ys >1", $id)->select();
+        $res = $model->field('zd_code,zd_name')->where("zd_xzqh_id='%s' and zd_ys >=6", $id)->select();
+        // print_r($res);die;
         return $res;
     }
 
@@ -1066,7 +1067,7 @@ class DataService {
     static function exportData($sdate, $edate, $station)
     {
         $sql = sprintf("SELECT [time], [TA_CU], [TA_CD], [RH_C], [TS_U], [TS_M], [TS_D], [SH_U], [SH_M], [SH_D], [R_U], [PAR_U], [CO2_U]  FROM [tabtimedata] where [id] = '%s' and [time] between '%s 00:00:00.000' and '%s 23:50:00.000' AND DATEPART(MINUTE,[time])=0 AND DATEPART(SECOND,[time])=0", $station, $sdate, $edate);
-        $conInfo = array('Database' => 'nqdb-new', 'UID' => 'sa', 'PWD' => '2103189');
+        $conInfo = array('Database' => 'zhny', 'UID' => 'sa', 'PWD' => 'SA123sa');
 
         $conn = sqlsrv_connect('localhost', $conInfo);
         if ($conn == false) {
@@ -1168,7 +1169,7 @@ class DataService {
 
     public static function Landwarning_cold($date, $station)
     {
-        $sql = sprintf("SELECT [BC] FROM [nqdb-new].[dbo].[H".$station."] where [TT] = '%s:00:00.000'", $date);
+        $sql = sprintf("SELECT [BC] FROM [H".$station."] where [TT] = '%s:00:00.000'", $date);
         $Model = new \Think\Model(); // 实例化一个model对象 没有对应任何数据表
         $res = $Model->query($sql);
         $airnum = $res[0]['BC'] / 10;
@@ -1190,7 +1191,7 @@ class DataService {
 
     public static function Landwarning_ice($date, $station)
     {
-        $sql = sprintf("SELECT [BC] FROM [nqdb-new].[dbo].[H".$station."] where [TT] = '%s:00:00.000'", $date);
+        $sql = sprintf("SELECT [BC] FROM [H".$station."] where [TT] = '%s:00:00.000'", $date);
         $Model = new \Think\Model(); // 实例化一个model对象 没有对应任何数据表
         $res = $Model->query($sql);
         $airnum = $res[0]['BC'] / 10;
@@ -1212,7 +1213,7 @@ class DataService {
 
     public static function Landwarning_hot($date, $station)
     {
-        $sql = sprintf("SELECT [BC] FROM [nqdb-new].[dbo].[H".$station."] where [TT] = '%s:00:00.000'", $date);
+        $sql = sprintf("SELECT [BC] FROM [H".$station."] where [TT] = '%s:00:00.000'", $date);
         $Model = new \Think\Model(); // 实例化一个model对象 没有对应任何数据表
         $res = $Model->query($sql);
         $airnum = $res[0]['BC'] / 10;
@@ -1295,7 +1296,7 @@ class DataService {
 
     public static function Treewarning_cold($date, $station)
     {
-        $sql = sprintf("SELECT [BC] FROM [nqdb-new].[dbo].[H".$station."] where [TT] = '%s:00:00.000'", $date);
+        $sql = sprintf("SELECT [BC] FROM [H".$station."] where [TT] = '%s:00:00.000'", $date);
         $Model = new \Think\Model(); // 实例化一个model对象 没有对应任何数据表
         $res = $Model->query($sql);
         $airnum = $res[0]['BC'] / 10;
@@ -1317,7 +1318,7 @@ class DataService {
 
     public static function Treewarning_ice($date, $station)
     {
-        $sql = sprintf("SELECT [BC] FROM [nqdb-new].[dbo].[H".$station."] where [TT] = '%s:00:00.000'", $date);
+        $sql = sprintf("SELECT [BC] FROM [H".$station."] where [TT] = '%s:00:00.000'", $date);
         $Model = new \Think\Model(); // 实例化一个model对象 没有对应任何数据表
         $res = $Model->query($sql);
         $airnum = $res[0]['BC'] / 10;
@@ -1339,7 +1340,7 @@ class DataService {
 
     public static function Treewarning_hot($date, $station)
     {
-        $sql = sprintf("SELECT [BC] FROM [nqdb-new].[dbo].[H".$station."] where [TT] = '%s:00:00.000'", $date);
+        $sql = sprintf("SELECT [BC] FROM [H".$station."] where [TT] = '%s:00:00.000'", $date);
         $Model = new \Think\Model(); // 实例化一个model对象 没有对应任何数据表
         $res = $Model->query($sql);
         $airnum = $res[0]['BC'] / 10;
@@ -1431,36 +1432,37 @@ class DataService {
 
 //        print_r($res);die;
         $tmp = [];
-        $day1 = date("Y-m-d",(strtotime($time) - 3600*168));
+        // $day1 = date("Y-m-d",(strtotime($time) - 3600*168));
 //        $day1 = date("Y-m-d", strtotime("-7 day"));
-        $day2 = date("Y-m-d",(strtotime($time) - 3600*144));
+        $day1 = date("Y-m-d",(strtotime($time) - 3600*144));
 //        $day2 = date("Y-m-d", strtotime("-6 day"));
-        $day3 = date("Y-m-d",(strtotime($time) - 3600*120));
+        $day2 = date("Y-m-d",(strtotime($time) - 3600*120));
 //        $day3 = date("Y-m-d", strtotime("-5 day"));
-        $day4 = date("Y-m-d",(strtotime($time) - 3600*96));
+        $day3 = date("Y-m-d",(strtotime($time) - 3600*96));
 //        $day4 = date("Y-m-d", strtotime("-4 day"));
-        $day5 = date("Y-m-d",(strtotime($time) - 3600*72));
+        $day4 = date("Y-m-d",(strtotime($time) - 3600*72));
 //        $day5 = date("Y-m-d", strtotime("-3 day"));
-        $day6 = date("Y-m-d",(strtotime($time) - 3600*48));
+        $day5 = date("Y-m-d",(strtotime($time) - 3600*48));
 //        $day6 = date("Y-m-d", strtotime("-2 day"));
-        $day7 = date("Y-m-d",(strtotime($time) - 3600*24));
+        $day6 = date("Y-m-d",(strtotime($time) - 3600*24));
 //        $day7 = date("Y-m-d", strtotime("-1 day"));
-
-        $day8 = $time;
-        $day9 = date("Y-m-d",(strtotime($time) + 3600*24));
+        $day7 = $time;
+        // print_r($day7);die;
+        // $day8 = $time;
+        // $day9 = date("Y-m-d",(strtotime($time) + 3600*24));
 
 //        $day9 = date("Y-m-d", strtotime("+1 day"));
-        $day10 = date("Y-m-d",(strtotime($time) + 3600*48));
+        // $day10 = date("Y-m-d",(strtotime($time) + 3600*48));
 
 //        $day10 = date("Y-m-d", strtotime("+2 day"));
-
-        $day1 = "2015-06-24";
-        $day2 = "2015-06-25";
-        $day3 = "2015-06-26";
-        $day4 = "2015-06-27";
-        $day5 = "2015-06-28";
-        $day6 = "2015-06-29";
-        $day7 = "2015-06-30";
+// print_r($day1);die;
+        //$day1 = "2015-06-24";
+       // $day2 = "2015-06-25";
+       // $day3 = "2015-06-26";
+      //  $day4 = "2015-06-27";
+       // $day5 = "2015-06-28";
+       // $day6 = "2015-06-29";
+       // $day7 = "2015-06-30";
 
 
         $sql1a = sprintf("select min(BC) from H".$station." WHERE TT between '".$day1." 01:00:00.000 '"." AND '".$day1." 23:00:00.000' ");
@@ -1572,13 +1574,13 @@ class DataService {
 
     public static function weather_rpt($station, $time)
     {
-//        print_r($time);print_r($station);die;
+       // print_r($time);print_r($station);die;
 
         $model = D('Weather_forecast');
-        $res = $model->where(['stationID' => $station, 'qbsj' => $time])->field("maxT24,minT24,nWeather24,maxT48,minT48,nWeather48,maxT72,minT72,nWeather72")->select();
+        $res = $model->where(['stationID' => $station])->field("qbsj, maxT24,minT24,nWeather24,maxT48,minT48,nWeather48,maxT72,minT72,nWeather72")->order('qbsj desc')->limit(1)->select();
 //        $res = json_encode($res);
-
-//        print_r($model->getLastSql());die;
+// print_r($res);die;
+       // print_r($model->getLastSql());die;
         $tmp = [];
 
         $str = explode(" ", $time);
@@ -1609,7 +1611,7 @@ class DataService {
     {
         $model = D('Weather_forecast');
         $m = M('wtype');
-        $res = $model->where(['stationID' => $station, 'qbsj' => $time])->field("nWeather24,maxT48,minT48,nWeather48,maxT72,minT72,nWeather72")->select();
+        $res = $model->where(['stationID' => $station])->field("qbsj,nWeather24,maxT48,minT48,nWeather48,maxT72,minT72,nWeather72")->order('qbsj desc')->limit(1)->select();
 //        $res = json_encode($res);
         $tmp = [];
         $s24 = $m->where(['code' => $res[0]['nweather24']])->field('winfor,icon')->select();
@@ -1617,9 +1619,9 @@ class DataService {
         $s72 = $m->where(['code' => $res[0]['nweather72']])->field('winfor,icon')->select();
 
 
-        $day8 = date("Y-m-d");
-        $day9 = date("Y-m-d", strtotime("+1 day"));
-        $day10 = date("Y-m-d", strtotime("+2 day"));
+        $day8 = date("Y-m-d", strtotime("+1 day"));
+        $day9 = date("Y-m-d", strtotime("+2 day"));
+        $day10 = date("Y-m-d", strtotime("+3 day"));
 
         $t = [];
         $t['time'] = $day8;
@@ -1636,7 +1638,7 @@ class DataService {
         $t['st'] = $s72[0]['winfor'];
         $t['icon'] = $s72[0]['icon'];
         array_push($tmp, $t);
-//        print_r($tmp);die;
+       // print_r($tmp);die;
         return $tmp;
 
     }

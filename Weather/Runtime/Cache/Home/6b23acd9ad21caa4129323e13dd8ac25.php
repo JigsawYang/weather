@@ -169,7 +169,19 @@
                                     </li>
                                     <li>
                                         <span class="wsmenu-click"></span>
-                                        <a href="/accont">数据统计</a>
+                                        <a href="">农业气象服务信息
+                                            <span class="arrow"></span>
+                                        </a>
+                                        <ul class="wsmenu-submenu">
+                                            <li>
+                                                <a href="/nyservice">农业气象</a>
+                                            </li>
+                                            <li>
+                                                <a href="/stservice">生态气象</a>
+                                            </li>
+
+
+                                        </ul>
                                     </li>
                                     <!-- <li>
                                         <span class="wsmenu-click"></span>
@@ -232,6 +244,9 @@
                                             <!--<?php foreach ($stlist as $key => $v) { ?>-->
                                             <!--<option value="<?php echo ($v['id']); ?>"><?php echo ($v['location']); ?></option>-->
                                             <!--<?php } ?>-->
+                                            <option value="C4002">卜尔汉图镇</option>
+                                            <option value="C4006">昆河镇</option>
+                                            <option value="C4058">石门景区</option>
                                         </select>
                                     </div>
                                     <!--<a href="/index/show_table" class="btn btn-primary pull-right" id="tb-btn">表格</a>-->

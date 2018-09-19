@@ -27,8 +27,8 @@
     <title>包头市智慧农业气象服务系统</title>
 </head>
 <body>
-<div id="wrap">
-    <div id="main">
+<!-- <div id="wrap"> -->
+    <!-- <div id="main"> -->
         <div id="page1" class="page">
             <!-- Header -->
             <header id="header" class="header">
@@ -171,7 +171,7 @@
                                     </li>
                                     <li>
                                         <span class="wsmenu-click"></span>
-                                        <a href="">农业气象服务信息
+                                        <a href="/nyservice">农业气象服务信息
                                             <span class="arrow"></span>
                                         </a>
                                         <ul class="wsmenu-submenu">
@@ -215,15 +215,18 @@
                             <p class="news-tabs__title h2">最新实况报警</p>
                             <div id="demo" style="overflow:hidden;height:350px;width:300px;">
                                 <ul id="demo1" class="news-tabs__nav nav nav-tabs shadow_text" role="tablist">
-
+                                    <?php if($livewarn) {  ?>
                                     <foreach name="livewarn" item="v">
                                         <li role="presentation" class="active">
                                             <p href="" role="tab" data-toggle="tab" class="nav_p">
-                                                <span class="time">{$v['yj_tt']}</span>
+                                                <span class="time">{$s}</span>
                                                 {$v['yj_content']}
                                             </p>
                                         </li>
                                     </foreach>
+                                    <?php } else { ?>
+                                    <p class="p_yujing">无灾害报警</p>
+                                     <?php } ?>
                                 </ul>
                                 <div id="demo2"></div>
                             </div>
@@ -254,101 +257,7 @@
             </div>
             <!-- END header slider -->
 
-            <section class="wrap wrap_gray">
-                <div class="brilliant-section">
-                    <div class="container">
-                        <!-- <h2>常用功能</h2> -->
-                        <!-- <h5>农业气象的常用工具</h5> -->
-                        <div class="brilliant-grids">
-                            <!--<div class="col-md-4 brilliant-grid">-->
-                                <!--<div class="brilliant-left">-->
-                                    <!--<i class="glyphicon glyphicon-cog" aria-hidden="true"></i>-->
-                                <!--</div>-->
-                                <!--<div class="brilliant-right">-->
-                                    <!--<h4>旗县区天气预报</h4>-->
-                                <!--</div>-->
-                                <!--<div class="clearfix"></div>-->
-                            <!--</div>-->
-                            <div class="col-md-3 brilliant-grid">
-                                <div class="brilliant-left">
-                                    <a href="/nyservice"><i class="glyphicon glyphicon-cloud" aria-hidden="true"></i></a>
-                                </div>
-                                <div class="brilliant-right">
-                                    <a href="/accont"><h4>数据统计</h4></a>
-                                </div>
-                                <div class="clearfix"></div>
-                            </div>
-                            <!--<div class="col-md-4 brilliant-grid">-->
-                                <!--<div class="brilliant-left">-->
-                                    <!--<i class="glyphicon glyphicon-signal" aria-hidden="true"></i>-->
-                                <!--</div>-->
-                                <!--<div class="brilliant-right">-->
-                                    <!--<h4>信息留言板</h4>-->
-                                <!--</div>-->
-                                <!--<div class="clearfix"></div>-->
-                            <!--</div>-->
-                            <div class="col-md-3 brilliant-grid">
-                                <div class="brilliant-left">
-                                    <a href="/advise"><i class="glyphicon glyphicon-globe" aria-hidden="true"></i></a>
-                                </div>
-                                <div class="brilliant-right">
-                                    <a href="/advise"><h4>新闻资讯</h4></a>
-                                </div>
-                                <div class="clearfix"></div>
-                            </div>
-                            <div class="col-md-3 brilliant-grid">
-                                <div class="brilliant-left">
-                                    <a href="/know"><i class="glyphicon glyphicon-link" aria-hidden="true"></i></a>
-                                </div>
-                                <div class="brilliant-right">
-                                    <a href="/know"><h4>科普信息</h4></a>
-                                </div>
-                                <div class="clearfix"></div>
-                            </div>
-                            <div class="col-md-3 brilliant-grid">
-                                <div class="brilliant-left">
-                                    <a href="/history"><i class="glyphicon glyphicon-phone" aria-hidden="true"></i></a>
-                                </div>
-                                <div class="brilliant-right">
-                                    <a href="/history"><h4>数据查询</h4></a>
-                                </div>
-                                <div class="clearfix"></div>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
-                        <!--<div class="brilliant-grids">-->
-                            <!--<div class="col-md-4 brilliant-grid">-->
-                                <!--<div class="brilliant-left">-->
-                                    <!--<i class="glyphicon glyphicon-globe" aria-hidden="true"></i>-->
-                                <!--</div>-->
-                                <!--<div class="brilliant-right">-->
-                                    <!--<h4>农田小气候实况监测报警和预警</h4>-->
-                                <!--</div>-->
-                                <!--<div class="clearfix"></div>-->
-                            <!--</div>-->
-                            <!--<div class="col-md-4 brilliant-grid">-->
-                                <!--<div class="brilliant-left">-->
-                                    <!--<i class="glyphicon glyphicon-link" aria-hidden="true"></i>-->
-                                <!--</div>-->
-                                <!--<div class="brilliant-right">-->
-                                    <!--<h4>果树小气候实况监测报警和预警</h4>-->
-                                <!--</div>-->
-                                <!--<div class="clearfix"></div>-->
-                            <!--</div>-->
-                            <!--<div class="col-md-4 brilliant-grid">-->
-                                <!--<div class="brilliant-left">-->
-                                    <!--<i class="glyphicon glyphicon-phone" aria-hidden="true"></i>-->
-                                <!--</div>-->
-                                <!--<div class="brilliant-right">-->
-                                    <!--<h4>数据查询</h4>-->
-                                <!--</div>-->
-                                <!--<div class="clearfix"></div>-->
-                            <!--</div>-->
-                            <!--<div class="clearfix"></div>-->
-                        <!--</div>-->
-                    </div>
-                </div>
-            </section>
+            
         </div>
         <!-- top news-->
         <div id="page2" class="page">
@@ -391,14 +300,14 @@
                                             <?php } ?>
                                         </select>
                                     </div>
-                                    <a href="/index/show_table" class="btn btn-orange btn-m pull-right" id="tb-btn">表格</a>
+                                   <!--  <a href="/index/show_table" class="btn btn-orange btn-m pull-right" id="tb-btn">表格</a> -->
 
                                     <button id="btnsub" type="submit" class="btn btn-primary btn-orange pull-right">刷新</button>
                                 </form>
                             </div>
 
-                                    <div class="col-md-7 col-sm-7" id="out" style="height:570px"></div>
-                                    <div class="col-md-5 col-sm-5" id="feat" style="height:570px">
+                                    <div class="col-md-7 col-sm-7" id="out" style="height:300px"></div>
+                                    <div class="col-md-5 col-sm-5" id="feat">
                                         <table class="table table-striped table-hover table-bordered">
                                             <thead>
                                             <tr>
@@ -415,7 +324,7 @@
                                             </thead>
                                             <tbody>
                                             <tr>
-                                                <th rowspan="5">包头</th>
+                                                <th rowspan="5" id='aaa1'>{$stlocation}</th>
                                                 <td rowspan="1">最高温度</td>
                                                 <td id="m1">{$res_f[0]['max']}</td>
                                                 <td id="m2">{$res_f[1]['max']}</td>
@@ -460,11 +369,115 @@
             </section>
             <!-- /top news -->
 
+<section class="wrap wrap_gray">
+                <div class="brilliant-section">
+                    <div class="container">
+                        <!-- <h2>常用功能</h2> -->
+                        <!-- <h5>农业气象的常用工具</h5> -->
+                        <div class="col-md-11">
+                        <div class="brilliant-grids">
+                            <!--<div class="col-md-4 brilliant-grid">-->
+                                <!--<div class="brilliant-left">-->
+                                    <!--<i class="glyphicon glyphicon-cog" aria-hidden="true"></i>-->
+                                <!--</div>-->
+                                <!--<div class="brilliant-right">-->
+                                    <!--<h4>旗县区天气预报</h4>-->
+                                <!--</div>-->
+                                <!--<div class="clearfix"></div>-->
+                            <!--</div>-->
+                            <div class="col-md-3 brilliant-grid">
+                                <div class="brilliant-left">
+                                    <a href="/accont"><i class="glyphicon glyphicon-cloud" aria-hidden="true"></i></a>
+                                </div>
+                                <div class="brilliant-right">
+                                    <a href="/accont"><h4>数据统计</h4></a>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <!--<div class="col-md-4 brilliant-grid">-->
+                                <!--<div class="brilliant-left">-->
+                                    <!--<i class="glyphicon glyphicon-signal" aria-hidden="true"></i>-->
+                                <!--</div>-->
+                                <!--<div class="brilliant-right">-->
+                                    <!--<h4>信息留言板</h4>-->
+                                <!--</div>-->
+                                <!--<div class="clearfix"></div>-->
+                            <!--</div>-->
+                            <div class="col-md-3 brilliant-grid">
+                                <div class="brilliant-left">
+                                    <a href="/advise"><i class="glyphicon glyphicon-globe" aria-hidden="true"></i></a>
+                                </div>
+                                <div class="brilliant-right">
+                                    <a href="/advise"><h4>新闻资讯</h4></a>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="col-md-3 brilliant-grid">
+                                <div class="brilliant-left">
+                                    <a href="/know"><i class="glyphicon glyphicon-link" aria-hidden="true"></i></a>
+                                </div>
+                                <div class="brilliant-right">
+                                    <a href="/know"><h4>科普信息</h4></a>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="col-md-3 brilliant-grid">
+                                <div class="brilliant-left">
+                                    <a href="/history"><i class="glyphicon glyphicon-phone" aria-hidden="true"></i></a>
+                                </div>
+                                <div class="brilliant-right">
+                                    <a href="/history"><h4>数据下载</h4></a>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                           
+                            <div class="clearfix"></div>
+                        </div>
+                        <!--<div class="brilliant-grids">-->
+                            <!--<div class="col-md-4 brilliant-grid">-->
+                                <!--<div class="brilliant-left">-->
+                                    <!--<i class="glyphicon glyphicon-globe" aria-hidden="true"></i>-->
+                                <!--</div>-->
+                                <!--<div class="brilliant-right">-->
+                                    <!--<h4>农田小气候实况监测报警和预警</h4>-->
+                                <!--</div>-->
+                                <!--<div class="clearfix"></div>-->
+                            <!--</div>-->
+                            <!--<div class="col-md-4 brilliant-grid">-->
+                                <!--<div class="brilliant-left">-->
+                                    <!--<i class="glyphicon glyphicon-link" aria-hidden="true"></i>-->
+                                <!--</div>-->
+                                <!--<div class="brilliant-right">-->
+                                    <!--<h4>果树小气候实况监测报警和预警</h4>-->
+                                <!--</div>-->
+                                <!--<div class="clearfix"></div>-->
+                            <!--</div>-->
+                            <!--<div class="col-md-4 brilliant-grid">-->
+                                <!--<div class="brilliant-left">-->
+                                    <!--<i class="glyphicon glyphicon-phone" aria-hidden="true"></i>-->
+                                <!--</div>-->
+                                <!--<div class="brilliant-right">-->
+                                    <!--<h4>数据查询</h4>-->
+                                <!--</div>-->
+                                <!--<div class="clearfix"></div>-->
+                            <!--</div>-->
+                            <!--<div class="clearfix"></div>-->
+                        <!--</div>-->
+                        </div>
+                        <div class="col-md-1">
+                            <div>
+        <img src="__ASSETS__/images/11.gif" alt="二维码">
+        <p id="qrcode-center" style="margin-left:13px;">扫描安卓APP下载</p>
+    </div>
+                        </div>
+                    </div>
+                </div>
 
+            </section>
 
 <!-- <script src="js/jquery.mousewheel.min.js"></script> -->
 <!-- <script src="js/jquery.fullPage.js"></script> -->
-    <script type="text/javascript">
+    <!-- <script type="text/javascript">
         var wrap = document.getElementById("wrap");
         var main = document.getElementById("main");
         var hei = document.body.clientHeight;
@@ -522,7 +535,7 @@
             $("#main").animate({top:(now+'px')},1000);     //jquery实现动画效果
 //            setTimeout("main.style.top = now + 'px'",1000);     javascript 实现动画效果
         }
-    </script>
+    </script> -->
     <script>
         function marq (demo, demo2, demo1) {
             var speed=40
@@ -555,8 +568,8 @@
                 </div>
             </footer>
         </div>
-    </div>  <!--main-->
-</div>
+    <!-- </div>  main -->
+<!-- </div> -->
 <!-- END Footer -->
 <script src="__ASSETS__/js/jquery.js"></script>
 <script src="__ASSETS__/js/bootstrap.min.js"></script>
@@ -926,7 +939,7 @@
                     $('#n2').text(data.resf[1]['min']);
                     $('#n3').text(data.resf[2]['min']);
 
-
+                    $('#aaa1').text(data.slocation);
 
 
 

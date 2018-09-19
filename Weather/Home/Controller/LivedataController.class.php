@@ -22,9 +22,9 @@ class LivedataController extends CommonController {
         $y = date("Y-m-d H:i:s",strtotime("-1 day"));
 //        实际上线时候 吧这个注释去掉
 
-        $now = '2015-05-28';
-        $now2 = '2015-05-28 10:00:00';
-        $y = "2015-05-27 10:00:00";
+        // $now = '2015-05-28';
+        // $now2 = '2015-05-28 10:00:00';
+        // $y = "2015-05-27 10:00:00";
 //        空气温度
         $tmp = DataService::tmp_search($y, $now2, 'N0001');
         if ($tmp === false) {

@@ -169,7 +169,19 @@
                                     </li>
                                     <li>
                                         <span class="wsmenu-click"></span>
-                                        <a href="/accont">数据统计</a>
+                                        <a href="/nyservice">农业气象服务信息
+                                            <span class="arrow"></span>
+                                        </a>
+                                        <ul class="wsmenu-submenu">
+                                            <li>
+                                                <a href="/nyservice">农业气象</a>
+                                            </li>
+                                            <li>
+                                                <a href="/stservice">生态气象</a>
+                                            </li>
+
+
+                                        </ul>
                                     </li>
                                     <!-- <li>
                                         <span class="wsmenu-click"></span>
@@ -197,7 +209,7 @@
         <div class="container">
             <div class="row">
                 <div class="wrap-thumbnail">
-                    <div class="thumbnail">
+                    <div class="thumbnail" style="min-height: 600px;">
                         <div class="thumbnail__news news">
                             <div>
                                 <form action="/livedisaster/index" class="form-inline" id="wtform" method="post">
@@ -215,7 +227,7 @@
                                         <input type="hidden" id="dtp_input2" value="<?php echo ($day); ?>" name="sdate1"/>
                                         <br/>
                                     </div>
-                                    <div class="form-group slwidth">
+                                    <!-- <div class="form-group slwidth">
                                         <p style="float: left; margin-top: 4px;">小时</p>
                                         <select class="form-control" name="hour">
                                             <option value=""></option>
@@ -224,7 +236,7 @@
                                             <option value="<?php echo ($key); ?>"><?php echo ($v); ?></option>
                                             <?php } ?>
                                         </select>
-                                    </div>
+                                    </div> -->
                                     <div class="form-group slwidth" style="margin-left: 30px">
                                         <select class="form-control" name="station">
                                             <option value=""></option>
@@ -239,14 +251,14 @@
                                     </button>
                                 </form>
                             </div>
-                            <p class="news__category"><?php echo ($now); ?>时 <?php echo ($station); ?> 大田实况报警信息</p>
+                            <p class="news__category"><?php echo ($now); ?> <?php echo ($station); ?> 实况报警信息</p>
 
                             <table class="table table-striped table-hover table-bordered">
                                 <thead>
                                 <tr>
                                     <th>类型</th>
                                     <th>图标</th>
-                                    <th>指标</th>
+                                    <th>时间</th>
                                     <th>内容</th>
                                 </tr>
                                 </thead>
@@ -255,7 +267,7 @@
                                 <?php if(is_array($baojing)): foreach($baojing as $key=>$v): ?><tr>
                                         <td><?php echo ($v['yj_tq_name']); ?></td>
                                         <td><img src="/Public/assets/images/ICON/<?php echo ($v['icon']); ?>" alt=""/></td>
-                                        <td><?php echo ($v['y_type']); ?></td>
+                                        <td><?php echo ($v['yj_tt']); ?></td>
                                         <td><?php echo ($v['yj_content']); ?></td>
                                     </tr><?php endforeach; endif; ?>
                                 <?php } else { ?>
